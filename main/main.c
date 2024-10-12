@@ -15,6 +15,6 @@ void app_main() {
   // Initialize Wi-Fi connection
   initialize_wifi();
 
-  // Start the AWS upload task after Wi-Fi is connected
-  start_upload_task();
+  // Start the Camera Task
+  start_camera_task();
 }

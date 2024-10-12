@@ -37,23 +37,22 @@ static const char *aws_root_ca_pem =
     "-----END CERTIFICATE-----\n";
 
 // Function to upload a test file to the S3 bucket
-void upload_test_file_to_s3(const char *filename) {
+
+// Function to upload an image to the S3 bucket
+void upload_image_to_s3(const uint8_t *image_data, size_t image_size,
+                        const char *filename) {
   ESP_LOGI(TAG, "Waiting for Wi-Fi connection...");
 
   // Check if Wi-Fi connection is established using the semaphore
   if (wifi_connection_semaphore != NULL &&
       xSemaphoreTake(wifi_connection_semaphore, portMAX_DELAY)) {
-    ESP_LOGI(TAG, "Wi-Fi connected. Proceeding with file upload.");
+    ESP_LOGI(TAG, "Wi-Fi connected. Proceeding with image upload.");
 
-    // Define your endpoint URL using the config value
+    // Define the endpoint URL using the config value
     char url[256];
     snprintf(url, sizeof(url), "%s/%s", CONFIG_AWS_API_URL, filename);
 
-    // Create the text file content
-    const char *file_content = "Hello World!";
-    int file_content_length = strlen(file_content);
-
-    // Configure the HTTP client
+    // Configure the HTTP client for the image upload
     esp_http_client_config_t config = {
         .url = url,
         .method = HTTP_METHOD_PUT,
@@ -67,18 +66,24 @@ void upload_test_file_to_s3(const char *filename) {
       return;
     }
 
-    // Set the request headers
-    esp_http_client_set_header(client, "Content-Type", "text/plain");
+    // Set the request headers for binary data (JPEG image)
+    esp_http_client_set_header(client, "Content-Type", "image/jpeg");
 
-    // Send the PUT request with the file content
-    esp_err_t err = esp_http_client_open(client, file_content_length);
+    // Send the PUT request with the image data
+    esp_err_t err = esp_http_client_open(client, image_size);
     if (err == ESP_OK) {
       int write_len =
-          esp_http_client_write(client, file_content, file_content_length);
+          esp_http_client_write(client, (const char *)image_data, image_size);
+      if (write_len != image_size) {
+        ESP_LOGE(TAG,
+                 "Error: Data size mismatch. Sent %d bytes, expected %d bytes.",
+                 write_len, image_size);
+      }
+
       if (write_len < 0) {
-        ESP_LOGE(TAG, "Error in sending file data to the server");
+        ESP_LOGE(TAG, "Error in sending image data to the server");
       } else {
-        ESP_LOGI(TAG, "File uploaded successfully");
+        ESP_LOGI(TAG, "Image uploaded successfully");
       }
     } else {
       ESP_LOGE(TAG, "Failed to open HTTP connection: %s", esp_err_to_name(err));
@@ -88,14 +93,14 @@ void upload_test_file_to_s3(const char *filename) {
     esp_http_client_close(client);
     esp_http_client_cleanup(client);
   } else {
-    ESP_LOGE(TAG, "Wi-Fi not connected. File upload failed.");
+    ESP_LOGE(TAG, "Wi-Fi not connected. Image upload failed.");
   }
 }
 
-// Example usage of the upload function
+// Example usage of the image upload function
 void start_upload_task(void) {
-  ESP_LOGI(TAG, "Starting the upload task...");
+  // ESP_LOGI(TAG, "Starting the upload task...");
 
-  // Call the upload function once Wi-Fi is connected
-  upload_test_file_to_s3("test-file-from-ESP32.txt");
+  // This function can be called with image data once the image is captured
+  // Example: upload_image_to_s3(image_data, image_size, "captured-image.jpg");
 }

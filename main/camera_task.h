@@ -2,6 +2,7 @@
 #define CAMERA_TASK_H
 
 #include <esp_err.h>
+#include <stddef.h>
 
 // Function to start the camera task
 void start_camera_task(void);

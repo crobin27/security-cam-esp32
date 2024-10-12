@@ -6,9 +6,13 @@
 #include <string.h>
 #include <sys/param.h>
 
+#include "aws_upload.h"
 #include "esp_camera.h"
 #include "freertos/FreeRTOS.h"
+#include "freertos/semphr.h"
 #include "freertos/task.h"
+#include "wifi_connect.h"  // For the Wi-Fi semaphore
+
 #define BOARD_ESP32CAM_AITHINKER 1
 
 // ESP32Cam (AiThinker) PIN Map
@@ -36,6 +40,9 @@
 
 static const char *TAG = "Camera_Task";
 
+// External declaration of the semaphore defined in wifi_connect.c
+extern SemaphoreHandle_t wifi_connection_semaphore;
+
 #if ESP_CAMERA_SUPPORTED
 static camera_config_t camera_config = {
     .pin_pwdn = CAM_PIN_PWDN,
@@ -57,16 +64,16 @@ static camera_config_t camera_config = {
     .xclk_freq_hz = 20000000,
     .ledc_timer = LEDC_TIMER_0,
     .ledc_channel = LEDC_CHANNEL_0,
-    .pixel_format = PIXFORMAT_RGB565,
-    .frame_size = FRAMESIZE_QVGA,
-    .jpeg_quality = 12,
-    .fb_count = 1,
+    .pixel_format = PIXFORMAT_JPEG,  // JPEG for smaller file sizes
+    .frame_size = FRAMESIZE_SVGA,  // Smaller frame size to reduce memory usage
+    .jpeg_quality = 10,  // Higher quality value means lower image quality
+    .fb_count = 1,       // Only one frame buffer to reduce memory usage
     .fb_location = CAMERA_FB_IN_PSRAM,
     .grab_mode = CAMERA_GRAB_WHEN_EMPTY,
 };
 
+// Function to initialize the camera
 static esp_err_t init_camera(void) {
-  // Initialize the camera
   esp_err_t err = esp_camera_init(&camera_config);
   if (err != ESP_OK) {
     ESP_LOGE(TAG, "Camera Init Failed");
@@ -75,22 +82,77 @@ static esp_err_t init_camera(void) {
   return ESP_OK;
 }
 
-static void camera_task(void *pvParameters) {
-  while (1) {
-    ESP_LOGI(TAG, "Taking picture...");
-    camera_fb_t *pic = esp_camera_fb_get();
-
-    if (pic) {
-      ESP_LOGI(TAG, "Picture taken! Its size was: %zu bytes", pic->len);
-      esp_camera_fb_return(pic);
-    } else {
-      ESP_LOGE(TAG, "Failed to take picture.");
-    }
-
-    vTaskDelay(5000 / portTICK_PERIOD_MS);  // Delay 5 seconds between pictures
-  }
+// Function to generate a unique filename based on the current time
+static void generate_image_filename(char *buffer, size_t buffer_size) {
+  time_t now;
+  struct tm timeinfo;
+  time(&now);
+  localtime_r(&now, &timeinfo);
+  strftime(buffer, buffer_size, "image_%Y%m%d_%H%M%S.jpg", &timeinfo);
 }
 
+// Task to handle camera functionality
+static void camera_task(void *pvParameters) {
+  // Wait for the Wi-Fi connection before proceeding
+  if (wifi_connection_semaphore != NULL &&
+      xSemaphoreTake(wifi_connection_semaphore, portMAX_DELAY)) {
+    ESP_LOGI(TAG, "Wi-Fi connected. Camera task starting...");
+
+    while (1) {
+      // Countdown before taking a picture
+      for (int i = 5; i > 0; i--) {
+        ESP_LOGI(TAG, "Taking picture in %d...", i);
+        vTaskDelay(1000 / portTICK_PERIOD_MS);
+      }
+
+      // Take the picture
+      ESP_LOGI(TAG, "Taking picture...");
+      camera_fb_t *pic = esp_camera_fb_get();
+
+      if (pic) {
+        ESP_LOGI(TAG, "Picture taken! Size: %zu bytes", pic->len);
+
+        // Generate a unique filename for the image
+        char image_filename[64];
+        generate_image_filename(image_filename, sizeof(image_filename));
+
+        // Release the semaphore before starting the upload
+        // This allows the upload task to take the semaphore when needed
+        xSemaphoreGive(wifi_connection_semaphore);
+
+        ESP_LOGI(TAG,
+                 "First few bytes of image data: %02X %02X %02X %02X %02X "
+                 "should be 0xFF 0xD8, 0xFF",
+                 pic->buf[0], pic->buf[1], pic->buf[2], pic->buf[3],
+                 pic->buf[4]);
+
+        // Upload the picture to AWS
+        upload_image_to_s3(pic->buf, pic->len, image_filename);
+
+        // Reacquire the semaphore after upload is done
+        if (wifi_connection_semaphore != NULL &&
+            xSemaphoreTake(wifi_connection_semaphore, portMAX_DELAY)) {
+          ESP_LOGI(TAG, "Re-acquired semaphore for the next iteration.");
+        }
+
+        // Return the frame buffer back to the driver for reuse
+        esp_camera_fb_return(pic);
+      } else {
+        ESP_LOGE(TAG, "Failed to take picture.");
+      }
+
+      // Wait 5 seconds before taking the next picture
+      vTaskDelay(5000 / portTICK_PERIOD_MS);
+    }
+  } else {
+    ESP_LOGE(TAG, "Wi-Fi not connected. Camera task cannot proceed.");
+  }
+
+  // Delete the task if Wi-Fi connection fails
+  vTaskDelete(NULL);
+}
+
+// Start the camera task
 void start_camera_task(void) {
   if (ESP_OK != init_camera()) {
     ESP_LOGE(TAG, "Camera initialization failed.");
