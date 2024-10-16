@@ -63,6 +63,7 @@ void upload_image_to_s3(const uint8_t *image_data, size_t image_size,
     esp_http_client_handle_t client = esp_http_client_init(&config);
     if (client == NULL) {
       ESP_LOGE(TAG, "Failed to initialize HTTP client");
+      xSemaphoreGive(wifi_connection_semaphore);
       return;
     }
 
@@ -95,6 +96,7 @@ void upload_image_to_s3(const uint8_t *image_data, size_t image_size,
   } else {
     ESP_LOGE(TAG, "Wi-Fi not connected. Image upload failed.");
   }
+  xSemaphoreGive(wifi_connection_semaphore);
 }
 
 // Example usage of the image upload function
