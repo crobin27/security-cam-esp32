@@ -1,4 +1,5 @@
 # ESP32 Trail Camera Project
+![ESP32-CAM Trail Camera Diagram](ESP32.png)
 
 ## Overview
 This project is a trail camera system built using the ESP32 microcontroller. The camera is designed to capture images upon movement detection or when triggered, then upload the images to an Amazon S3 bucket using secure HTTPS connections. The system is optimized for low power consumption, making it ideal for remote monitoring in natural environments. The images can be viewed anywhere from an Android application using Kotlin, this repository holds the ESP32 components.
