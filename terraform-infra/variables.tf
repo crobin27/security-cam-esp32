@@ -4,3 +4,9 @@ variable "bucket_name" {
   default = "trail-cam-images"
   type = string
 }
+
+variable "region" {
+  description = "AWS region for deployment"
+  type        = string
+  default     = "us-east-2"  # Change this to your preferred region
+}
