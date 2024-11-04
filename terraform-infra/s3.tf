@@ -1,22 +1,26 @@
+# Define the main S3 bucket for storing images
 resource "aws_s3_bucket" "images_bucket" {
   bucket = var.bucket_name
-  acl    = "private"
+  tags = {
+    Environment = "Development"
+    Project     = "ESP32-Trail-Cam"
+  }
 }
 
-resource "aws_s3_bucket_policy" "images_bucket_policy" {
+resource "aws_s3_bucket_versioning" "bucket_versioning" {
   bucket = aws_s3_bucket.images_bucket.id
-  policy = jsonencode({
-    Version = "2012-10-17",
-    Statement = [
-      {
-        Action   = ["s3:PutObject"],
-        Effect   = "Allow",
-        Resource = "${aws_s3_bucket.images_bucket.arn}/*",
-        Principal = {
-          Service = "apigateway.amazonaws.com"
-        }
-      }
-    ]
-  })
+  versioning_configuration {
+    status = "Enabled"
+  }
 }
 
+# Define server-side encryption for the S3 bucket
+resource "aws_s3_bucket_server_side_encryption_configuration" "bucket_encryption" {
+  bucket = aws_s3_bucket.images_bucket.bucket
+
+  rule {
+    apply_server_side_encryption_by_default {
+      sse_algorithm = "AES256"
+    }
+  }
+}
