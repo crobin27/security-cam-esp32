@@ -2,6 +2,8 @@
 # ESP32 .gitignore attributes
 #################################
 
+config.json
+
 # Ignore build artifacts
 /build/
 /*.bin

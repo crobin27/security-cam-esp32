@@ -1,4 +1,3 @@
-
 provider "aws" {
-  region = "us-east-2"  # Replace with your region
+  region = var.region # Define region as a variable for flexibility
 }

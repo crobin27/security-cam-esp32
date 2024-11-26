@@ -1,0 +1,272 @@
+[0;33m--- Warning: GDB cannot open serial ports accessed as COMx[0m
+[0;33m--- Using \\.\COM5 instead...[0m
+[0;33m--- esp-idf-monitor 1.5.0 on \\.\COM5 115200[0m
+[0;33m--- Quit: Ctrl+] | Menu: Ctrl+T | Help: Ctrl+T followed by Ctrl+H[0m
+[0;33m--- 0x40080400: _init at ??:?
+[0m
+[0;33m--- 0x400dc10b: initialize_wifi at C:/Users/coler/RobinsonGaming/ESP32 Projects/Trail Cam/main/wifi_connect.c:79 (discriminator 1)
+[0m
+[0;33m--- 0x40090797: _esp_error_check_failed at C:/Users/coler/esp/v5.3.1/esp-idf/components/esp_system/esp_err.c:49
+[0m
+[0;33m--- 0x400820d5: panic_abort at C:/Users/coler/esp/v5.3.1/esp-idf/components/esp_system/panic.c:463
+0x400907a1: esp_system_abort at C:/Users/coler/esp/v5.3.1/esp-idf/components/esp_system/port/esp_system_chip.c:92
+0x400988a9: abort at C:/Users/coler/esp/v5.3.1/esp-idf/components/newlib/abort.c:38
+0x40090797: _esp_error_check_failed at C:/Users/coler/esp/v5.3.1/esp-idf/components/esp_system/esp_err.c:49
+0x400dc10b: initialize_wifi at C:/Users/coler/RobinsonGaming/ESP32 Projects/Trail Cam/main/wifi_connect.c:79 (discriminator 1)
+0x400dbfc2: app_main at C:/Users/coler/RobinsonGaming/ESP32 Projects/Trail Cam/main/main.c:16
+0x4017e48b: main_task at C:/Users/coler/esp/v5.3.1/esp-idf/components/freertos/app_startup.c:208
+0x40091345: vPortTaskWrapper at C:/Users/coler/esp/v5.3.1/esp-idf/components/freertos/FreeRTOS-Kernel/portable/xtensa/port.c:134
+[0m
+[0;33m--- 0x40080400: _init at ??:?
+[0m
+[0;33m--- 0x400dc10b: initialize_wifi at C:/Users/coler/RobinsonGaming/ESP32 Projects/Trail Cam/main/wifi_connect.c:79 (discriminator 1)
+[0m
+[0;33m--- 0x40090797: _esp_error_check_failed at C:/Users/coler/esp/v5.3.1/esp-idf/components/esp_system/esp_err.c:49
+[0m
+[0;33m--- 0x400820d5: panic_abort at C:/Users/coler/esp/v5.3.1/esp-idf/components/esp_system/panic.c:463
+0x400907a1: esp_system_abort at C:/Users/coler/esp/v5.3.1/esp-idf/components/esp_system/port/esp_system_chip.c:92
+0x400988a9: abort at C:/Users/coler/esp/v5.3.1/esp-idf/components/newlib/abort.c:38
+0x40090797: _esp_error_check_failed at C:/Users/coler/esp/v5.3.1/esp-idf/components/esp_system/esp_err.c:49
+0x400dc10b: initialize_wifi at C:/Users/coler/RobinsonGaming/ESP32 Projects/Trail Cam/main/wifi_connect.c:79 (discriminator 1)
+0x400dbfc2: app_main at C:/Users/coler/RobinsonGaming/ESP32 Projects/Trail Cam/main/main.c:16
+0x4017e48b: main_task at C:/Users/coler/esp/v5.3.1/esp-idf/components/freertos/app_startup.c:208
+0x40091345: vPortTaskWrapper at C:/Users/coler/esp/v5.3.1/esp-idf/components/freertos/FreeRTOS-Kernel/portable/xtensa/port.c:134
+[0m
+[0;33m--- 0x40080400: _init at ??:?
+[0m
+[0;33m--- 0x400dc10b: initialize_wifi at C:/Users/coler/RobinsonGaming/ESP32 Projects/Trail Cam/main/wifi_connect.c:79 (discriminator 1)
+[0m
+[0;33m--- 0x40090797: _esp_error_check_failed at C:/Users/coler/esp/v5.3.1/esp-idf/components/esp_system/esp_err.c:49
+[0m
+[0;33m--- 0x400820d5: panic_abort at C:/Users/coler/esp/v5.3.1/esp-idf/components/esp_system/panic.c:463
+0x400907a1: esp_system_abort at C:/Users/coler/esp/v5.3.1/esp-idf/components/esp_system/port/esp_system_chip.c:92
+0x400988a9: abort at C:/Users/coler/esp/v5.3.1/esp-idf/components/newlib/abort.c:38
+0x40090797: _esp_error_check_failed at C:/Users/coler/esp/v5.3.1/esp-idf/components/esp_system/esp_err.c:49
+0x400dc10b: initialize_wifi at C:/Users/coler/RobinsonGaming/ESP32 Projects/Trail Cam/main/wifi_connect.c:79 (discriminator 1)
+0x400dbfc2: app_main at C:/Users/coler/RobinsonGaming/ESP32 Projects/Trail Cam/main/main.c:16
+0x4017e48b: main_task at C:/Users/coler/esp/v5.3.1/esp-idf/components/freertos/app_startup.c:208
+0x40091345: vPortTaskWrapper at C:/Users/coler/esp/v5.3.1/esp-idf/components/freertos/FreeRTOS-Kernel/portable/xtensa/port.c:134
+[0m
+[0;33m--- 0x40080400: _init at ??:?
+[0m
+[0;33m--- 0x400dc10b: initialize_wifi at C:/Users/coler/RobinsonGaming/ESP32 Projects/Trail Cam/main/wifi_connect.c:79 (discriminator 1)
+[0m
+[0;33m--- 0x40090797: _esp_error_check_failed at C:/Users/coler/esp/v5.3.1/esp-idf/components/esp_system/esp_err.c:49
+[0m
+[0;33m--- 0x400820d5: panic_abort at C:/Users/coler/esp/v5.3.1/esp-idf/components/esp_system/panic.c:463
+0x400907a1: esp_system_abort at C:/Users/coler/esp/v5.3.1/esp-idf/components/esp_system/port/esp_system_chip.c:92
+0x400988a9: abort at C:/Users/coler/esp/v5.3.1/esp-idf/components/newlib/abort.c:38
+0x40090797: _esp_error_check_failed at C:/Users/coler/esp/v5.3.1/esp-idf/components/esp_system/esp_err.c:49
+0x400dc10b: initialize_wifi at C:/Users/coler/RobinsonGaming/ESP32 Projects/Trail Cam/main/wifi_connect.c:79 (discriminator 1)
+0x400dbfc2: app_main at C:/Users/coler/RobinsonGaming/ESP32 Projects/Trail Cam/main/main.c:16
+0x4017e48b: main_task at C:/Users/coler/esp/v5.3.1/esp-idf/components/freertos/app_startup.c:208
+0x40091345: vPortTaskWrapper at C:/Users/coler/esp/v5.3.1/esp-idf/components/freertos/FreeRTOS-Kernel/portable/xtensa/port.c:134
+[0m
+[0;33m--- 0x40080400: _init at ??:?
+[0m
+[0;33m--- 0x400dc10b: initialize_wifi at C:/Users/coler/RobinsonGaming/ESP32 Projects/Trail Cam/main/wifi_connect.c:79 (discriminator 1)
+[0m
+[0;33m--- 0x40090797: _esp_error_check_failed at C:/Users/coler/esp/v5.3.1/esp-idf/components/esp_system/esp_err.c:49
+[0m
+[0;33m--- 0x400820d5: panic_abort at C:/Users/coler/esp/v5.3.1/esp-idf/components/esp_system/panic.c:463
+0x400907a1: esp_system_abort at C:/Users/coler/esp/v5.3.1/esp-idf/components/esp_system/port/esp_system_chip.c:92
+0x400988a9: abort at C:/Users/coler/esp/v5.3.1/esp-idf/components/newlib/abort.c:38
+0x40090797: _esp_error_check_failed at C:/Users/coler/esp/v5.3.1/esp-idf/components/esp_system/esp_err.c:49
+0x400dc10b: initialize_wifi at C:/Users/coler/RobinsonGaming/ESP32 Projects/Trail Cam/main/wifi_connect.c:79 (discriminator 1)
+0x400dbfc2: app_main at C:/Users/coler/RobinsonGaming/ESP32 Projects/Trail Cam/main/main.c:16
+0x4017e48b: main_task at C:/Users/coler/esp/v5.3.1/esp-idf/components/freertos/app_startup.c:208
+0x40091345: vPortTaskWrapper at C:/Users/coler/esp/v5.3.1/esp-idf/components/freertos/FreeRTOS-Kernel/portable/xtensa/port.c:134
+[0m
+[0;33m--- 0x40080400: _init at ??:?
+[0m
+[0;33m--- 0x400dc10b: initialize_wifi at C:/Users/coler/RobinsonGaming/ESP32 Projects/Trail Cam/main/wifi_connect.c:79 (discriminator 1)
+[0m
+[0;33m--- 0x40090797: _esp_error_check_failed at C:/Users/coler/esp/v5.3.1/esp-idf/components/esp_system/esp_err.c:49
+[0m
+[0;33m--- 0x400820d5: panic_abort at C:/Users/coler/esp/v5.3.1/esp-idf/components/esp_system/panic.c:463
+0x400907a1: esp_system_abort at C:/Users/coler/esp/v5.3.1/esp-idf/components/esp_system/port/esp_system_chip.c:92
+0x400988a9: abort at C:/Users/coler/esp/v5.3.1/esp-idf/components/newlib/abort.c:38
+0x40090797: _esp_error_check_failed at C:/Users/coler/esp/v5.3.1/esp-idf/components/esp_system/esp_err.c:49
+0x400dc10b: initialize_wifi at C:/Users/coler/RobinsonGaming/ESP32 Projects/Trail Cam/main/wifi_connect.c:79 (discriminator 1)
+0x400dbfc2: app_main at C:/Users/coler/RobinsonGaming/ESP32 Projects/Trail Cam/main/main.c:16
+0x4017e48b: main_task at C:/Users/coler/esp/v5.3.1/esp-idf/components/freertos/app_startup.c:208
+0x40091345: vPortTaskWrapper at C:/Users/coler/esp/v5.3.1/esp-idf/components/freertos/FreeRTOS-Kernel/portable/xtensa/port.c:134
+[0m
+[0;33m--- 0x40080400: _init at ??:?
+[0m
+[0;33m--- 0x400dc10b: initialize_wifi at C:/Users/coler/RobinsonGaming/ESP32 Projects/Trail Cam/main/wifi_connect.c:79 (discriminator 1)
+[0m
+[0;33m--- 0x40090797: _esp_error_check_failed at C:/Users/coler/esp/v5.3.1/esp-idf/components/esp_system/esp_err.c:49
+[0m
+[0;33m--- 0x400820d5: panic_abort at C:/Users/coler/esp/v5.3.1/esp-idf/components/esp_system/panic.c:463
+0x400907a1: esp_system_abort at C:/Users/coler/esp/v5.3.1/esp-idf/components/esp_system/port/esp_system_chip.c:92
+0x400988a9: abort at C:/Users/coler/esp/v5.3.1/esp-idf/components/newlib/abort.c:38
+0x40090797: _esp_error_check_failed at C:/Users/coler/esp/v5.3.1/esp-idf/components/esp_system/esp_err.c:49
+0x400dc10b: initialize_wifi at C:/Users/coler/RobinsonGaming/ESP32 Projects/Trail Cam/main/wifi_connect.c:79 (discriminator 1)
+0x400dbfc2: app_main at C:/Users/coler/RobinsonGaming/ESP32 Projects/Trail Cam/main/main.c:16
+0x4017e48b: main_task at C:/Users/coler/esp/v5.3.1/esp-idf/components/freertos/app_startup.c:208
+0x40091345: vPortTaskWrapper at C:/Users/coler/esp/v5.3.1/esp-idf/components/freertos/FreeRTOS-Kernel/portable/xtensa/port.c:134
+[0m
+[0;33m--- 0x40080400: _init at ??:?
+[0m
+[0;33m--- 0x400dc10b: initialize_wifi at C:/Users/coler/RobinsonGaming/ESP32 Projects/Trail Cam/main/wifi_connect.c:79 (discriminator 1)
+[0m
+[0;33m--- 0x40090797: _esp_error_check_failed at C:/Users/coler/esp/v5.3.1/esp-idf/components/esp_system/esp_err.c:49
+[0m
+[0;33m--- 0x400820d5: panic_abort at C:/Users/coler/esp/v5.3.1/esp-idf/components/esp_system/panic.c:463
+0x400907a1: esp_system_abort at C:/Users/coler/esp/v5.3.1/esp-idf/components/esp_system/port/esp_system_chip.c:92
+0x400988a9: abort at C:/Users/coler/esp/v5.3.1/esp-idf/components/newlib/abort.c:38
+0x40090797: _esp_error_check_failed at C:/Users/coler/esp/v5.3.1/esp-idf/components/esp_system/esp_err.c:49
+0x400dc10b: initialize_wifi at C:/Users/coler/RobinsonGaming/ESP32 Projects/Trail Cam/main/wifi_connect.c:79 (discriminator 1)
+0x400dbfc2: app_main at C:/Users/coler/RobinsonGaming/ESP32 Projects/Trail Cam/main/main.c:16
+0x4017e48b: main_task at C:/Users/coler/esp/v5.3.1/esp-idf/components/freertos/app_startup.c:208
+0x40091345: vPortTaskWrapper at C:/Users/coler/esp/v5.3.1/esp-idf/components/freertos/FreeRTOS-Kernel/portable/xtensa/port.c:134
+[0m
+[0;33m--- 0x40080400: _init at ??:?
+[0m
+[0;33m--- 0x400dc10b: initialize_wifi at C:/Users/coler/RobinsonGaming/ESP32 Projects/Trail Cam/main/wifi_connect.c:79 (discriminator 1)
+[0m
+[0;33m--- 0x40090797: _esp_error_check_failed at C:/Users/coler/esp/v5.3.1/esp-idf/components/esp_system/esp_err.c:49
+[0m
+[0;33m--- 0x400820d5: panic_abort at C:/Users/coler/esp/v5.3.1/esp-idf/components/esp_system/panic.c:463
+0x400907a1: esp_system_abort at C:/Users/coler/esp/v5.3.1/esp-idf/components/esp_system/port/esp_system_chip.c:92
+0x400988a9: abort at C:/Users/coler/esp/v5.3.1/esp-idf/components/newlib/abort.c:38
+0x40090797: _esp_error_check_failed at C:/Users/coler/esp/v5.3.1/esp-idf/components/esp_system/esp_err.c:49
+0x400dc10b: initialize_wifi at C:/Users/coler/RobinsonGaming/ESP32 Projects/Trail Cam/main/wifi_connect.c:79 (discriminator 1)
+0x400dbfc2: app_main at C:/Users/coler/RobinsonGaming/ESP32 Projects/Trail Cam/main/main.c:16
+0x4017e48b: main_task at C:/Users/coler/esp/v5.3.1/esp-idf/components/freertos/app_startup.c:208
+0x40091345: vPortTaskWrapper at C:/Users/coler/esp/v5.3.1/esp-idf/components/freertos/FreeRTOS-Kernel/portable/xtensa/port.c:134
+[0m
+[0;33m--- 0x40080400: _init at ??:?
+[0m
+[0;33m--- 0x400dc10b: initialize_wifi at C:/Users/coler/RobinsonGaming/ESP32 Projects/Trail Cam/main/wifi_connect.c:79 (discriminator 1)
+[0m
+[0;33m--- 0x40090797: _esp_error_check_failed at C:/Users/coler/esp/v5.3.1/esp-idf/components/esp_system/esp_err.c:49
+[0m
+[0;33m--- 0x400820d5: panic_abort at C:/Users/coler/esp/v5.3.1/esp-idf/components/esp_system/panic.c:463
+0x400907a1: esp_system_abort at C:/Users/coler/esp/v5.3.1/esp-idf/components/esp_system/port/esp_system_chip.c:92
+0x400988a9: abort at C:/Users/coler/esp/v5.3.1/esp-idf/components/newlib/abort.c:38
+0x40090797: _esp_error_check_failed at C:/Users/coler/esp/v5.3.1/esp-idf/components/esp_system/esp_err.c:49
+0x400dc10b: initialize_wifi at C:/Users/coler/RobinsonGaming/ESP32 Projects/Trail Cam/main/wifi_connect.c:79 (discriminator 1)
+0x400dbfc2: app_main at C:/Users/coler/RobinsonGaming/ESP32 Projects/Trail Cam/main/main.c:16
+0x4017e48b: main_task at C:/Users/coler/esp/v5.3.1/esp-idf/components/freertos/app_startup.c:208
+0x40091345: vPortTaskWrapper at C:/Users/coler/esp/v5.3.1/esp-idf/components/freertos/FreeRTOS-Kernel/portable/xtensa/port.c:134
+[0m
+[0;33m--- 0x40080400: _init at ??:?
+[0m
+[0;33m--- 0x400dc10b: initialize_wifi at C:/Users/coler/RobinsonGaming/ESP32 Projects/Trail Cam/main/wifi_connect.c:79 (discriminator 1)
+[0m
+[0;33m--- 0x40090797: _esp_error_check_failed at C:/Users/coler/esp/v5.3.1/esp-idf/components/esp_system/esp_err.c:49
+[0m
+[0;33m--- 0x400820d5: panic_abort at C:/Users/coler/esp/v5.3.1/esp-idf/components/esp_system/panic.c:463
+0x400907a1: esp_system_abort at C:/Users/coler/esp/v5.3.1/esp-idf/components/esp_system/port/esp_system_chip.c:92
+0x400988a9: abort at C:/Users/coler/esp/v5.3.1/esp-idf/components/newlib/abort.c:38
+0x40090797: _esp_error_check_failed at C:/Users/coler/esp/v5.3.1/esp-idf/components/esp_system/esp_err.c:49
+0x400dc10b: initialize_wifi at C:/Users/coler/RobinsonGaming/ESP32 Projects/Trail Cam/main/wifi_connect.c:79 (discriminator 1)
+0x400dbfc2: app_main at C:/Users/coler/RobinsonGaming/ESP32 Projects/Trail Cam/main/main.c:16
+0x4017e48b: main_task at C:/Users/coler/esp/v5.3.1/esp-idf/components/freertos/app_startup.c:208
+0x40091345: vPortTaskWrapper at C:/Users/coler/esp/v5.3.1/esp-idf/components/freertos/FreeRTOS-Kernel/portable/xtensa/port.c:134
+[0m
+[0;33m--- 0x40080400: _init at ??:?
+[0m
+[0;33m--- 0x400dc10b: initialize_wifi at C:/Users/coler/RobinsonGaming/ESP32 Projects/Trail Cam/main/wifi_connect.c:79 (discriminator 1)
+[0m
+[0;33m--- 0x40090797: _esp_error_check_failed at C:/Users/coler/esp/v5.3.1/esp-idf/components/esp_system/esp_err.c:49
+[0m
+[0;33m--- 0x400820d5: panic_abort at C:/Users/coler/esp/v5.3.1/esp-idf/components/esp_system/panic.c:463
+0x400907a1: esp_system_abort at C:/Users/coler/esp/v5.3.1/esp-idf/components/esp_system/port/esp_system_chip.c:92
+0x400988a9: abort at C:/Users/coler/esp/v5.3.1/esp-idf/components/newlib/abort.c:38
+0x40090797: _esp_error_check_failed at C:/Users/coler/esp/v5.3.1/esp-idf/components/esp_system/esp_err.c:49
+0x400dc10b: initialize_wifi at C:/Users/coler/RobinsonGaming/ESP32 Projects/Trail Cam/main/wifi_connect.c:79 (discriminator 1)
+0x400dbfc2: app_main at C:/Users/coler/RobinsonGaming/ESP32 Projects/Trail Cam/main/main.c:16
+0x4017e48b: main_task at C:/Users/coler/esp/v5.3.1/esp-idf/components/freertos/app_startup.c:208
+0x40091345: vPortTaskWrapper at C:/Users/coler/esp/v5.3.1/esp-idf/components/freertos/FreeRTOS-Kernel/portable/xtensa/port.c:134
+[0m
+[0;33m--- 0x40080400: _init at ??:?
+[0m
+[0;33m--- 0x400dc10b: initialize_wifi at C:/Users/coler/RobinsonGaming/ESP32 Projects/Trail Cam/main/wifi_connect.c:79 (discriminator 1)
+[0m
+[0;33m--- 0x40090797: _esp_error_check_failed at C:/Users/coler/esp/v5.3.1/esp-idf/components/esp_system/esp_err.c:49
+[0m
+[0;33m--- 0x400820d5: panic_abort at C:/Users/coler/esp/v5.3.1/esp-idf/components/esp_system/panic.c:463
+0x400907a1: esp_system_abort at C:/Users/coler/esp/v5.3.1/esp-idf/components/esp_system/port/esp_system_chip.c:92
+0x400988a9: abort at C:/Users/coler/esp/v5.3.1/esp-idf/components/newlib/abort.c:38
+0x40090797: _esp_error_check_failed at C:/Users/coler/esp/v5.3.1/esp-idf/components/esp_system/esp_err.c:49
+0x400dc10b: initialize_wifi at C:/Users/coler/RobinsonGaming/ESP32 Projects/Trail Cam/main/wifi_connect.c:79 (discriminator 1)
+0x400dbfc2: app_main at C:/Users/coler/RobinsonGaming/ESP32 Projects/Trail Cam/main/main.c:16
+0x4017e48b: main_task at C:/Users/coler/esp/v5.3.1/esp-idf/components/freertos/app_startup.c:208
+0x40091345: vPortTaskWrapper at C:/Users/coler/esp/v5.3.1/esp-idf/components/freertos/FreeRTOS-Kernel/portable/xtensa/port.c:134
+[0m
+[0;33m--- 0x40080400: _init at ??:?
+[0m
+[0;33m--- 0x400dc10b: initialize_wifi at C:/Users/coler/RobinsonGaming/ESP32 Projects/Trail Cam/main/wifi_connect.c:79 (discriminator 1)
+[0m
+[0;33m--- 0x40090797: _esp_error_check_failed at C:/Users/coler/esp/v5.3.1/esp-idf/components/esp_system/esp_err.c:49
+[0m
+[0;33m--- 0x400820d5: panic_abort at C:/Users/coler/esp/v5.3.1/esp-idf/components/esp_system/panic.c:463
+0x400907a1: esp_system_abort at C:/Users/coler/esp/v5.3.1/esp-idf/components/esp_system/port/esp_system_chip.c:92
+0x400988a9: abort at C:/Users/coler/esp/v5.3.1/esp-idf/components/newlib/abort.c:38
+0x40090797: _esp_error_check_failed at C:/Users/coler/esp/v5.3.1/esp-idf/components/esp_system/esp_err.c:49
+0x400dc10b: initialize_wifi at C:/Users/coler/RobinsonGaming/ESP32 Projects/Trail Cam/main/wifi_connect.c:79 (discriminator 1)
+0x400dbfc2: app_main at C:/Users/coler/RobinsonGaming/ESP32 Projects/Trail Cam/main/main.c:16
+0x4017e48b: main_task at C:/Users/coler/esp/v5.3.1/esp-idf/components/freertos/app_startup.c:208
+0x40091345: vPortTaskWrapper at C:/Users/coler/esp/v5.3.1/esp-idf/components/freertos/FreeRTOS-Kernel/portable/xtensa/port.c:134
+[0m
+[0;33m--- 0x40080400: _init at ??:?
+[0m
+[0;33m--- 0x400dc10b: initialize_wifi at C:/Users/coler/RobinsonGaming/ESP32 Projects/Trail Cam/main/wifi_connect.c:79 (discriminator 1)
+[0m
+[0;33m--- 0x40090797: _esp_error_check_failed at C:/Users/coler/esp/v5.3.1/esp-idf/components/esp_system/esp_err.c:49
+[0m
+[0;33m--- 0x400820d5: panic_abort at C:/Users/coler/esp/v5.3.1/esp-idf/components/esp_system/panic.c:463
+0x400907a1: esp_system_abort at C:/Users/coler/esp/v5.3.1/esp-idf/components/esp_system/port/esp_system_chip.c:92
+0x400988a9: abort at C:/Users/coler/esp/v5.3.1/esp-idf/components/newlib/abort.c:38
+0x40090797: _esp_error_check_failed at C:/Users/coler/esp/v5.3.1/esp-idf/components/esp_system/esp_err.c:49
+0x400dc10b: initialize_wifi at C:/Users/coler/RobinsonGaming/ESP32 Projects/Trail Cam/main/wifi_connect.c:79 (discriminator 1)
+0x400dbfc2: app_main at C:/Users/coler/RobinsonGaming/ESP32 Projects/Trail Cam/main/main.c:16
+0x4017e48b: main_task at C:/Users/coler/esp/v5.3.1/esp-idf/components/freertos/app_startup.c:208
+0x40091345: vPortTaskWrapper at C:/Users/coler/esp/v5.3.1/esp-idf/components/freertos/FreeRTOS-Kernel/portable/xtensa/port.c:134
+[0m
+[0;33m--- 0x40080400: _init at ??:?
+[0m
+[0;33m--- 0x400dc10b: initialize_wifi at C:/Users/coler/RobinsonGaming/ESP32 Projects/Trail Cam/main/wifi_connect.c:79 (discriminator 1)
+[0m
+[0;33m--- 0x40090797: _esp_error_check_failed at C:/Users/coler/esp/v5.3.1/esp-idf/components/esp_system/esp_err.c:49
+[0m
+[0;33m--- 0x400820d5: panic_abort at C:/Users/coler/esp/v5.3.1/esp-idf/components/esp_system/panic.c:463
+0x400907a1: esp_system_abort at C:/Users/coler/esp/v5.3.1/esp-idf/components/esp_system/port/esp_system_chip.c:92
+0x400988a9: abort at C:/Users/coler/esp/v5.3.1/esp-idf/components/newlib/abort.c:38
+0x40090797: _esp_error_check_failed at C:/Users/coler/esp/v5.3.1/esp-idf/components/esp_system/esp_err.c:49
+0x400dc10b: initialize_wifi at C:/Users/coler/RobinsonGaming/ESP32 Projects/Trail Cam/main/wifi_connect.c:79 (discriminator 1)
+0x400dbfc2: app_main at C:/Users/coler/RobinsonGaming/ESP32 Projects/Trail Cam/main/main.c:16
+0x4017e48b: main_task at C:/Users/coler/esp/v5.3.1/esp-idf/components/freertos/app_startup.c:208
+0x40091345: vPortTaskWrapper at C:/Users/coler/esp/v5.3.1/esp-idf/components/freertos/FreeRTOS-Kernel/portable/xtensa/port.c:134
+[0m
+[0;33m--- 0x40080400: _init at ??:?
+[0m
+[0;33m--- To exit from IDF monitor please use "Ctrl+]". Alternatively, you can use Ctrl+T Ctrl+X to exit.[0m
+[0;33m--- 0x400dc10b: initialize_wifi at C:/Users/coler/RobinsonGaming/ESP32 Projects/Trail Cam/main/wifi_connect.c:79 (discriminator 1)
+[0m
+[0;33m--- 0x40090797: _esp_error_check_failed at C:/Users/coler/esp/v5.3.1/esp-idf/components/esp_system/esp_err.c:49
+[0m
+[0;33m--- 0x400820d5: panic_abort at C:/Users/coler/esp/v5.3.1/esp-idf/components/esp_system/panic.c:463
+0x400907a1: esp_system_abort at C:/Users/coler/esp/v5.3.1/esp-idf/components/esp_system/port/esp_system_chip.c:92
+0x400988a9: abort at C:/Users/coler/esp/v5.3.1/esp-idf/components/newlib/abort.c:38
+0x40090797: _esp_error_check_failed at C:/Users/coler/esp/v5.3.1/esp-idf/components/esp_system/esp_err.c:49
+0x400dc10b: initialize_wifi at C:/Users/coler/RobinsonGaming/ESP32 Projects/Trail Cam/main/wifi_connect.c:79 (discriminator 1)
+0x400dbfc2: app_main at C:/Users/coler/RobinsonGaming/ESP32 Projects/Trail Cam/main/main.c:16
+0x4017e48b: main_task at C:/Users/coler/esp/v5.3.1/esp-idf/components/freertos/app_startup.c:208
+0x40091345: vPortTaskWrapper at C:/Users/coler/esp/v5.3.1/esp-idf/components/freertos/FreeRTOS-Kernel/portable/xtensa/port.c:134
+[0m
+[0;33m--- 0x40080400: _init at ??:?
+[0m
+[0m
+Traceback (most recent call last):
+  File "C:\Users\coler\esp\v5.3.1\esp-idf\tools/idf_monitor.py", line 11, in <module>
+    sys.exit(subprocess.run([sys.executable, '-m', 'esp_idf_monitor'] + sys.argv[1:]).returncode)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "subprocess.py", line 550, in run
+  File "subprocess.py", line 1199, in communicate
+  File "subprocess.py", line 1262, in wait
+  File "subprocess.py", line 1543, in _wait
+KeyboardInterrupt

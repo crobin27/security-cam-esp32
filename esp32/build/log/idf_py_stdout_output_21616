@@ -1,0 +1,78 @@
+[1/5] cmd.exe /C "cd /D "C:\Users\coler\RobinsonGaming\ESP32 Projects\Trail Cam\build\esp-idf\esptool_py" && C:\Users\coler\.espressif\python_env\idf5.3_py3.11_env\Scripts\python.exe C:/Users/coler/esp/v5.3.1/esp-idf/components/partition_table/check_sizes.py --offset 0x8000 partition --type app "C:/Users/coler/RobinsonGaming/ESP32 Projects/Trail Cam/build/partition_table/partition-table.bin" "C:/Users/coler/RobinsonGaming/ESP32 Projects/Trail Cam/build/trail_cam.bin""
+trail_cam.bin binary size 0x102330 bytes. Smallest app partition is 0x200000 bytes. 0xfdcd0 bytes (50%) free.
+[2/5] Performing build step for 'bootloader'
+[1/1] cmd.exe /C "cd /D "C:\Users\coler\RobinsonGaming\ESP32 Projects\Trail Cam\build\bootloader\esp-idf\esptool_py" && C:\Users\coler\.espressif\python_env\idf5.3_py3.11_env\Scripts\python.exe C:/Users/coler/esp/v5.3.1/esp-idf/components/partition_table/check_sizes.py --offset 0x8000 bootloader 0x1000 "C:/Users/coler/RobinsonGaming/ESP32 Projects/Trail Cam/build/bootloader/bootloader.bin""
+Bootloader binary size 0x6880 bytes. 0x780 bytes (7%) free.
+[2/3] cmd.exe /C "cd /D C:\Users\coler\esp\v5.3.1\esp-idf\components\esptool_py && C:\Users\coler\.espressif\tools\cmake\3.24.0\bin\cmake.exe -D IDF_PATH=C:/Users/coler/esp/v5.3.1/esp-idf -D SERIAL_TOOL=C:/Users/coler/.espressif/python_env/idf5.3_py3.11_env/Scripts/python.exe;;C:/Users/coler/esp/v5.3.1/esp-idf/components/esptool_py/esptool/esptool.py;--chip;esp32 -D SERIAL_TOOL_ARGS=--before=default_reset;--after=hard_reset;write_flash;@flash_argesptool.py --chip esp32 -p COM8 -b 460800 --before=default_reset --after=hard_reset write_flash --flash_mode dio --flash_freq 40m --flash_size 4MB 0x1000 bootloader/bootloader.bin 0x10000 trail_cam.bin 0x8000 partition_table/partition-table.bin
+esptool.py v4.8.1
+Serial port COM8
+Connecting....
+Chip is ESP32-D0WD-V3 (revision v3.1)
+Features: WiFi, BT, Dual Core, 240MHz, VRef calibration in efuse, Coding Scheme None
+Crystal is 40MHz
+MAC: d0:ef:76:ef:30:64
+Uploading stub...
+Running stub...
+Stub running...
+Changing baud rate to 460800
+Changed.
+Configuring flash size...
+Flash will be erased from 0x00001000 to 0x00007fff...
+Flash will be erased from 0x00010000 to 0x00112fff...
+Flash will be erased from 0x00008000 to 0x00008fff...
+SHA digest in image updated
+Compressed 26752 bytes to 16352...
+Writing at 0x00001000... (100 %)
+Wrote 26752 bytes (16352 compressed) at 0x00001000 in 0.7 seconds (effective 287.0 kbit/s)...
+Hash of data verified.
+Compressed 1057584 bytes to 645458...
+Writing at 0x00010000... (2 %)
+Writing at 0x0002011b... (5 %)
+Writing at 0x0002b0b4... (7 %)
+Writing at 0x00030991... (10 %)
+Writing at 0x0003673a... (12 %)
+Writing at 0x00041569... (15 %)
+Writing at 0x00046dba... (17 %)
+Writing at 0x0004e22b... (20 %)
+Writing at 0x00055b81... (22 %)
+Writing at 0x0005bd8d... (25 %)
+Writing at 0x00061d54... (27 %)
+Writing at 0x00067af1... (30 %)
+Writing at 0x0006dba9... (32 %)
+Writing at 0x00073aff... (35 %)
+Writing at 0x00079940... (37 %)
+Writing at 0x0007ec27... (40 %)
+Writing at 0x000841b1... (42 %)
+Writing at 0x000894ca... (45 %)
+Writing at 0x0008ebdd... (47 %)
+Writing at 0x0009432b... (50 %)
+Writing at 0x0009a18a... (52 %)
+Writing at 0x0009feab... (55 %)
+Writing at 0x000a5ab8... (57 %)
+Writing at 0x000aba0c... (60 %)
+Writing at 0x000b19ad... (62 %)
+Writing at 0x000b743d... (65 %)
+Writing at 0x000bd24b... (67 %)
+Writing at 0x000c3052... (70 %)
+Writing at 0x000c8eaf... (72 %)
+Writing at 0x000ceb24... (75 %)
+Writing at 0x000d457e... (77 %)
+Writing at 0x000daffa... (80 %)
+Writing at 0x000e561f... (82 %)
+Writing at 0x000ebdb7... (85 %)
+Writing at 0x000f25db... (87 %)
+Writing at 0x000f9338... (90 %)
+Writing at 0x000fed2a... (92 %)
+Writing at 0x0010458a... (95 %)
+Writing at 0x0010ab71... (97 %)
+Writing at 0x0010fd74... (100 %)
+Wrote 1057584 bytes (645458 compressed) at 0x00010000 in 15.2 seconds (effective 557.8 kbit/s)...
+Hash of data verified.
+Compressed 3072 bytes to 104...
+Writing at 0x00008000... (100 %)
+Wrote 3072 bytes (104 compressed) at 0x00008000 in 0.1 seconds (effective 448.0 kbit/s)...
+Hash of data verified.
+
+Leaving...
+Hard resetting via RTS pin...
+s -D "WORKING_DIRECTORY=C:/Users/coler/RobinsonGaming/ESP32 Projects/Trail Cam/build" -P C:/Users/coler/esp/v5.3.1/esp-idf/components/esptool_py/run_serial_tool.cmake"

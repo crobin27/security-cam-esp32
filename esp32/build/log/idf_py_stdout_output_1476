@@ -1,0 +1,777 @@
+ets Jul 29 2019 12:21:46
+
+rst:0x1 (POWERON_RESET),boot:0x13 (SPI_FAST_FLASH_BOOT)
+configsip: 0, SPIWP:0xee
+clk_drv:0x00,q_drv:0x00,d_drv:0x00,cs0_drv:0x00,hd_drv:0x00,wp_drv:0x00
+mode:DIO, clock div:2
+load:0x3fff0030,len:7176
+load:0x40078000,len:15564
+ho 0 tail 12 room 4
+load:0x40080400,len:4
+load:0x40080404,len:3904
+entry 0x40080640
+[0;32mI (31) boot: ESP-IDF v5.3.1 2nd stage bootloader[0m
+[0;32mI (31) boot: compile time Oct 11 2024 10:33:09[0m
+[0;32mI (31) boot: Multicore bootloader[0m
+[0;32mI (35) boot: chip revision: v3.1[0m
+[0;32mI (39) boot.esp32: SPI Speed      : 40MHz[0m
+[0;32mI (44) boot.esp32: SPI Mode       : DIO[0m
+[0;32mI (48) boot.esp32: SPI Flash Size : 4MB[0m
+[0;32mI (53) boot: Enabling RNG early entropy source...[0m
+[0;32mI (58) boot: Partition Table:[0m
+[0;32mI (62) boot: ## Label            Usage          Type ST Offset   Length[0m
+[0;32mI (69) boot:  0 nvs              WiFi data        01 02 00009000 00005000[0m
+[0;32mI (77) boot:  1 phy_init         RF data          01 01 0000e000 00001000[0m
+[0;32mI (84) boot:  2 factory          factory app      00 00 00010000 00200000[0m
+[0;32mI (92) boot: End of partition table[0m
+[0;32mI (96) esp_image: segment 0: paddr=00010020 vaddr=3f400020 size=2da90h (187024) map[0m
+[0;32mI (168) esp_image: segment 1: paddr=0003dab8 vaddr=3ffb0000 size=02560h (  9568) load[0m
+[0;32mI (172) esp_image: segment 2: paddr=00040020 vaddr=400d0020 size=b0664h (722532) map[0m
+[0;32mI (422) esp_image: segment 3: paddr=000f068c vaddr=3ffb2560 size=03164h ( 12644) load[0m
+[0;32mI (427) esp_image: segment 4: paddr=000f37f8 vaddr=40080000 size=1eb10h (125712) load[0m
+[0;32mI (492) boot: Loaded app from partition at offset 0x10000[0m
+[0;32mI (492) boot: Disabling RNG early entropy source...[0m
+[0;32mI (504) quad_psram: This chip is ESP32-D0WD[0m
+[0;32mI (506) esp_psram: Found 8MB PSRAM device[0m
+[0;32mI (506) esp_psram: Speed: 40MHz[0m
+[0;32mI (508) esp_psram: PSRAM initialized, cache is in low/high (2-core) mode.[0m
+[0;33mW (516) esp_psram: Virtual address not enough for PSRAM, map as much as we can. 4MB is mapped[0m
+[0;32mI (525) cpu_start: Multicore app[0m
+[0;32mI (1434) esp_psram: SPI SRAM memory test OK[0m
+[0;32mI (1442) cpu_start: Pro cpu start user code[0m
+[0;32mI (1442) cpu_start: cpu freq: 160000000 Hz[0m
+[0;32mI (1442) app_init: Application information:[0m
+[0;32mI (1445) app_init: Project name:     trail_cam[0m
+[0;32mI (1451) app_init: App version:      66ce0ea-dirty[0m
+[0;32mI (1456) app_init: Compile time:     Oct 12 2024 12:27:46[0m
+[0;32mI (1462) app_init: ELF file SHA256:  4e5cd6950...[0m
+[0;32mI (1467) app_init: ESP-IDF:          v5.3.1[0m
+[0;32mI (1472) efuse_init: Min chip rev:     v0.0[0m
+[0;32mI (1477) efuse_init: Max chip rev:     v3.99 [0m
+[0;32mI (1482) efuse_init: Chip rev:         v3.1[0m
+[0;32mI (1487) heap_init: Initializing. RAM available for dynamic allocation:[0m
+[0;32mI (1495) heap_init: At 3FFAE6E0 len 00001920 (6 KiB): DRAM[0m
+[0;32mI (1501) heap_init: At 3FFB9FE8 len 00026018 (152 KiB): DRAM[0m
+[0;32mI (1507) heap_init: At 3FFE0440 len 00003AE0 (14 KiB): D/IRAM[0m
+[0;32mI (1513) heap_init: At 3FFE4350 len 0001BCB0 (111 KiB): D/IRAM[0m
+[0;32mI (1520) heap_init: At 4009EB10 len 000014F0 (5 KiB): IRAM[0m
+[0;32mI (1527) esp_psram: Adding pool of 4096K of PSRAM memory to heap allocator[0m
+[0;32mI (1535) spi_flash: detected chip: generic[0m
+[0;32mI (1538) spi_flash: flash io: dio[0m
+[0;33mW (1543) i2c: This driver is an old driver, please migrate your application code to adapt `driver/i2c_master.h`[0m
+[0;32mI (1554) main_task: Started on CPU0[0m
+[0;32mI (1564) esp_psram: Reserving pool of 32K of internal memory for DMA/internal allocations[0m
+[0;32mI (1564) main_task: Calling app_main()[0m
+[0;32mI (1564) App_Main: ESP32 Starting Up[0m
+[0;32mI (1574) WiFi_Station: Initializing NVS for Wi-Fi connection...[0m
+[0;32mI (1604) WiFi_Station: Starting Wi-Fi in Station mode...[0m
+[0;32mI (1624) wifi:wifi driver task: 3ffc9f28, prio:23, stack:6656, core=0[0m
+[0;32mI (1634) wifi:wifi firmware version: ccaebfa[0m
+[0;32mI (1634) wifi:wifi certification version: v7.0[0m
+[0;32mI (1634) wifi:config NVS flash: enabled[0m
+[0;32mI (1634) wifi:config nano formating: disabled[0m
+[0;32mI (1634) wifi:Init data frame dynamic rx buffer num: 32[0m
+[0;32mI (1644) wifi:Init static rx mgmt buffer num: 5[0m
+[0;32mI (1644) wifi:Init management short buffer num: 32[0m
+[0;32mI (1654) wifi:Init static tx buffer num: 16[0m
+[0;32mI (1654) wifi:Init tx cache buffer num: 32[0m
+[0;32mI (1664) wifi:Init static rx buffer size: 1600[0m
+[0;32mI (1664) wifi:Init static rx buffer num: 10[0m
+[0;32mI (1664) wifi:Init dynamic rx buffer num: 32[0m
+[0;32mI (1674) wifi_init: rx ba win: 6[0m
+[0;32mI (1674) wifi_init: accept mbox: 6[0m
+[0;32mI (1684) wifi_init: tcpip mbox: 32[0m
+[0;32mI (1684) wifi_init: udp mbox: 6[0m
+[0;32mI (1684) wifi_init: tcp mbox: 6[0m
+[0;32mI (1694) wifi_init: tcp tx win: 5760[0m
+[0;32mI (1694) wifi_init: tcp rx win: 5760[0m
+[0;32mI (1704) wifi_init: tcp mss: 1440[0m
+[0;32mI (1704) wifi_init: WiFi IRAM OP enabled[0m
+[0;32mI (1704) wifi_init: WiFi RX IRAM OP enabled[0m
+[0;32mI (1714) WiFi_Station: Registering Wi-Fi event handlers...[0m
+[0;32mI (1724) phy_init: phy_version 4830,54550f7,Jun 20 2024,14:22:08[0m
+[0;32mI (1794) wifi:mode : sta (d0:ef:76:ef:30:64)[0m
+[0;32mI (1794) wifi:enable tsf[0m
+[0;32mI (1804) WiFi_Station: Wi-Fi initialization finished.[0m
+[0;32mI (1804) WiFi_Station: Wi-Fi started, attempting to connect...[0m
+[0;32mI (1814) wifi:new:<6,0>, old:<1,0>, ap:<255,255>, sta:<6,0>, prof:1, snd_ch_cfg:0x0[0m
+[0;32mI (1814) wifi:state: init -> auth (0xb0)[0m
+[0;32mI (1824) wifi:state: auth -> assoc (0x0)[0m
+[0;32mI (1834) wifi:state: assoc -> run (0x10)[0m
+[0;32mI (1944) wifi:connected with 25a984, aid = 2, channel 6, BW20, bssid = d4:ab:82:3f:14:06[0m
+[0;32mI (1944) wifi:security: WPA2-PSK, phy: bgn, rssi: -85[0m
+[0;32mI (1954) wifi:pm start, type: 1[0m
+
+[0;32mI (1954) wifi:dp: 1, bi: 112640, li: 2, scale listen interval from 307200 us to 225280 us[0m
+[0;32mI (2044) wifi:AP's beacon interval = 112640 us, DTIM period = 1[0m
+[0;32mI (2964) esp_netif_handlers: sta ip: 192.168.0.10, mask: 255.255.255.0, gw: 192.168.0.1[0m
+[0;32mI (2964) WiFi_Station: Got IP address: 192.168.0.10[0m
+[0;32mI (2964) WiFi_Station: Successfully connected to the Wi-Fi network: SSID:25a984[0m
+[0;32mI (2974) gpio: GPIO[25]| InputEn: 1| OutputEn: 0| OpenDrain: 0| Pullup: 1| Pulldown: 0| Intr:2 [0m
+[0;32mI (2984) cam_hal: cam init ok[0m
+[0;32mI (2984) sccb: pin_sda 26 pin_scl 27[0m
+[0;32mI (2994) sccb: sccb_i2c_port=1[0m
+[0;32mI (2994) gpio: GPIO[32]| InputEn: 0| OutputEn: 1| OpenDrain: 0| Pullup: 0| Pulldown: 0| Intr:0 [0m
+[0;32mI (3034) camera: Detected camera at address=0x30[0m
+[0;32mI (3034) camera: Detected OV2640 camera[0m
+[0;32mI (3034) camera: Camera PID=0x26 VER=0x42 MIDL=0x7f MIDH=0xa2[0m
+[0;32mI (3134) cam_hal: buffer_size: 32768, half_buffer_size: 4096, node_buffer_size: 2048, node_cnt: 16, total_cnt: 2[0m
+[0;32mI (3134) cam_hal: Allocating 11520 Byte frame buffer in PSRAM[0m
+[0;32mI (3134) cam_hal: cam config ok[0m
+[0;32mI (3144) ov2640: Set PLL: clk_2x: 0, clk_div: 0, pclk_auto: 0, pclk_div: 8[0m
+[0;32mI (3224) Camera: Camera successfully initialized[0m
+[0;32mI (3224) Motion_Detection: Starting motion detection task...[0m
+[0;32mI (3224) main_task: Returned from app_main()[0m
+[0;32mI (3254) Camera: Image captured. Size: 2299 bytes[0m
+[0;33mW (9264) cam_hal: Failed to get the frame on time![0m
+[0;31mE (9264) Camera: Failed to capture image.[0m
+[0;31mE (9264) Motion_Detection: Failed to capture image for motion detection[0m
+[0;33mW (14264) cam_hal: Failed to get the frame on time![0m
+[0;31mE (14264) Camera: Failed to capture image.[0m
+[0;31mE (14264) Motion_Detection: Failed to capture image for motion detection[0m
+[0;33mW (19264) cam_hal: Failed to get the frame on time![0m
+[0;31mE (19264) Camera: Failed to capture image.[0m
+[0;31mE (19264) Motion_Detection: Failed to capture image for motion detection[0m
+[0;33mW (24264) cam_hal: Failed to get the frame on time![0m
+[0;31mE (24264) Camera: Failed to capture image.[0m
+[0;31mE (24264) Motion_Detection: Failed to capture image for motion detection[0m
+[0;33mW (29264) cam_hal: Failed to get the frame on time![0m
+[0;31mE (29264) Camera: Failed to capture image.[0m
+[0;31mE (29264) Motion_Detection: Failed to capture image for motion detection[0m
+[0;33mW (34264) cam_hal: Failed to get the frame on time![0m
+[0;31mE (34264) Camera: Failed to capture image.[0m
+[0;31mE (34264) Motion_Detection: Failed to capture image for motion detection[0m
+[0;33mW (39264) cam_hal: Failed to get the frame on time![0m
+[0;31mE (39264) Camera: Failed to capture image.[0m
+[0;31mE (39264) Motion_Detection: Failed to capture image for motion detection[0m
+[0;33mW (44264) cam_hal: Failed to get the frame on time![0m
+[0;31mE (44264) Camera: Failed to capture image.[0m
+[0;31mE (44264) Motion_Detection: Failed to capture image for motion detection[0m
+[0;33mW (49264) cam_hal: Failed to get the frame on time![0m
+[0;31mE (49264) Camera: Failed to capture image.[0m
+[0;31mE (49264) Motion_Detection: Failed to capture image for motion detection[0m
+[0;33mW (54264) cam_hal: Failed to get the frame on time![0m
+[0;31mE (54264) Camera: Failed to capture image.[0m
+[0;31mE (54264) Motion_Detection: Failed to capture image for motion detection[0m
+[0;33mW (59264) cam_hal: Failed to get the frame on time![0m
+[0;31mE (59264) Camera: Failed to capture image.[0m
+[0;31mE (59264) Motion_Detection: Failed to capture image for motion detection[0m
+[0;33mW (64264) cam_hal: Failed to get the frame on time![0m
+[0;31mE (64264) Camera: Failed to capture image.[0m
+[0;31mE (64264) Motion_Detection: Failed to capture image for motion detection[0m
+[0;33mW (69264) cam_hal: Failed to get the frame on time![0m
+[0;31mE (69264) Camera: Failed to capture image.[0m
+[0;31mE (69264) Motion_Detection: Failed to capture image for motion detection[0m
+[0;33mW (74264) cam_hal: Failed to get the frame on time![0m
+[0;31mE (74264) Camera: Failed to capture image.[0m
+[0;31mE (74264) Motion_Detection: Failed to capture image for motion detection[0m
+[0;33mW (79264) cam_hal: Failed to get the frame on time![0m
+[0;31mE (79264) Camera: Failed to capture image.[0m
+[0;31mE (79264) Motion_Detection: Failed to capture image for motion detection[0m
+[0;33mW (84264) cam_hal: Failed to get the frame on time![0m
+[0;31mE (84264) Camera: Failed to capture image.[0m
+[0;31mE (84264) Motion_Detection: Failed to capture image for motion detection[0m
+[0;33mW (89264) cam_hal: Failed to get the frame on time![0m
+[0;31mE (89264) Camera: Failed to capture image.[0m
+[0;31mE (89264) Motion_Detection: Failed to capture image for motion detection[0m
+[0;33mW (94264) cam_hal: Failed to get the frame on time![0m
+[0;31mE (94264) Camera: Failed to capture image.[0m
+[0;31mE (94264) Motion_Detection: Failed to capture image for motion detection[0m
+[0;33mW (99264) cam_hal: Failed to get the frame on time![0m
+[0;31mE (99264) Camera: Failed to capture image.[0m
+[0;31mE (99264) Motion_Detection: Failed to capture image for motion detection[0m
+[0;33mW (104264) cam_hal: Failed to get the frame on time![0m
+[0;31mE (104264) Camera: Failed to capture image.[0m
+[0;31mE (104264) Motion_Detection: Failed to capture image for motion detection[0m
+[0;33mW (109264) cam_hal: Failed to get the frame on time![0m
+[0;31mE (109264) Camera: Failed to capture image.[0m
+[0;31mE (109264) Motion_Detection: Failed to capture image for motion detection[0m
+[0;33mW (114264) cam_hal: Failed to get the frame on time![0m
+[0;31mE (114264) Camera: Failed to capture image.[0m
+[0;31mE (114264) Motion_Detection: Failed to capture image for motion detection[0m
+[0;33mW (119264) cam_hal: Failed to get the frame on time![0m
+[0;31mE (119264) Camera: Failed to capture image.[0m
+[0;31mE (119264) Motion_Detection: Failed to capture image for motion detection[0m
+[0;33mW (124264) cam_hal: Failed to get the frame on time![0m
+[0;31mE (124264) Camera: Failed to capture image.[0m
+[0;31mE (124264) Motion_Detection: Failed to capture image for motion detection[0m
+[0;33mW (129264) cam_hal: Failed to get the frame on time![0m
+[0;31mE (129264) Camera: Failed to capture image.[0m
+[0;31mE (129264) Motion_Detection: Failed to capture image for motion detection[0m
+[0;33mW (134264) cam_hal: Failed to get the frame on time![0m
+[0;31mE (134264) Camera: Failed to capture image.[0m
+[0;31mE (134264) Motion_Detection: Failed to capture image for motion detection[0m
+[0;33mW (139264) cam_hal: Failed to get the frame on time![0m
+[0;31mE (139264) Camera: Failed to capture image.[0m
+[0;31mE (139264) Motion_Detection: Failed to capture image for motion detection[0m
+[0;33mW (144264) cam_hal: Failed to get the frame on time![0m
+[0;31mE (144264) Camera: Failed to capture image.[0m
+[0;31mE (144264) Motion_Detection: Failed to capture image for motion detection[0m
+[0;33mW (149264) cam_hal: Failed to get the frame on time![0m
+[0;31mE (149264) Camera: Failed to capture image.[0m
+[0;31mE (149264) Motion_Detection: Failed to capture image for motion detection[0m
+[0;33mW (154264) cam_hal: Failed to get the frame on time![0m
+[0;31mE (154264) Camera: Failed to capture image.[0m
+[0;31mE (154264) Motion_Detection: Failed to capture image for motion detection[0m
+[0;33mW (159264) cam_hal: Failed to get the frame on time![0m
+[0;31mE (159264) Camera: Failed to capture image.[0m
+[0;31mE (159264) Motion_Detection: Failed to capture image for motion detection[0m
+[0;33mW (164264) cam_hal: Failed to get the frame on time![0m
+[0;31mE (164264) Camera: Failed to capture image.[0m
+[0;31mE (164264) Motion_Detection: Failed to capture image for motion detection[0m
+[0;33mW (169264) cam_hal: Failed to get the frame on time![0m
+[0;31mE (169264) Camera: Failed to capture image.[0m
+[0;31mE (169264) Motion_Detection: Failed to capture image for motion detection[0m
+[0;33mW (174264) cam_hal: Failed to get the frame on time![0m
+[0;31mE (174264) Camera: Failed to capture image.[0m
+[0;31mE (174264) Motion_Detection: Failed to capture image for motion detection[0m
+[0;33mW (179264) cam_hal: Failed to get the frame on time![0m
+[0;31mE (179264) Camera: Failed to capture image.[0m
+[0;31mE (179264) Motion_Detection: Failed to capture image for motion detection[0m
+[0;33mW (184264) cam_hal: Failed to get the frame on time![0m
+[0;31mE (184264) Camera: Failed to capture image.[0m
+[0;31mE (184264) Motion_Detection: Failed to capture image for motion detection[0m
+[0;33mW (189264) cam_hal: Failed to get the frame on time![0m
+[0;31mE (189264) Camera: Failed to capture image.[0m
+[0;31mE (189264) Motion_Detection: Failed to capture image for motion detection[0m
+[0;33mW (194264) cam_hal: Failed to get the frame on time![0m
+[0;31mE (194264) Camera: Failed to capture image.[0m
+[0;31mE (194264) Motion_Detection: Failed to capture image for motion detection[0m
+[0;33mW (199264) cam_hal: Failed to get the frame on time![0m
+[0;31mE (199264) Camera: Failed to capture image.[0m
+[0;31mE (199264) Motion_Detection: Failed to capture image for motion detection[0m
+[0;33mW (204264) cam_hal: Failed to get the frame on time![0m
+[0;31mE (204264) Camera: Failed to capture image.[0m
+[0;31mE (204264) Motion_Detection: Failed to capture image for motion detection[0m
+[0;33mW (209264) cam_hal: Failed to get the frame on time![0m
+[0;31mE (209264) Camera: Failed to capture image.[0m
+[0;31mE (209264) Motion_Detection: Failed to capture image for motion detection[0m
+[0;33mW (214264) cam_hal: Failed to get the frame on time![0m
+[0;31mE (214264) Camera: Failed to capture image.[0m
+[0;31mE (214264) Motion_Detection: Failed to capture image for motion detection[0m
+[0;33mW (219264) cam_hal: Failed to get the frame on time![0m
+[0;31mE (219264) Camera: Failed to capture image.[0m
+[0;31mE (219264) Motion_Detection: Failed to capture image for motion detection[0m
+[0;33mW (224264) cam_hal: Failed to get the frame on time![0m
+[0;31mE (224264) Camera: Failed to capture image.[0m
+[0;31mE (224264) Motion_Detection: Failed to capture image for motion detection[0m
+[0;33mW (229264) cam_hal: Failed to get the frame on time![0m
+[0;31mE (229264) Camera: Failed to capture image.[0m
+[0;31mE (229264) Motion_Detection: Failed to capture image for motion detection[0m
+[0;33mW (234264) cam_hal: Failed to get the frame on time![0m
+[0;31mE (234264) Camera: Failed to capture image.[0m
+[0;31mE (234264) Motion_Detection: Failed to capture image for motion detection[0m
+[0;33mW (239264) cam_hal: Failed to get the frame on time![0m
+[0;31mE (239264) Camera: Failed to capture image.[0m
+[0;31mE (239264) Motion_Detection: Failed to capture image for motion detection[0m
+[0;33mW (244264) cam_hal: Failed to get the frame on time![0m
+[0;31mE (244264) Camera: Failed to capture image.[0m
+[0;31mE (244264) Motion_Detection: Failed to capture image for motion detection[0m
+[0;33mW (249264) cam_hal: Failed to get the frame on time![0m
+[0;31mE (249264) Camera: Failed to capture image.[0m
+[0;31mE (249264) Motion_Detection: Failed to capture image for motion detection[0m
+[0;33mW (254264) cam_hal: Failed to get the frame on time![0m
+[0;31mE (254264) Camera: Failed to capture image.[0m
+[0;31mE (254264) Motion_Detection: Failed to capture image for motion detection[0m
+[0;33mW (259264) cam_hal: Failed to get the frame on time![0m
+[0;31mE (259264) Camera: Failed to capture image.[0m
+[0;31mE (259264) Motion_Detection: Failed to capture image for motion detection[0m
+[0;33mW (264264) cam_hal: Failed to get the frame on time![0m
+[0;31mE (264264) Camera: Failed to capture image.[0m
+[0;31mE (264264) Motion_Detection: Failed to capture image for motion detection[0m
+[0;33mW (269264) cam_hal: Failed to get the frame on time![0m
+[0;31mE (269264) Camera: Failed to capture image.[0m
+[0;31mE (269264) Motion_Detection: Failed to capture image for motion detection[0m
+[0;33mW (274264) cam_hal: Failed to get the frame on time![0m
+[0;31mE (274264) Camera: Failed to capture image.[0m
+[0;31mE (274264) Motion_Detection: Failed to capture image for motion detection[0m
+[0;33mW (279264) cam_hal: Failed to get the frame on time![0m
+[0;31mE (279264) Camera: Failed to capture image.[0m
+[0;31mE (279264) Motion_Detection: Failed to capture image for motion detection[0m
+[0;33mW (284264) cam_hal: Failed to get the frame on time![0m
+[0;31mE (284264) Camera: Failed to capture image.[0m
+[0;31mE (284264) Motion_Detection: Failed to capture image for motion detection[0m
+[0;33mW (289264) cam_hal: Failed to get the frame on time![0m
+[0;31mE (289264) Camera: Failed to capture image.[0m
+[0;31mE (289264) Motion_Detection: Failed to capture image for motion detection[0m
+[0;33mW (294264) cam_hal: Failed to get the frame on time![0m
+[0;31mE (294264) Camera: Failed to capture image.[0m
+[0;31mE (294264) Motion_Detection: Failed to capture image for motion detection[0m
+[0;33mW (299264) cam_hal: Failed to get the frame on time![0m
+[0;31mE (299264) Camera: Failed to capture image.[0m
+[0;31mE (299264) Motion_Detection: Failed to capture image for motion detection[0m
+[0;33mW (304264) cam_hal: Failed to get the frame on time![0m
+[0;31mE (304264) Camera: Failed to capture image.[0m
+[0;31mE (304264) Motion_Detection: Failed to capture image for motion detection[0m
+[0;33mW (309264) cam_hal: Failed to get the frame on time![0m
+[0;31mE (309264) Camera: Failed to capture image.[0m
+[0;31mE (309264) Motion_Detection: Failed to capture image for motion detection[0m
+[0;33mW (314264) cam_hal: Failed to get the frame on time![0m
+[0;31mE (314264) Camera: Failed to capture image.[0m
+[0;31mE (314264) Motion_Detection: Failed to capture image for motion detection[0m
+[0;33mW (319264) cam_hal: Failed to get the frame on time![0m
+[0;31mE (319264) Camera: Failed to capture image.[0m
+[0;31mE (319264) Motion_Detection: Failed to capture image for motion detection[0m
+[0;33mW (324264) cam_hal: Failed to get the frame on time![0m
+[0;31mE (324264) Camera: Failed to capture image.[0m
+[0;31mE (324264) Motion_Detection: Failed to capture image for motion detection[0m
+[0;33mW (329264) cam_hal: Failed to get the frame on time![0m
+[0;31mE (329264) Camera: Failed to capture image.[0m
+[0;31mE (329264) Motion_Detection: Failed to capture image for motion detection[0m
+[0;33mW (334264) cam_hal: Failed to get the frame on time![0m
+[0;31mE (334264) Camera: Failed to capture image.[0m
+[0;31mE (334264) Motion_Detection: Failed to capture image for motion detection[0m
+[0;33mW (339264) cam_hal: Failed to get the frame on time![0m
+[0;31mE (339264) Camera: Failed to capture image.[0m
+[0;31mE (339264) Motion_Detection: Failed to capture image for motion detection[0m
+[0;33mW (344264) cam_hal: Failed to get the frame on time![0m
+[0;31mE (344264) Camera: Failed to capture image.[0m
+[0;31mE (344264) Motion_Detection: Failed to capture image for motion detection[0m
+[0;33mW (349264) cam_hal: Failed to get the frame on time![0m
+[0;31mE (349264) Camera: Failed to capture image.[0m
+[0;31mE (349264) Motion_Detection: Failed to capture image for motion detection[0m
+[0;33mW (354264) cam_hal: Failed to get the frame on time![0m
+[0;31mE (354264) Camera: Failed to capture image.[0m
+[0;31mE (354264) Motion_Detection: Failed to capture image for motion detection[0m
+[0;33mW (359264) cam_hal: Failed to get the frame on time![0m
+[0;31mE (359264) Camera: Failed to capture image.[0m
+[0;31mE (359264) Motion_Detection: Failed to capture image for motion detection[0m
+[0;32mI (362064) wifi:<ba-add>idx:0 (ifx:0, d4:ab:82:3f:14:06), tid:0, ssn:4, winSize:64[0m
+[0;33mW (364264) cam_hal: Failed to get the frame on time![0m
+[0;31mE (364264) Camera: Failed to capture image.[0m
+[0;31mE (364264) Motion_Detection: Failed to capture image for motion detection[0m
+[0;33mW (369264) cam_hal: Failed to get the frame on time![0m
+[0;31mE (369264) Camera: Failed to capture image.[0m
+[0;31mE (369264) Motion_Detection: Failed to capture image for motion detection[0m
+[0;33mW (374264) cam_hal: Failed to get the frame on time![0m
+[0;31mE (374264) Camera: Failed to capture image.[0m
+[0;31mE (374264) Motion_Detection: Failed to capture image for motion detection[0m
+[0;33mW (379264) cam_hal: Failed to get the frame on time![0m
+[0;31mE (379264) Camera: Failed to capture image.[0m
+[0;31mE (379264) Motion_Detection: Failed to capture image for motion detection[0m
+[0;33mW (384264) cam_hal: Failed to get the frame on time![0m
+[0;31mE (384264) Camera: Failed to capture image.[0m
+[0;31mE (384264) Motion_Detection: Failed to capture image for motion detection[0m
+[0;33mW (389264) cam_hal: Failed to get the frame on time![0m
+[0;31mE (389264) Camera: Failed to capture image.[0m
+[0;31mE (389264) Motion_Detection: Failed to capture image for motion detection[0m
+[0;33mW (394264) cam_hal: Failed to get the frame on time![0m
+[0;31mE (394264) Camera: Failed to capture image.[0m
+[0;31mE (394264) Motion_Detection: Failed to capture image for motion detection[0m
+[0;33mW (399264) cam_hal: Failed to get the frame on time![0m
+[0;31mE (399264) Camera: Failed to capture image.[0m
+[0;31mE (399264) Motion_Detection: Failed to capture image for motion detection[0m
+[0;33mW (404264) cam_hal: Failed to get the frame on time![0m
+[0;31mE (404264) Camera: Failed to capture image.[0m
+[0;31mE (404264) Motion_Detection: Failed to capture image for motion detection[0m
+[0;33mW (409264) cam_hal: Failed to get the frame on time![0m
+[0;31mE (409264) Camera: Failed to capture image.[0m
+[0;31mE (409264) Motion_Detection: Failed to capture image for motion detection[0m
+[0;33mW (414264) cam_hal: Failed to get the frame on time![0m
+[0;31mE (414264) Camera: Failed to capture image.[0m
+[0;31mE (414264) Motion_Detection: Failed to capture image for motion detection[0m
+[0;33mW (419264) cam_hal: Failed to get the frame on time![0m
+[0;31mE (419264) Camera: Failed to capture image.[0m
+[0;31mE (419264) Motion_Detection: Failed to capture image for motion detection[0m
+[0;33mW (424264) cam_hal: Failed to get the frame on time![0m
+[0;31mE (424264) Camera: Failed to capture image.[0m
+[0;31mE (424264) Motion_Detection: Failed to capture image for motion detection[0m
+[0;33mW (429264) cam_hal: Failed to get the frame on time![0m
+[0;31mE (429264) Camera: Failed to capture image.[0m
+[0;31mE (429264) Motion_Detection: Failed to capture image for motion detection[0m
+[0;33mW (434264) cam_hal: Failed to get the frame on time![0m
+[0;31mE (434264) Camera: Failed to capture image.[0m
+[0;31mE (434264) Motion_Detection: Failed to capture image for motion detection[0m
+[0;33mW (439264) cam_hal: Failed to get the frame on time![0m
+[0;31mE (439264) Camera: Failed to capture image.[0m
+[0;31mE (439264) Motion_Detection: Failed to capture image for motion detection[0m
+[0;33mW (444264) cam_hal: Failed to get the frame on time![0m
+[0;31mE (444264) Camera: Failed to capture image.[0m
+[0;31mE (444264) Motion_Detection: Failed to capture image for motion detection[0m
+[0;33mW (449264) cam_hal: Failed to get the frame on time![0m
+[0;31mE (449264) Camera: Failed to capture image.[0m
+[0;31mE (449264) Motion_Detection: Failed to capture image for motion detection[0m
+[0;33mW (454264) cam_hal: Failed to get the frame on time![0m
+[0;31mE (454264) Camera: Failed to capture image.[0m
+[0;31mE (454264) Motion_Detection: Failed to capture image for motion detection[0m
+[0;33mW (459264) cam_hal: Failed to get the frame on time![0m
+[0;31mE (459264) Camera: Failed to capture image.[0m
+[0;31mE (459264) Motion_Detection: Failed to capture image for motion detection[0m
+[0;33mW (464264) cam_hal: Failed to get the frame on time![0m
+[0;31mE (464264) Camera: Failed to capture image.[0m
+[0;31mE (464264) Motion_Detection: Failed to capture image for motion detection[0m
+[0;33mW (469264) cam_hal: Failed to get the frame on time![0m
+[0;31mE (469264) Camera: Failed to capture image.[0m
+[0;31mE (469264) Motion_Detection: Failed to capture image for motion detection[0m
+[0;33mW (474264) cam_hal: Failed to get the frame on time![0m
+[0;31mE (474264) Camera: Failed to capture image.[0m
+[0;31mE (474264) Motion_Detection: Failed to capture image for motion detection[0m
+[0;33mW (479264) cam_hal: Failed to get the frame on time![0m
+[0;31mE (479264) Camera: Failed to capture image.[0m
+[0;31mE (479264) Motion_Detection: Failed to capture image for motion detection[0m
+[0;33mW (484264) cam_hal: Failed to get the frame on time![0m
+[0;31mE (484264) Camera: Failed to capture image.[0m
+[0;31mE (484264) Motion_Detection: Failed to capture image for motion detection[0m
+[0;33mW (489264) cam_hal: Failed to get the frame on time![0m
+[0;31mE (489264) Camera: Failed to capture image.[0m
+[0;31mE (489264) Motion_Detection: Failed to capture image for motion detection[0m
+[0;33mW (494264) cam_hal: Failed to get the frame on time![0m
+[0;31mE (494264) Camera: Failed to capture image.[0m
+[0;31mE (494264) Motion_Detection: Failed to capture image for motion detection[0m
+[0;33mW (499264) cam_hal: Failed to get the frame on time![0m
+[0;31mE (499264) Camera: Failed to capture image.[0m
+[0;31mE (499264) Motion_Detection: Failed to capture image for motion detection[0m
+[0;33mW (504264) cam_hal: Failed to get the frame on time![0m
+[0;31mE (504264) Camera: Failed to capture image.[0m
+[0;31mE (504264) Motion_Detection: Failed to capture image for motion detection[0m
+[0;33mW (509264) cam_hal: Failed to get the frame on time![0m
+[0;31mE (509264) Camera: Failed to capture image.[0m
+[0;31mE (509264) Motion_Detection: Failed to capture image for motion detection[0m
+[0;33mW (514264) cam_hal: Failed to get the frame on time![0m
+[0;31mE (514264) Camera: Failed to capture image.[0m
+[0;31mE (514264) Motion_Detection: Failed to capture image for motion detection[0m
+[0;33mW (519264) cam_hal: Failed to get the frame on time![0m
+[0;31mE (519264) Camera: Failed to capture image.[0m
+[0;31mE (519264) Motion_Detection: Failed to capture image for motion detection[0m
+[0;33mW (524264) cam_hal: Failed to get the frame on time![0m
+[0;31mE (524264) Camera: Failed to capture image.[0m
+[0;31mE (524264) Motion_Detection: Failed to capture image for motion detection[0m
+[0;33mW (529264) cam_hal: Failed to get the frame on time![0m
+[0;31mE (529264) Camera: Failed to capture image.[0m
+[0;31mE (529264) Motion_Detection: Failed to capture image for motion detection[0m
+[0;33mW (534264) cam_hal: Failed to get the frame on time![0m
+[0;31mE (534264) Camera: Failed to capture image.[0m
+[0;31mE (534264) Motion_Detection: Failed to capture image for motion detection[0m
+[0;33mW (539264) cam_hal: Failed to get the frame on time![0m
+[0;31mE (539264) Camera: Failed to capture image.[0m
+[0;31mE (539264) Motion_Detection: Failed to capture image for motion detection[0m
+[0;33mW (544264) cam_hal: Failed to get the frame on time![0m
+[0;31mE (544264) Camera: Failed to capture image.[0m
+[0;31mE (544264) Motion_Detection: Failed to capture image for motion detection[0m
+[0;33mW (549264) cam_hal: Failed to get the frame on time![0m
+[0;31mE (549264) Camera: Failed to capture image.[0m
+[0;31mE (549264) Motion_Detection: Failed to capture image for motion detection[0m
+[0;33mW (554264) cam_hal: Failed to get the frame on time![0m
+[0;31mE (554264) Camera: Failed to capture image.[0m
+[0;31mE (554264) Motion_Detection: Failed to capture image for motion detection[0m
+[0;33mW (559264) cam_hal: Failed to get the frame on time![0m
+[0;31mE (559264) Camera: Failed to capture image.[0m
+[0;31mE (559264) Motion_Detection: Failed to capture image for motion detection[0m
+[0;33mW (564264) cam_hal: Failed to get the frame on time![0m
+[0;31mE (564264) Camera: Failed to capture image.[0m
+[0;31mE (564264) Motion_Detection: Failed to capture image for motion detection[0m
+[0;33mW (569264) cam_hal: Failed to get the frame on time![0m
+[0;31mE (569264) Camera: Failed to capture image.[0m
+[0;31mE (569264) Motion_Detection: Failed to capture image for motion detection[0m
+[0;33mW (574264) cam_hal: Failed to get the frame on time![0m
+[0;31mE (574264) Camera: Failed to capture image.[0m
+[0;31mE (574264) Motion_Detection: Failed to capture image for motion detection[0m
+[0;33mW (579264) cam_hal: Failed to get the frame on time![0m
+[0;31mE (579264) Camera: Failed to capture image.[0m
+[0;31mE (579264) Motion_Detection: Failed to capture image for motion detection[0m
+[0;33mW (584264) cam_hal: Failed to get the frame on time![0m
+[0;31mE (584264) Camera: Failed to capture image.[0m
+[0;31mE (584264) Motion_Detection: Failed to capture image for motion detection[0m
+[0;33mW (589264) cam_hal: Failed to get the frame on time![0m
+[0;31mE (589264) Camera: Failed to capture image.[0m
+[0;31mE (589264) Motion_Detection: Failed to capture image for motion detection[0m
+[0;33mW (594264) cam_hal: Failed to get the frame on time![0m
+[0;31mE (594264) Camera: Failed to capture image.[0m
+[0;31mE (594264) Motion_Detection: Failed to capture image for motion detection[0m
+[0;33mW (599264) cam_hal: Failed to get the frame on time![0m
+[0;31mE (599264) Camera: Failed to capture image.[0m
+[0;31mE (599264) Motion_Detection: Failed to capture image for motion detection[0m
+[0;33mW (604264) cam_hal: Failed to get the frame on time![0m
+[0;31mE (604264) Camera: Failed to capture image.[0m
+[0;31mE (604264) Motion_Detection: Failed to capture image for motion detection[0m
+[0;33mW (609264) cam_hal: Failed to get the frame on time![0m
+[0;31mE (609264) Camera: Failed to capture image.[0m
+[0;31mE (609264) Motion_Detection: Failed to capture image for motion detection[0m
+[0;33mW (614264) cam_hal: Failed to get the frame on time![0m
+[0;31mE (614264) Camera: Failed to capture image.[0m
+[0;31mE (614264) Motion_Detection: Failed to capture image for motion detection[0m
+[0;33mW (619264) cam_hal: Failed to get the frame on time![0m
+[0;31mE (619264) Camera: Failed to capture image.[0m
+[0;31mE (619264) Motion_Detection: Failed to capture image for motion detection[0m
+[0;33mW (624264) cam_hal: Failed to get the frame on time![0m
+[0;31mE (624264) Camera: Failed to capture image.[0m
+[0;31mE (624264) Motion_Detection: Failed to capture image for motion detection[0m
+[0;33mW (629264) cam_hal: Failed to get the frame on time![0m
+[0;31mE (629264) Camera: Failed to capture image.[0m
+[0;31mE (629264) Motion_Detection: Failed to capture image for motion detection[0m
+[0;33mW (634264) cam_hal: Failed to get the frame on time![0m
+[0;31mE (634264) Camera: Failed to capture image.[0m
+[0;31mE (634264) Motion_Detection: Failed to capture image for motion detection[0m
+[0;33mW (639264) cam_hal: Failed to get the frame on time![0m
+[0;31mE (639264) Camera: Failed to capture image.[0m
+[0;31mE (639264) Motion_Detection: Failed to capture image for motion detection[0m
+[0;33mW (644264) cam_hal: Failed to get the frame on time![0m
+[0;31mE (644264) Camera: Failed to capture image.[0m
+[0;31mE (644264) Motion_Detection: Failed to capture image for motion detection[0m
+[0;33mW (649264) cam_hal: Failed to get the frame on time![0m
+[0;31mE (649264) Camera: Failed to capture image.[0m
+[0;31mE (649264) Motion_Detection: Failed to capture image for motion detection[0m
+[0;33mW (654264) cam_hal: Failed to get the frame on time![0m
+[0;31mE (654264) Camera: Failed to capture image.[0m
+[0;31mE (654264) Motion_Detection: Failed to capture image for motion detection[0m
+[0;33mW (659264) cam_hal: Failed to get the frame on time![0m
+[0;31mE (659264) Camera: Failed to capture image.[0m
+[0;31mE (659264) Motion_Detection: Failed to capture image for motion detection[0m
+[0;33mW (664264) cam_hal: Failed to get the frame on time![0m
+[0;31mE (664264) Camera: Failed to capture image.[0m
+[0;31mE (664264) Motion_Detection: Failed to capture image for motion detection[0m
+[0;33mW (669264) cam_hal: Failed to get the frame on time![0m
+[0;31mE (669264) Camera: Failed to capture image.[0m
+[0;31mE (669264) Motion_Detection: Failed to capture image for motion detection[0m
+[0;33mW (674264) cam_hal: Failed to get the frame on time![0m
+[0;31mE (674264) Camera: Failed to capture image.[0m
+[0;31mE (674264) Motion_Detection: Failed to capture image for motion detection[0m
+[0;33mW (679264) cam_hal: Failed to get the frame on time![0m
+[0;31mE (679264) Camera: Failed to capture image.[0m
+[0;31mE (679264) Motion_Detection: Failed to capture image for motion detection[0m
+[0;33mW (684264) cam_hal: Failed to get the frame on time![0m
+[0;31mE (684264) Camera: Failed to capture image.[0m
+[0;31mE (684264) Motion_Detection: Failed to capture image for motion detection[0m
+[0;33mW (689264) cam_hal: Failed to get the frame on time![0m
+[0;31mE (689264) Camera: Failed to capture image.[0m
+[0;31mE (689264) Motion_Detection: Failed to capture image for motion detection[0m
+[0;33mW (694264) cam_hal: Failed to get the frame on time![0m
+[0;31mE (694264) Camera: Failed to capture image.[0m
+[0;31mE (694264) Motion_Detection: Failed to capture image for motion detection[0m
+[0;33mW (699264) cam_hal: Failed to get the frame on time![0m
+[0;31mE (699264) Camera: Failed to capture image.[0m
+[0;31mE (699264) Motion_Detection: Failed to capture image for motion detection[0m
+[0;33mW (704264) cam_hal: Failed to get the frame on time![0m
+[0;31mE (704264) Camera: Failed to capture image.[0m
+[0;31mE (704264) Motion_Detection: Failed to capture image for motion detection[0m
+[0;33mW (709264) cam_hal: Failed to get the frame on time![0m
+[0;31mE (709264) Camera: Failed to capture image.[0m
+[0;31mE (709264) Motion_Detection: Failed to capture image for motion detection[0m
+[0;33mW (714264) cam_hal: Failed to get the frame on time![0m
+[0;31mE (714264) Camera: Failed to capture image.[0m
+[0;31mE (714264) Motion_Detection: Failed to capture image for motion detection[0m
+[0;33mW (719264) cam_hal: Failed to get the frame on time![0m
+[0;31mE (719264) Camera: Failed to capture image.[0m
+[0;31mE (719264) Motion_Detection: Failed to capture image for motion detection[0m
+[0;33mW (724264) cam_hal: Failed to get the frame on time![0m
+[0;31mE (724264) Camera: Failed to capture image.[0m
+[0;31mE (724264) Motion_Detection: Failed to capture image for motion detection[0m
+[0;33mW (729264) cam_hal: Failed to get the frame on time![0m
+[0;31mE (729264) Camera: Failed to capture image.[0m
+[0;31mE (729264) Motion_Detection: Failed to capture image for motion detection[0m
+[0;33mW (734264) cam_hal: Failed to get the frame on time![0m
+[0;31mE (734264) Camera: Failed to capture image.[0m
+[0;31mE (734264) Motion_Detection: Failed to capture image for motion detection[0m
+[0;33mW (739264) cam_hal: Failed to get the frame on time![0m
+[0;31mE (739264) Camera: Failed to capture image.[0m
+[0;31mE (739264) Motion_Detection: Failed to capture image for motion detection[0m
+[0;33mW (744264) cam_hal: Failed to get the frame on time![0m
+[0;31mE (744264) Camera: Failed to capture image.[0m
+[0;31mE (744264) Motion_Detection: Failed to capture image for motion detection[0m
+[0;33mW (749264) cam_hal: Failed to get the frame on time![0m
+[0;31mE (749264) Camera: Failed to capture image.[0m
+[0;31mE (749264) Motion_Detection: Failed to capture image for motion detection[0m
+[0;33mW (754264) cam_hal: Failed to get the frame on time![0m
+[0;31mE (754264) Camera: Failed to capture image.[0m
+[0;31mE (754264) Motion_Detection: Failed to capture image for motion detection[0m
+[0;33mW (759264) cam_hal: Failed to get the frame on time![0m
+[0;31mE (759264) Camera: Failed to capture image.[0m
+[0;31mE (759264) Motion_Detection: Failed to capture image for motion detection[0m
+[0;33mW (764264) cam_hal: Failed to get the frame on time![0m
+[0;31mE (764264) Camera: Failed to capture image.[0m
+[0;31mE (764264) Motion_Detection: Failed to capture image for motion detection[0m
+[0;33mW (769264) cam_hal: Failed to get the frame on time![0m
+[0;31mE (769264) Camera: Failed to capture image.[0m
+[0;31mE (769264) Motion_Detection: Failed to capture image for motion detection[0m
+[0;33mW (774264) cam_hal: Failed to get the frame on time![0m
+[0;31mE (774264) Camera: Failed to capture image.[0m
+[0;31mE (774264) Motion_Detection: Failed to capture image for motion detection[0m
+[0;33mW (779264) cam_hal: Failed to get the frame on time![0m
+[0;31mE (779264) Camera: Failed to capture image.[0m
+[0;31mE (779264) Motion_Detection: Failed to capture image for motion detection[0m
+[0;33mW (784264) cam_hal: Failed to get the frame on time![0m
+[0;31mE (784264) Camera: Failed to capture image.[0m
+[0;31mE (784264) Motion_Detection: Failed to capture image for motion detection[0m
+[0;33mW (789264) cam_hal: Failed to get the frame on time![0m
+[0;31mE (789264) Camera: Failed to capture image.[0m
+[0;31mE (789264) Motion_Detection: Failed to capture image for motion detection[0m
+[0;33mW (794264) cam_hal: Failed to get the frame on time![0m
+[0;31mE (794264) Camera: Failed to capture image.[0m
+[0;31mE (794264) Motion_Detection: Failed to capture image for motion detection[0m
+[0;33mW (799264) cam_hal: Failed to get the frame on time![0m
+[0;31mE (799264) Camera: Failed to capture image.[0m
+[0;31mE (799264) Motion_Detection: Failed to capture image for motion detection[0m
+[0;33mW (804264) cam_hal: Failed to get the frame on time![0m
+[0;31mE (804264) Camera: Failed to capture image.[0m
+[0;31mE (804264) Motion_Detection: Failed to capture image for motion detection[0m
+[0;33mW (809264) cam_hal: Failed to get the frame on time![0m
+[0;31mE (809264) Camera: Failed to capture image.[0m
+[0;31mE (809264) Motion_Detection: Failed to capture image for motion detection[0m
+[0;33mW (814264) cam_hal: Failed to get the frame on time![0m
+[0;31mE (814264) Camera: Failed to capture image.[0m
+[0;31mE (814264) Motion_Detection: Failed to capture image for motion detection[0m
+[0;33mW (819264) cam_hal: Failed to get the frame on time![0m
+[0;31mE (819264) Camera: Failed to capture image.[0m
+[0;31mE (819264) Motion_Detection: Failed to capture image for motion detection[0m
+[0;33mW (824264) cam_hal: Failed to get the frame on time![0m
+[0;31mE (824264) Camera: Failed to capture image.[0m
+[0;31mE (824264) Motion_Detection: Failed to capture image for motion detection[0m
+[0;33mW (829264) cam_hal: Failed to get the frame on time![0m
+[0;31mE (829264) Camera: Failed to capture image.[0m
+[0;31mE (829264) Motion_Detection: Failed to capture image for motion detection[0m
+[0;33mW (834264) cam_hal: Failed to get the frame on time![0m
+[0;31mE (834264) Camera: Failed to capture image.[0m
+[0;31mE (834264) Motion_Detection: Failed to capture image for motion detection[0m
+[0;33mW (839264) cam_hal: Failed to get the frame on time![0m
+[0;31mE (839264) Camera: Failed to capture image.[0m
+[0;31mE (839264) Motion_Detection: Failed to capture image for motion detection[0m
+[0;33mW (844264) cam_hal: Failed to get the frame on time![0m
+[0;31mE (844264) Camera: Failed to capture image.[0m
+[0;31mE (844264) Motion_Detection: Failed to capture image for motion detection[0m
+[0;33mW (849264) cam_hal: Failed to get the frame on time![0m
+[0;31mE (849264) Camera: Failed to capture image.[0m
+[0;31mE (849264) Motion_Detection: Failed to capture image for motion detection[0m
+[0;33mW (854264) cam_hal: Failed to get the frame on time![0m
+[0;31mE (854264) Camera: Failed to capture image.[0m
+[0;31mE (854264) Motion_Detection: Failed to capture image for motion detection[0m
+[0;33mW (859264) cam_hal: Failed to get the frame on time![0m
+[0;31mE (859264) Camera: Failed to capture image.[0m
+[0;31mE (859264) Motion_Detection: Failed to capture image for motion detection[0m
+[0;33mW (864264) cam_hal: Failed to get the frame on time![0m
+[0;31mE (864264) Camera: Failed to capture image.[0m
+[0;31mE (864264) Motion_Detection: Failed to capture image for motion detection[0m
+[0;33mW (869264) cam_hal: Failed to get the frame on time![0m
+[0;31mE (869264) Camera: Failed to capture image.[0m
+[0;31mE (869264) Motion_Detection: Failed to capture image for motion detection[0m
+[0;33mW (874264) cam_hal: Failed to get the frame on time![0m
+[0;31mE (874264) Camera: Failed to capture image.[0m
+[0;31mE (874264) Motion_Detection: Failed to capture image for motion detection[0m
+[0;33mW (879264) cam_hal: Failed to get the frame on time![0m
+[0;31mE (879264) Camera: Failed to capture image.[0m
+[0;31mE (879264) Motion_Detection: Failed to capture image for motion detection[0m
+[0;33mW (884264) cam_hal: Failed to get the frame on time![0m
+[0;31mE (884264) Camera: Failed to capture image.[0m
+[0;31mE (884264) Motion_Detection: Failed to capture image for motion detection[0m
+[0;33mW (889264) cam_hal: Failed to get the frame on time![0m
+[0;31mE (889264) Camera: Failed to capture image.[0m
+[0;31mE (889264) Motion_Detection: Failed to capture image for motion detection[0m
+[0;33mW (894264) cam_hal: Failed to get the frame on time![0m
+[0;31mE (894264) Camera: Failed to capture image.[0m
+[0;31mE (894264) Motion_Detection: Failed to capture image for motion detection[0m
+[0;33mW (899264) cam_hal: Failed to get the frame on time![0m
+[0;31mE (899264) Camera: Failed to capture image.[0m
+[0;31mE (899264) Motion_Detection: Failed to capture image for motion detection[0m
+[0;33mW (904264) cam_hal: Failed to get the frame on time![0m
+[0;31mE (904264) Camera: Failed to capture image.[0m
+[0;31mE (904264) Motion_Detection: Failed to capture image for motion detection[0m
+[0;33mW (909264) cam_hal: Failed to get the frame on time![0m
+[0;31mE (909264) Camera: Failed to capture image.[0m
+[0;31mE (909264) Motion_Detection: Failed to capture image for motion detection[0m
+[0;33mW (914264) cam_hal: Failed to get the frame on time![0m
+[0;31mE (914264) Camera: Failed to capture image.[0m
+[0;31mE (914264) Motion_Detection: Failed to capture image for motion detection[0m
+[0;33mW (919264) cam_hal: Failed to get the frame on time![0m
+[0;31mE (919264) Camera: Failed to capture image.[0m
+[0;31mE (919264) Motion_Detection: Failed to capture image for motion detection[0m
+[0;33mW (924264) cam_hal: Failed to get the frame on time![0m
+[0;31mE (924264) Camera: Failed to capture image.[0m
+[0;31mE (924264) Motion_Detection: Failed to capture image for motion detection[0m
+[0;33mW (929264) cam_hal: Failed to get the frame on time![0m
+[0;31mE (929264) Camera: Failed to capture image.[0m
+[0;31mE (929264) Motion_Detection: Failed to capture image for motion detection[0m
+[0;33mW (934264) cam_hal: Failed to get the frame on time![0m
+[0;31mE (934264) Camera: Failed to capture image.[0m
+[0;31mE (934264) Motion_Detection: Failed to capture image for motion detection[0m
+[0;33mW (939264) cam_hal: Failed to get the frame on time![0m
+[0;31mE (939264) Camera: Failed to capture image.[0m
+[0;31mE (939264) Motion_Detection: Failed to capture image for motion detection[0m
+[0;33mW (944264) cam_hal: Failed to get the frame on time![0m
+[0;31mE (944264) Camera: Failed to capture image.[0m
+[0;31mE (944264) Motion_Detection: Failed to capture image for motion detection[0m
+[0;33mW (949264) cam_hal: Failed to get the frame on time![0m
+[0;31mE (949264) Camera: Failed to capture image.[0m
+[0;31mE (949264) Motion_Detection: Failed to capture image for motion detection[0m
+[0;33mW (954264) cam_hal: Failed to get the frame on time![0m
+[0;31mE (954264) Camera: Failed to capture image.[0m
+[0;31mE (954264) Motion_Detection: Failed to capture image for motion detection[0m
+[0;33mW (959264) cam_hal: Failed to get the frame on time![0m
+[0;31mE (959264) Camera: Failed to capture image.[0m
+[0;31mE (959264) Motion_Detection: Failed to capture image for motion detection[0m
+[0;33mW (964264) cam_hal: Failed to get the frame on time![0m
+[0;31mE (964264) Camera: Failed to capture image.[0m
+[0;31mE (964264) Motion_Detection: Failed to capture image for motion detection[0m
+[0;33mW (969264) cam_hal: Failed to get the frame on time![0m
+[0;31mE (969264) Camera: Failed to capture image.[0m
+[0;31mE (969264) Motion_Detection: Failed to capture image for motion detection[0m
+[0;33mW (974264) cam_hal: Failed to get the frame on time![0m
+[0;31mE (974264) Camera: Failed to capture image.[0m
+[0;31mE (974264) Motion_Detection: Failed to capture image for motion detection[0m
+[0;33mW (979264) cam_hal: Failed to get the frame on time![0m
+[0;31mE (979264) Camera: Failed to capture image.[0m
+[0;31mE (979264) Motion_Detection: Failed to capture image for motion detection[0m
+[0;33mW (984264) cam_hal: Failed to get the frame on time![0m
+[0;31mE (984264) Camera: Failed to capture image.[0m
+[0;31mE (984264) Motion_Detection: Failed to capture image for motion detection[0m
+[0;33mW (989264) cam_hal: Failed to get the frame on time![0m
+[0;31mE (989264) Camera: Failed to capture image.[0m
+[0;31mE (989264) Motion_Detection: Failed to capture image for motion detection[0m
+[0;33mW (994264) cam_hal: Failed to get the frame on time![0m
+[0;31mE (994264) Camera: Failed to capture image.[0m
+[0;31mE (994264) Motion_Detection: Failed to capture image for motion detection[0m
+[0;33mW (999264) cam_hal: Failed to get the frame on time![0m
+[0;31mE (999264) Camera: Failed to capture image.[0m
+[0;31mE (999264) Motion_Detection: Failed to capture image for motion detection[0m
+[0;33mW (1004264) cam_hal: Failed to get the frame on time![0m
+[0;31mE (1004264) Camera: Failed to capture image.[0m
+[0;31mE (1004264) Motion_Detection: Failed to capture image for motion detection[0m
+[0;33mW (1009264) cam_hal: Failed to get the frame on time![0m
+[0;31mE (1009264) Camera: Failed to capture image.[0m
+[0;31mE (1009264) Motion_Detection: Failed to capture image for motion detection[0m
+[0;33mW (1014264) cam_hal: Failed to get the frame on time![0m
+[0;31mE (1014264) Camera: Failed to capture image.[0m
+[0;31mE (1014264) Motion_Detection: Failed to capture image for motion detection[0m
+[0;33mW (1019264) cam_hal: Failed to get the frame on time![0m
+[0;31mE (1019264) Camera: Failed to capture image.[0m
+[0;31mE (1019264) Motion_Detection: Failed to capture image for motion detection[0m
+[0;33mW (1024264) cam_hal: Failed to get the frame on time![0m
+[0;31mE (1024264) Camera: Failed to capture image.[0m
+[0;31mE (1024264) Motion_Detection: Failed to capture image for motion detection[0m
+[0;33mW (1029264) cam_hal: Failed to get the frame on time![0m
+[0;31mE (1029264) Camera: Failed to capture image.[0m
+[0;31mE (1029264) Motion_Detection: Failed to capture image for motion detection[0m
+[0;33mW (1034264) cam_hal: Failed to get the frame on time![0m
+[0;31mE (1034264) Camera: Failed to capture image.[0m
+[0;31mE (1034264) Motion_Detection: Failed to capture image for motion detection[0m
+[0;33mW (1039264) cam_hal: Failed to get the frame on time![0m
+[0;31mE (1039264) Camera: Failed to capture image.[0m
+[0;31mE (1039264) Motion_Detection: Failed to capture image for motion detection[0m
+[0;33mW (1044264) cam_hal: Failed to get the frame on time![0m
+[0;31mE (1044264) Camera: Failed to capture image.[0m
+[0;31mE (1044264) Motion_Detection: Failed to capture image for motion detection[0m
+[0;33mW (1049264) cam_hal: Failed to get the frame on time![0m
+[0;31mE (1049264) Camera: Failed to capture image.[0m
+[0;31mE (1049264) Motion_Detection: Failed to capture image for motion detection[0m
+[0;33mW (1054264) cam_hal: Failed to get the frame on time![0m
+[0;31mE (1054264) Camera: Failed to capture image.[0m
+[0;31mE (1054264) Motion_Detection: Failed to capture image for motion detection[0m
+[0;33mW (1059264) cam_hal: Failed to get the frame on time![0m
+[0;31mE (1059264) Camera: Failed to capture image.[0m
+[0;31mE (1059264) Motion_Detection: Failed to capture image for motion detection[0m
+[0;33mW (1064264) cam_hal: Failed to get the frame on time![0m
+[0;31mE (1064264) Camera: Failed to capture image.[0m
+[0;31mE (1064264) Motion_Detection: Failed to capture image for motion detection[0m
+[0;33mW (1069264) cam_hal: Failed to get the frame on time![0m
+[0;31mE (1069264) Camera: Failed to capture image.[0m
+[0;31mE (1069264) Motion_Detection: Failed to capture image for motion detection[0m
+[0;33mW (1074264) cam_hal: Failed to get the frame on time![0m
+[0;31mE (1074264) Camera: Failed to capture image.[0m
+[0;31mE (1074264) Motion_Detection: Failed to capture image for motion detection[0m
+[0;33mW (1079264) cam_hal: Failed to get the frame on time![0m
+[0;31mE (1079264) Camera: Failed to capture image.[0m
+[0;31mE (1079264) Motion_Detection: Failed to capture image for motion detection[0m
+[0;33mW (1084264) cam_hal: Failed to get the frame on time![0m
+[0;31mE (1084264) Camera: Failed to capture image.[0m
+[0;31mE (1084264) Motion_Detection: Failed to capture image for motion detection[0m
+[0;33mW (1089264) cam_hal: Failed to get the frame on time![0m
+[0;31mE (1089264) Camera: Failed to capture image.[0m
+[0;31mE (1089264) Motion_Detection: Failed to capture image for motion detection[0m
