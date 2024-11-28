@@ -37,3 +37,24 @@ resource "aws_s3_bucket_policy" "public_access" {
     ]
   })
 }
+
+resource "aws_s3_object" "index_html" {
+  bucket       = "esp32-frontend-hosting"
+  key          = "index.html"
+  source       = "E:/trail-cam-esp32/web-frontend/index.html"
+  content_type = "text/html"
+}
+
+resource "aws_s3_object" "script_js" {
+  bucket       = "esp32-frontend-hosting"
+  key          = "script.js"
+  source       = "E:/trail-cam-esp32/web-frontend/script.js"
+  content_type = "application/javascript"
+}
+
+resource "aws_s3_object" "styles_css" {
+  bucket       = "esp32-frontend-hosting"
+  key          = "styles.css"
+  source       = "E:/trail-cam-esp32/web-frontend/styles.css"
+  content_type = "text/css"
+}
