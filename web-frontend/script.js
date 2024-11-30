@@ -1,71 +1,87 @@
 // Predefined password
-let password;
-fetch("config.json")
-    .then((response) => response.json())
-    .then((config) => {
-        PASSWORD = config.password;
-    });
+let PASSWORD
+
+// Fetch config and password (optional if you want to load it dynamically)
+fetch('config.json')
+  .then((response) => response.json())
+  .then((config) => {
+    PASSWORD = config.password
+  })
+  .catch((error) => {
+    console.error('Error loading config:', error)
+  })
 
 // DOM elements
-const authSection = document.getElementById("auth-section");
-const mainSection = document.getElementById("main-section");
-const passwordInput = document.getElementById("password-input");
-const loginBtn = document.getElementById("login-btn");
-const errorMessage = document.getElementById("error-message");
-const statusIndicator = document.getElementById("status-indicator");
-const connectBtn = document.getElementById("connect-btn");
-const photoBtn = document.getElementById("photo-btn");
-const displayBtn = document.getElementById("display-btn");
-const photosSection = document.getElementById("photos-section");
-const photosContainer = document.getElementById("photos-container");
+const authSection = document.getElementById('auth-section')
+const mainSection = document.getElementById('main-section')
+const passwordInput = document.getElementById('password-input')
+const loginBtn = document.getElementById('login-btn')
+const errorMessage = document.getElementById('error-message')
+const statusIndicator = document.getElementById('status-indicator')
+const connectBtn = document.getElementById('connect-btn')
+const photoBtn = document.getElementById('photo-btn')
+const displayBtn = document.getElementById('display-btn')
+const photosSection = document.getElementById('photos-section')
+const photosContainer = document.getElementById('photos-container')
 
 // Handle login
-loginBtn.addEventListener("click", () => {
-    if (passwordInput.value === PASSWORD) {
-        authSection.classList.add("hidden");
-        mainSection.classList.remove("hidden");
-    } else {
-        errorMessage.classList.remove("hidden");
-    }
-});
+loginBtn.addEventListener('click', () => {
+  if (passwordInput.value === PASSWORD) {
+    authSection.classList.add('hidden')
+    mainSection.classList.remove('hidden')
+  } else {
+    errorMessage.classList.remove('hidden')
+  }
+})
 
-// Mock API calls (replace with real API calls later)
+// Update connection status
 function updateStatus(connected) {
-    statusIndicator.textContent = connected ? "Connected" : "Disconnected";
-    statusIndicator.style.color = connected ? "green" : "red";
+  statusIndicator.textContent = connected ? 'Connected' : 'Disconnected'
+  statusIndicator.style.color = connected ? 'green' : 'red'
 }
 
+// Display photos
 function displayPhotos(photos) {
-    photosContainer.innerHTML = ""; // Clear previous photos
-    photos.forEach((photo) => {
-        const img = document.createElement("img");
-        img.src = photo.url;
-        photosContainer.appendChild(img);
-    });
-    photosSection.classList.remove("hidden");
+  photosContainer.innerHTML = '' // Clear previous photos
+  photos.forEach((photoUrl) => {
+    const img = document.createElement('img')
+    img.src = photoUrl // Use the photo URL directly
+    img.alt = 'Photo'
+    img.style.width = '150px' // Optional: Style the image
+    img.style.margin = '10px' // Optional: Add some spacing
+    photosContainer.appendChild(img)
+  })
+  photosSection.classList.remove('hidden')
 }
 
 // Connect ESP32
-connectBtn.addEventListener("click", () => {
-    // Mock connection logic
-    updateStatus(true);
-});
+connectBtn.addEventListener('click', () => {
+  updateStatus(true)
+  alert('Connected to ESP32!')
+})
 
 // Take Photo
-photoBtn.addEventListener("click", () => {
-    // Mock photo-taking logic
-    alert("Photo taken!");
-});
+photoBtn.addEventListener('click', () => {
+  alert('Photo taken! (mock implementation)')
+})
 
 // Display Photos
-displayBtn.addEventListener("click", () => {
-    // Mock photos
-    const mockPhotos = [
-        { url: "https://via.placeholder.com/100" },
-        { url: "https://via.placeholder.com/100" },
-        { url: "https://via.placeholder.com/100" },
-        { url: "https://via.placeholder.com/100" },
-        { url: "https://via.placeholder.com/100" },
-    ];
-    displayPhotos(mockPhotos);
-});
+displayBtn.addEventListener('click', () => {
+  fetch(
+    'https://vprq5nsol6.execute-api.us-west-1.amazonaws.com/dev/display-photos'
+  )
+    .then((response) => response.json())
+    .then((data) => {
+      console.log(data) // Debug API response
+      if (data.photos && Array.isArray(data.photos)) {
+        displayPhotos(data.photos) // Pass the array of URLs to the function
+      } else {
+        console.error('Invalid response structure:', data)
+        alert('Failed to load photos. Please try again later.')
+      }
+    })
+    .catch((error) => {
+      console.error('Error fetching photos:', error)
+      alert('Failed to load photos. Please try again later.')
+    })
+})
