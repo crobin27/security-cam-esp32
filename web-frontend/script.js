@@ -39,16 +39,19 @@ function updateStatus(connected) {
   statusIndicator.textContent = connected ? 'Connected' : 'Disconnected'
   statusIndicator.style.color = connected ? 'green' : 'red'
 }
-
-// Display photos
 function displayPhotos(photos) {
+  console.log('Photos Array:', photos) // Debug the photos array
+
   photosContainer.innerHTML = '' // Clear previous photos
   photos.forEach((photoUrl) => {
+    console.log('Photo URL:', photoUrl) // Debug each URL
+
     const img = document.createElement('img')
     img.src = photoUrl // Use the photo URL directly
     img.alt = 'Photo'
-    img.style.width = '150px' // Optional: Style the image
-    img.style.margin = '10px' // Optional: Add some spacing
+    img.style.width = '150px'
+    img.style.margin = '10px'
+
     photosContainer.appendChild(img)
   })
   photosSection.classList.remove('hidden')
@@ -65,16 +68,15 @@ photoBtn.addEventListener('click', () => {
   alert('Photo taken! (mock implementation)')
 })
 
-// Display Photos
 displayBtn.addEventListener('click', () => {
   fetch(
     'https://vprq5nsol6.execute-api.us-west-1.amazonaws.com/dev/display-photos'
   )
     .then((response) => response.json())
     .then((data) => {
-      console.log(data) // Debug API response
+      console.log('API Response:', data) // Debug response data
       if (data.photos && Array.isArray(data.photos)) {
-        displayPhotos(data.photos) // Pass the array of URLs to the function
+        displayPhotos(data.photos) // Pass the photos array to displayPhotos
       } else {
         console.error('Invalid response structure:', data)
         alert('Failed to load photos. Please try again later.')
