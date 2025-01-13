@@ -14,7 +14,12 @@ variable "stage_name" {
   default     = "dev"
 }
 
-variable "lambda_function_arn" {
+variable "lambda_display_photos" {
+  description = "The ARN of the Lambda function to integrate with API Gateway"
+  type        = string
+}
+
+variable "lambda_upload_photo" {
   description = "The ARN of the Lambda function to integrate with API Gateway"
   type        = string
 }
@@ -24,3 +29,5 @@ variable "region" {
   type        = string
   default     = "us-west-1"
 }
+
+data "aws_caller_identity" "current" {}

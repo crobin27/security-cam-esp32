@@ -8,7 +8,8 @@ variable "image_store_bucket_arn" {
   type        = string
 }
 
-variable "lambda_iam_role_arn"{
-  description = "The ARN of the Lambda function to integrate with API Gateway"
+variable "region" {
+  description = "AWS region for deployment"
   type        = string
+  default     = "us-west-1"
 }

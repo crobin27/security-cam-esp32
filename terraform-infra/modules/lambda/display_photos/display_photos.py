@@ -24,7 +24,7 @@ def lambda_handler(event, context):
             s3.generate_presigned_url(
                 'get_object',
                 Params={'Bucket': BUCKET_NAME, 'Key': file['Key']},
-                ExpiresIn=3600  # URL valid for 1 hour
+                ExpiresIn=3600  # 1 hr
             )
             for file in recent_files
         ]
