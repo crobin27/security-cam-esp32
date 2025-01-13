@@ -1,4 +1,4 @@
-# Install script for directory: C:/Users/coler/RobinsonGaming/ESP32 Projects/Trail Cam/components/espressif__esp32-camera
+# Install script for directory: E:/trail-cam-esp32/esp32/components/espressif__esp32-camera
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)

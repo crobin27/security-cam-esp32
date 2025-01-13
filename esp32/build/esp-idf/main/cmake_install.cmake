@@ -1,4 +1,4 @@
-# Install script for directory: C:/Users/coler/RobinsonGaming/ESP32 Projects/Trail Cam/main
+# Install script for directory: E:/trail-cam-esp32/esp32/main
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)

@@ -70,7 +70,7 @@ photoBtn.addEventListener('click', () => {
 
 displayBtn.addEventListener('click', () => {
   fetch(
-    'https://vprq5nsol6.execute-api.us-west-1.amazonaws.com/dev/display-photos'
+    'https://vw91j17z98.execute-api.us-west-1.amazonaws.com/dev/display-photos'
   )
     .then((response) => response.json())
     .then((data) => {

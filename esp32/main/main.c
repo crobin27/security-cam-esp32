@@ -5,7 +5,6 @@
 #include "esp_log.h"
 #include "freertos/FreeRTOS.h"
 #include "freertos/task.h"
-#include "motion_detection.h"  // Include the motion detection header
 #include "wifi_connect.h"      // Include the Wi-Fi connection header
 
 static const char *TAG = "App_Main";
@@ -22,6 +21,4 @@ void app_main() {
     return;
   }
 
-  // Start the motion detection task
-  start_motion_detection_task();
 }

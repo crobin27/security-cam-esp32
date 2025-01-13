@@ -2,7 +2,7 @@ dependencies:
   espressif/esp32-camera:
     dependencies: []
     source:
-      path: C:\Users\coler\RobinsonGaming\ESP32 Projects\Trail Cam\components\espressif__esp32-camera
+      path: E:\trail-cam-esp32\esp32\components\espressif__esp32-camera
       type: local
     version: 2.0.13
   idf:

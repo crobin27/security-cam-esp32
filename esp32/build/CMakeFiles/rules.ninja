@@ -1809,7 +1809,7 @@ rule C_STATIC_LIBRARY_LINKER____idf_main_
 # Rule for re-running cmake.
 
 rule RERUN_CMAKE
-  command = C:\Users\coler\.espressif\tools\cmake\3.24.0\bin\cmake.exe --regenerate-during-build -S"C:\Users\coler\RobinsonGaming\ESP32 Projects\Trail Cam" -B"C:\Users\coler\RobinsonGaming\ESP32 Projects\Trail Cam\build"
+  command = C:\Users\coler\.espressif\tools\cmake\3.24.0\bin\cmake.exe --regenerate-during-build -SE:\trail-cam-esp32\esp32 -BE:\trail-cam-esp32\esp32\build
   description = Re-running CMake...
   generator = 1
 
