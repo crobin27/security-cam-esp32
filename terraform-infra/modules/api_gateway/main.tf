@@ -2,6 +2,7 @@
 resource "aws_api_gateway_rest_api" "esp32_api" {
   name        = var.api_name
   description = var.api_description
+  binary_media_types = [ "image/jpeg", "image/png", "image/jpg" ]
 }
 
 # Deployment for the API
@@ -83,5 +84,3 @@ resource "aws_lambda_permission" "lambda_upload_photo_invoke" {
   # Specify the source ARN for the API Gateway stage
   source_arn = "arn:aws:execute-api:${var.region}:${data.aws_caller_identity.current.account_id}:${aws_api_gateway_rest_api.esp32_api.id}/*/${aws_api_gateway_method.upload_photo_method.http_method}/${aws_api_gateway_resource.upload_photo.path_part}"
 }
-
-

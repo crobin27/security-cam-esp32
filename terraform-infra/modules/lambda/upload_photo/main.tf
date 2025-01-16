@@ -5,6 +5,7 @@ resource "aws_lambda_function" "upload_photo" {
   handler          = "upload_photo.lambda_handler"
   runtime          = "python3.9"
   role             = var.lambda_iam_role_arn
+  source_code_hash = filebase64sha256("${path.module}/upload_photo.zip")
 
   environment {
     variables = {

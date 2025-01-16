@@ -5,6 +5,7 @@ resource "aws_lambda_function" "display_photos" {
   handler          = "display_photos.lambda_handler"
   runtime          = "python3.9"
   role             = var.lambda_iam_role_arn
+  source_code_hash = filebase64sha256("${path.module}/display_photos.zip")
 
   environment {
     variables = {
