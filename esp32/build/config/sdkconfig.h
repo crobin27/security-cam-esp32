@@ -294,7 +294,7 @@
 #define CONFIG_PARTITION_TABLE_MD5 1
 #define CONFIG_WIFI_SSID "Toph22"
 #define CONFIG_WIFI_PASSWORD "7143662591"
-#define CONFIG_AWS_API_URL "https://hc7erfim9f.execute-api.us-east-2.amazonaws.com/Dev/trail-cam-test-images"
+#define CONFIG_AWS_API_URL "https://vw91j17z98.execute-api.us-west-1.amazonaws.com/dev/upload-photo"
 #define CONFIG_COMPILER_OPTIMIZATION_DEBUG 1
 #define CONFIG_COMPILER_OPTIMIZATION_ASSERTIONS_ENABLE 1
 #define CONFIG_COMPILER_FLOAT_LIB_FROM_GCCLIB 1

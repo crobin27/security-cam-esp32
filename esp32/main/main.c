@@ -21,4 +21,24 @@ void app_main() {
     return;
   }
 
+  // give 3 seconds heads up before capturing an image
+  for (int i = 0; i < 3; i++) {
+    vTaskDelay(1000 / portTICK_PERIOD_MS);
+    ESP_LOGI(TAG, "Capturing image in %d seconds", 3 - i);
+  }
+  camera_fb_t *fb = NULL;
+  fb = capture_image();
+  if (fb == NULL) {
+    ESP_LOGE(TAG, "Camera capture failed. Stopping.");
+    return;
+  }
+
+  // Upload image to S3
+  upload_image_to_s3(fb->buf, fb->len);
+  // log the image size and data 
+  ESP_LOGI(TAG, "Image size: %d bytes", fb->len);
+  ESP_LOGI(TAG, "Image data: %p", fb->buf);
+
+  // Release the buffer back to the camera driver
+  release_image(fb);
 }

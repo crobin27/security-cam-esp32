@@ -1,7 +1,7 @@
 {
     "version":            "1.1",
     "project_name":       "trail_cam",
-    "project_version":    "ad10908-dirty",
+    "project_version":    "247b061-dirty",
     "project_path":       "E:/trail-cam-esp32/esp32",
     "idf_path":           "C:/Users/coler/esp/v5.3.1/esp-idf",
     "build_dir":          "E:/trail-cam-esp32/esp32/build",

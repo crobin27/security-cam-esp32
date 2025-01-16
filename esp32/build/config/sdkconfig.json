@@ -33,7 +33,7 @@
     "APP_PROJECT_VER_FROM_CONFIG": false,
     "APP_REPRODUCIBLE_BUILD": false,
     "APP_RETRIEVE_LEN_ELF_SHA": 9,
-    "AWS_API_URL": "https://hc7erfim9f.execute-api.us-east-2.amazonaws.com/Dev/trail-cam-test-images",
+    "AWS_API_URL": "https://vw91j17z98.execute-api.us-west-1.amazonaws.com/dev/upload-photo",
     "BF20A6_SUPPORT": true,
     "BF3005_SUPPORT": true,
     "BOOTLOADER_APP_ROLLBACK_ENABLE": false,

@@ -1,0 +1,77 @@
+[1/5] cmd.exe /C "cd /D E:\trail-cam-esp32\esp32\build\esp-idf\esptool_py && C:\Users\coler\.espressif\python_env\idf5.3_py3.11_env\Scripts\python.exe C:/Users/coler/esp/v5.3.1/esp-idf/components/partition_table/check_sizes.py --offset 0x8000 partition --type app E:/trail-cam-esp32/esp32/build/partition_table/partition-table.bin E:/trail-cam-esp32/esp32/build/trail_cam.bin"
+trail_cam.bin binary size 0xfd9c0 bytes. Smallest app partition is 0x200000 bytes. 0x102640 bytes (50%) free.
+[2/5] Performing build step for 'bootloader'
+[1/1] cmd.exe /C "cd /D E:\trail-cam-esp32\esp32\build\bootloader\esp-idf\esptool_py && C:\Users\coler\.espressif\python_env\idf5.3_py3.11_env\Scripts\python.exe C:/Users/coler/esp/v5.3.1/esp-idf/components/partition_table/check_sizes.py --offset 0x8000 bootloader 0x1000 E:/trail-cam-esp32/esp32/build/bootloader/bootloader.bin"
+Bootloader binary size 0x6880 bytes. 0x780 bytes (7%) free.
+[2/3] cmd.exe /C "cd /D C:\Users\coler\esp\v5.3.1\esp-idf\components\esptool_py && C:\Users\coler\esptool.py --chip esp32 -p COM3 -b 460800 --before=default_reset --after=hard_reset write_flash --flash_mode dio --flash_freq 40m --flash_size 4MB 0x1000 bootloader/bootloader.bin 0x10000 trail_cam.bin 0x8000 partition_table/partition-table.bin
+esptool.py v4.8.1
+Serial port COM3
+Connecting....
+Chip is ESP32-D0WD-V3 (revision v3.1)
+Features: WiFi, BT, Dual Core, 240MHz, VRef calibration in efuse, Coding Scheme None
+Crystal is 40MHz
+MAC: d0:ef:76:ef:30:64
+Uploading stub...
+Running stub...
+Stub running...
+Changing baud rate to 460800
+Changed.
+Configuring flash size...
+Flash will be erased from 0x00001000 to 0x00007fff...
+Flash will be erased from 0x00010000 to 0x0010dfff...
+Flash will be erased from 0x00008000 to 0x00008fff...
+SHA digest in image updated
+Compressed 26752 bytes to 16349...
+Writing at 0x00001000... (100 %)
+Wrote 26752 bytes (16349 compressed) at 0x00001000 in 0.7 seconds (effective 291.7 kbit/s)...
+Hash of data verified.
+Compressed 1038784 bytes to 633179...
+Writing at 0x00010000... (2 %)
+Writing at 0x000200f0... (5 %)
+Writing at 0x0002b09d... (7 %)
+Writing at 0x00030918... (10 %)
+Writing at 0x000366fe... (12 %)
+Writing at 0x0004163b... (15 %)
+Writing at 0x00046e65... (17 %)
+Writing at 0x0004e307... (20 %)
+Writing at 0x00055ccc... (23 %)
+Writing at 0x0005be9a... (25 %)
+Writing at 0x00061e3c... (28 %)
+Writing at 0x00067bef... (30 %)
+Writing at 0x0006dce4... (33 %)
+Writing at 0x00073db8... (35 %)
+Writing at 0x000799c9... (38 %)
+Writing at 0x0007ed08... (41 %)
+Writing at 0x00084287... (43 %)
+Writing at 0x000895cb... (46 %)
+Writing at 0x0008ec8b... (48 %)
+Writing at 0x0009442b... (51 %)
+Writing at 0x0009a272... (53 %)
+Writing at 0x0009ff4e... (56 %)
+Writing at 0x000a5b36... (58 %)
+Writing at 0x000abab6... (61 %)
+Writing at 0x000b1a57... (64 %)
+Writing at 0x000b74cd... (66 %)
+Writing at 0x000bd3ae... (69 %)
+Writing at 0x000c3131... (71 %)
+Writing at 0x000c8f7c... (74 %)
+Writing at 0x000cebee... (76 %)
+Writing at 0x000d4655... (79 %)
+Writing at 0x000dbc52... (82 %)
+Writing at 0x000e5749... (84 %)
+Writing at 0x000eba73... (87 %)
+Writing at 0x000f2756... (89 %)
+Writing at 0x000f8bf0... (92 %)
+Writing at 0x000fe631... (94 %)
+Writing at 0x00104c98... (97 %)
+Writing at 0x00109f76... (100 %)
+Wrote 1038784 bytes (633179 compressed) at 0x00010000 in 14.7 seconds (effective 566.0 kbit/s)...
+Hash of data verified.
+Compressed 3072 bytes to 104...
+Writing at 0x00008000... (100 %)
+Wrote 3072 bytes (104 compressed) at 0x00008000 in 0.1 seconds (effective 491.0 kbit/s)...
+Hash of data verified.
+
+Leaving...
+Hard resetting via RTS pin...
+.espressif\tools\cmake\3.24.0\bin\cmake.exe -D IDF_PATH=C:/Users/coler/esp/v5.3.1/esp-idf -D SERIAL_TOOL=C:/Users/coler/.espressif/python_env/idf5.3_py3.11_env/Scripts/python.exe;;C:/Users/coler/esp/v5.3.1/esp-idf/components/esptool_py/esptool/esptool.py;--chip;esp32 -D SERIAL_TOOL_ARGS=--before=default_reset;--after=hard_reset;write_flash;@flash_args -D WORKING_DIRECTORY=E:/trail-cam-esp32/esp32/build -P C:/Users/coler/esp/v5.3.1/esp-idf/components/esptool_py/run_serial_tool.cmake"

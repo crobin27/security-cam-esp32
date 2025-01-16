@@ -8,20 +8,24 @@ BUCKET_NAME = os.environ['IMAGE_STORE_BUCKET']
 s3 = boto3.client('s3')
 
 def lambda_handler(event, context):
+    print("DEBUG EVENT:", json.dumps(event))
     try:
-        image_base64 = event["body"] 
-
+        body_b64 = event["body"]
         if event.get("isBase64Encoded", False):
-            image_data = base64.b64decode(image_base64)
+            # Convert from base64 → raw bytes
+            image_data = base64.b64decode(body_b64)
         else:
-            image_data = image_base64.encode("utf-8")
+            image_data = body_b64.encode("utf-8")  # or handle error
 
         
         timestamp_str = datetime.utcnow().strftime('%Y%m%d_%H%M%S')
-        filename = f"photo_{timestamp_str}.jpg"
+        filename = f"photo_{timestamp_str}.jpeg"
         if "queryStringParameters" in event and event["queryStringParameters"]:
-            filename = event["queryStringParameters"].get("filename", "default.jpg")
+            filename = event["queryStringParameters"].get("filename", "default.jpeg")
 
+
+        print("Decoded image length:", len(image_data))
+        print("First 64 bytes (hex):", image_data[:64].hex())
         s3.put_object(
             Bucket=BUCKET_NAME,
             Key=filename,
