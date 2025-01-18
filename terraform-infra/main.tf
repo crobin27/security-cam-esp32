@@ -21,6 +21,7 @@ module "api_gateway" {
   stage_name         = "dev"
   lambda_display_photos = module.display_photos_lambda.lambda_function_arn
   lambda_upload_photo   = module.upload_photo_lambda.lambda_function_arn
+  lambda_take_photo = module.take_photo_lambda.lambda_function_arn
 }
 
 /* Lambda IAM Role */
@@ -44,4 +45,15 @@ module "upload_photo_lambda" {
   image_store_bucket     = module.s3_image_store.bucket_name
   image_store_bucket_arn = module.s3_image_store.bucket_arn
   lambda_iam_role_arn = module.lambda_iam.lambda_iam_role_arn
+}
+
+/* Lambda Function for Take Photo */
+module "take_photo_lambda" {
+  source                 = "./modules/lambda/take_photo"
+  lambda_iam_role_arn = module.lambda_iam.lambda_iam_role_arn
+}
+
+module "iot" {
+  source = "./modules/iot"
+  thing_name = "esp32-thing"
 }

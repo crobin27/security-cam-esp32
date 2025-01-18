@@ -13,3 +13,5 @@ variable "region" {
   type        = string
   default     = "us-west-1"
 }
+
+data "aws_caller_identity" "current" {}

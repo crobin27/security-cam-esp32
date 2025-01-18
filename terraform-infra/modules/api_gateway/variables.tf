@@ -24,6 +24,11 @@ variable "lambda_upload_photo" {
   type        = string
 }
 
+variable "lambda_take_photo" {
+  description = "The ARN of the Lambda function to integrate with API Gateway"
+  type        = string
+}
+
 variable "region" {
   description = "AWS region for deployment"
   type        = string
