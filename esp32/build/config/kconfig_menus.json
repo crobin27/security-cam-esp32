@@ -4927,6 +4927,16 @@
                 "range": null,
                 "title": "AWS API URL",
                 "type": "string"
+            },
+            {
+                "children": [],
+                "depends_on": null,
+                "help": "Enter your AWS Topic Endpoint",
+                "id": "AWS_IOT_ENDPOINT",
+                "name": "AWS_IOT_ENDPOINT",
+                "range": null,
+                "title": "AWS IoT Endpoint",
+                "type": "string"
             }
         ],
         "depends_on": null,

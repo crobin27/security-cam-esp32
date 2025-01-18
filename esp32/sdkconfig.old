@@ -394,7 +394,8 @@ CONFIG_WIFI_PASSWORD="7143662591"
 #
 # AWS Configuration
 #
-CONFIG_AWS_API_URL="https://hc7erfim9f.execute-api.us-east-2.amazonaws.com/Dev/trail-cam-test-images"
+CONFIG_AWS_API_URL="https://vw91j17z98.execute-api.us-west-1.amazonaws.com/dev/upload-photo"
+CONFIG_AWS_IOT_ENDPOINT="mqtts://a37x6otakl2ia6-ats.iot.us-west-1.amazonaws.com:8883"
 # end of AWS Configuration
 
 #
@@ -1504,7 +1505,12 @@ CONFIG_MBEDTLS_ASYMMETRIC_CONTENT_LEN=y
 CONFIG_MBEDTLS_SSL_IN_CONTENT_LEN=16384
 CONFIG_MBEDTLS_SSL_OUT_CONTENT_LEN=4096
 # CONFIG_MBEDTLS_DYNAMIC_BUFFER is not set
-# CONFIG_MBEDTLS_DEBUG is not set
+CONFIG_MBEDTLS_DEBUG=y
+# CONFIG_MBEDTLS_DEBUG_LEVEL_WARN is not set
+# CONFIG_MBEDTLS_DEBUG_LEVEL_INFO is not set
+# CONFIG_MBEDTLS_DEBUG_LEVEL_DEBUG is not set
+CONFIG_MBEDTLS_DEBUG_LEVEL_VERBOSE=y
+CONFIG_MBEDTLS_DEBUG_LEVEL=4
 
 #
 # mbedTLS v3.x related

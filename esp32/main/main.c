@@ -6,39 +6,32 @@
 #include "freertos/FreeRTOS.h"
 #include "freertos/task.h"
 #include "wifi_connect.h"      // Include the Wi-Fi connection header
+#include "aws_iot.h"
 
 static const char *TAG = "App_Main";
 
+// Certificates
+extern const uint8_t client_cert_pem_start[] asm("_binary_client_cert_pem_start");
+extern const uint8_t private_key_pem_start[] asm("_binary_private_key_pem_start");
+extern const uint8_t root_ca_pem_start[] asm("_binary_root_ca_pem_start");
+
+// MQTT Broker URI
+#define MQTT_BROKER_URI CONFIG_AWS_IOT_ENDPOINT  // Define this in sdkconfig
+
 void app_main() {
-  ESP_LOGI(TAG, "ESP32 Starting Up");
+    ESP_LOGI(TAG, "ESP32 Starting Up");
 
-  // Initialize Wi-Fi connection
-  initialize_wifi();
+    initialize_wifi();
 
-  // Initialize camera
-  if (init_camera() != ESP_OK) {
-    ESP_LOGE(TAG, "Camera initialization failed. Stopping.");
-    return;
-  }
+    if (init_camera() != ESP_OK) {
+        ESP_LOGE(TAG, "Camera initialization failed. Stopping.");
+        return;
+    }
 
-  // give 3 seconds heads up before capturing an image
-  for (int i = 0; i < 3; i++) {
-    vTaskDelay(1000 / portTICK_PERIOD_MS);
-    ESP_LOGI(TAG, "Capturing image in %d seconds", 3 - i);
-  }
-  camera_fb_t *fb = NULL;
-  fb = capture_image();
-  if (fb == NULL) {
-    ESP_LOGE(TAG, "Camera capture failed. Stopping.");
-    return;
-  }
+    initialize_mqtt(MQTT_BROKER_URI);
 
-  // Upload image to S3
-  upload_image_to_s3(fb->buf, fb->len);
-  // log the image size and data 
-  ESP_LOGI(TAG, "Image size: %d bytes", fb->len);
-  ESP_LOGI(TAG, "Image data: %p", fb->buf);
-
-  // Release the buffer back to the camera driver
-  release_image(fb);
+    ESP_LOGI(TAG, "ESP32 initialized and ready.");
+    while (true) {
+        vTaskDelay(1000 / portTICK_PERIOD_MS);  // Keep main task running
+    }
 }

@@ -2,10 +2,16 @@
 # ESP32 .gitignore attributes
 #################################
 
+# Ignore certifications
+certs/
+*.pem
+*.key
+*.crt 
+
 config.json
 
 # Ignore build artifacts
-/build/
+esp32/build/
 /*.bin
 /*.elf
 /*.map

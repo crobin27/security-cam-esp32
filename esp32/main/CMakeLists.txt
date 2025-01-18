@@ -1,6 +1,9 @@
-idf_component_register(SRCS "camera.c" "main.c" "wifi_connect.c" "aws_upload.c" "aws_upload.c"
-                       INCLUDE_DIRS ".")
+idf_component_register(
+    SRCS "aws_iot.c" "camera.c" "main.c" "wifi_connect.c" "aws_upload.c"
+    INCLUDE_DIRS "."
+    EMBED_FILES "certs/client_cert.pem" "certs/private_key.pem" "certs/root_ca.pem"
+)
 
-                       # Add this line to point to your Kconfig file
+                       
 # Specify the inclusion of your custom Kconfig options
 set(COMPONENT_REQUIRES espressif__esp32-camera)

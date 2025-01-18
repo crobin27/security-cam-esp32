@@ -34,6 +34,7 @@
     "APP_REPRODUCIBLE_BUILD": false,
     "APP_RETRIEVE_LEN_ELF_SHA": 9,
     "AWS_API_URL": "https://vw91j17z98.execute-api.us-west-1.amazonaws.com/dev/upload-photo",
+    "AWS_IOT_ENDPOINT": "mqtts://a37x6otakl2ia6-ats.iot.us-west-1.amazonaws.com:8883",
     "BF20A6_SUPPORT": true,
     "BF3005_SUPPORT": true,
     "BOOTLOADER_APP_ROLLBACK_ENABLE": false,

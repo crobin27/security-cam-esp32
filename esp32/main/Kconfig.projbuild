@@ -21,6 +21,11 @@ menu "Wi-Fi Configuration"
             default ""
             help
                 Enter your AWS API Gateway URL for file uploads.
-    
+        
+        config AWS_IOT_ENDPOINT
+            string "AWS IoT Endpoint"
+            default ""
+            help 
+                Enter your AWS Topic Endpoint
     endmenu
     

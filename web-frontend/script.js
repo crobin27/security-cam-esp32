@@ -65,7 +65,27 @@ connectBtn.addEventListener('click', () => {
 
 // Take Photo
 photoBtn.addEventListener('click', () => {
-  alert('Photo taken! (mock implementation)')
+  fetch(
+    'https://vw91j17z98.execute-api.us-west-1.amazonaws.com/dev/take-photo',
+    {
+      method: 'POST',
+    }
+  )
+    .then((response) => {
+      if (response.ok) {
+        return response.json()
+      } else {
+        throw new Error('Failed to invoke take-photo endpoint')
+      }
+    })
+    .then((data) => {
+      console.log('API Response:', data)
+      alert('Command sent to ESP32 to take a photo!')
+    })
+    .catch((error) => {
+      console.error('Error invoking take-photo endpoint:', error)
+      alert('Failed to send the take photo command. Please try again.')
+    })
 })
 
 displayBtn.addEventListener('click', () => {

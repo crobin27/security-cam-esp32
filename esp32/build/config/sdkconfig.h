@@ -295,6 +295,7 @@
 #define CONFIG_WIFI_SSID "Toph22"
 #define CONFIG_WIFI_PASSWORD "7143662591"
 #define CONFIG_AWS_API_URL "https://vw91j17z98.execute-api.us-west-1.amazonaws.com/dev/upload-photo"
+#define CONFIG_AWS_IOT_ENDPOINT "mqtts://a37x6otakl2ia6-ats.iot.us-west-1.amazonaws.com:8883"
 #define CONFIG_COMPILER_OPTIMIZATION_DEBUG 1
 #define CONFIG_COMPILER_OPTIMIZATION_ASSERTIONS_ENABLE 1
 #define CONFIG_COMPILER_FLOAT_LIB_FROM_GCCLIB 1
