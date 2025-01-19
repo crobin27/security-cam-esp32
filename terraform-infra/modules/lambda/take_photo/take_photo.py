@@ -32,6 +32,9 @@ def lambda_handler(event, context):
 
         return {
             "statusCode": 200,
+            "headers": {
+                "Access-Control-Allow-Origin": "*"
+            },
             "body": json.dumps({
                 "message": "Command to take a picture sent successfully",
                 "iot_topic": IOT_TOPIC
@@ -42,5 +45,8 @@ def lambda_handler(event, context):
         print(f"Error: {str(e)}")
         return {
             "statusCode": 500,
+            "headers": {
+                "Access-Control-Allow-Origin": "*"
+            },
             "body": json.dumps({"error": str(e)}),
         }

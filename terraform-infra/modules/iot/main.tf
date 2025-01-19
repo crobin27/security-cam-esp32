@@ -17,6 +17,7 @@ resource "aws_iot_policy" "this" {
                 "Action": [
                     "iot:Connect",
                     "iot:Subscribe",
+                    "iot:Publish",
                     "iot:Receive"
                 ],
                 "Resource": "*"
