@@ -16,7 +16,7 @@ variable "error_document" {
 }
 
 variable "environment" {
-  description = "Environment name (e.g., dev, prod)"
+  description = "Environment name"
   type        = string
   default     = "dev"
 }

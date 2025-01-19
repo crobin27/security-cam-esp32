@@ -32,10 +32,10 @@ resource "aws_iam_policy" "lambda_exec_policy" {
         Resource = "${var.image_store_bucket_arn}/*"
       },
       {
-      "Effect": "Allow",
-      "Action": "iot:Publish",
-      "Resource": "arn:aws:iot:${var.region}:${data.aws_caller_identity.current.account_id}:topic/esp32/take_picture"
-    }
+        "Effect" : "Allow",
+        "Action" : "iot:Publish",
+        "Resource" : "arn:aws:iot:${var.region}:${data.aws_caller_identity.current.account_id}:topic/esp32/take_picture"
+      }
     ]
   })
 }
@@ -45,7 +45,7 @@ resource "aws_iam_role_policy_attachment" "lambda_exec_attach" {
   policy_arn = aws_iam_policy.lambda_exec_policy.arn
 }
 
-// Basic Lambda execution policy for CloudWatch Logs
+// Basic Lambda execution policy for CloudWatch Logs (Debugging)
 resource "aws_iam_role_policy_attachment" "lambda_exec_attach_basic" {
   role       = aws_iam_role.lambda_exec.name
   policy_arn = "arn:aws:iam::aws:policy/service-role/AWSLambdaBasicExecutionRole"

@@ -12,10 +12,10 @@ def lambda_handler(event, context):
     try:
         body_b64 = event["body"]
         if event.get("isBase64Encoded", False):
-            # Convert from base64 → raw bytes
+            # Convert from base64 to raw bytes
             image_data = base64.b64decode(body_b64)
         else:
-            image_data = body_b64.encode("utf-8")  # or handle error
+            image_data = body_b64.encode("utf-8")  
 
         
         timestamp_str = datetime.utcnow().strftime('%Y%m%d_%H%M%S')
@@ -23,9 +23,6 @@ def lambda_handler(event, context):
         if "queryStringParameters" in event and event["queryStringParameters"]:
             filename = event["queryStringParameters"].get("filename", "default.jpeg")
 
-
-        print("Decoded image length:", len(image_data))
-        print("First 64 bytes (hex):", image_data[:64].hex())
         s3.put_object(
             Bucket=BUCKET_NAME,
             Key=filename,

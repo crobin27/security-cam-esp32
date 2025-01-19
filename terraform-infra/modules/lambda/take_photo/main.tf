@@ -8,7 +8,7 @@ resource "aws_lambda_function" "take_photo" {
   source_code_hash = filebase64sha256("${path.module}/take_photo.zip")
 
 
-    environment {
+  environment {
     variables = {
       IOT_TOPIC = "esp32/take_picture"
     }

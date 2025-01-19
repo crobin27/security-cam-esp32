@@ -3,7 +3,7 @@ output "certificate_pem" {
 }
 
 output "private_key" {
-  value = aws_iot_certificate.this.private_key
+  value     = aws_iot_certificate.this.private_key
   sensitive = true
 }
 

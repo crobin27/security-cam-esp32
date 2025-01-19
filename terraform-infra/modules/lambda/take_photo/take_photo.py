@@ -12,7 +12,6 @@ IOT_TOPIC = os.environ.get("IOT_TOPIC", "esp32/take_picture")
 
 def lambda_handler(event, context):
     try:
-        # Log the incoming event for debugging
         print(f"Received event: {json.dumps(event)}")
         
         # Construct the message to send to the ESP32
@@ -24,7 +23,7 @@ def lambda_handler(event, context):
         # Publish the message to the specified IoT topic
         response = iot_client.publish(
             topic=IOT_TOPIC,
-            qos=1,  # Quality of Service level 1 (ensures delivery at least once)
+            qos=1, 
             payload=json.dumps(message)
         )
 

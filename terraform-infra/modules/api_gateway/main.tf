@@ -1,8 +1,8 @@
 # API Gateway REST API
 resource "aws_api_gateway_rest_api" "esp32_api" {
-  name        = var.api_name
-  description = var.api_description
-  binary_media_types = [ "image/jpeg", "image/png", "image/jpg" ]
+  name               = var.api_name
+  description        = var.api_description
+  binary_media_types = ["image/jpeg", "image/png", "image/jpg"]
 }
 
 # Deployment for the API
@@ -11,8 +11,8 @@ resource "aws_api_gateway_deployment" "esp32_api_deployment" {
   stage_name  = var.stage_name
 
   depends_on = [aws_api_gateway_integration.display_photos_integration,
-                aws_api_gateway_integration.upload_photo_integration,
-                aws_api_gateway_integration.take_photo_integration]
+    aws_api_gateway_integration.upload_photo_integration,
+  aws_api_gateway_integration.take_photo_integration]
 }
 
 # Root resource: /display-photos
@@ -37,7 +37,7 @@ resource "aws_api_gateway_integration" "display_photos_integration" {
   http_method             = aws_api_gateway_method.display_photos_method.http_method
   integration_http_method = "POST"
   type                    = "AWS_PROXY"
-  uri = "arn:aws:apigateway:${var.region}:lambda:path/2015-03-31/functions/${var.lambda_display_photos}/invocations"
+  uri                     = "arn:aws:apigateway:${var.region}:lambda:path/2015-03-31/functions/${var.lambda_display_photos}/invocations"
 }
 
 # Lambda permission for API Gateway
@@ -62,7 +62,7 @@ resource "aws_api_gateway_method" "upload_photo_method" {
   rest_api_id   = aws_api_gateway_rest_api.esp32_api.id
   resource_id   = aws_api_gateway_resource.upload_photo.id
   http_method   = "POST"
-  authorization = "NONE" 
+  authorization = "NONE"
 }
 
 # Integration with Lambda function for /upload-image
@@ -72,7 +72,7 @@ resource "aws_api_gateway_integration" "upload_photo_integration" {
   http_method             = aws_api_gateway_method.upload_photo_method.http_method
   integration_http_method = "POST"
   type                    = "AWS_PROXY"
-  uri = "arn:aws:apigateway:${var.region}:lambda:path/2015-03-31/functions/${var.lambda_upload_photo}/invocations"
+  uri                     = "arn:aws:apigateway:${var.region}:lambda:path/2015-03-31/functions/${var.lambda_upload_photo}/invocations"
 }
 
 # Lambda permission for API Gateway
@@ -99,7 +99,7 @@ resource "aws_api_gateway_method" "take_photo_method" {
   rest_api_id   = aws_api_gateway_rest_api.esp32_api.id
   resource_id   = aws_api_gateway_resource.take_photo.id
   http_method   = "POST"
-  authorization = "NONE" 
+  authorization = "NONE"
 }
 
 # Integration with Lambda function for /take-photo
@@ -109,7 +109,7 @@ resource "aws_api_gateway_integration" "take_photo_integration" {
   http_method             = aws_api_gateway_method.take_photo_method.http_method
   integration_http_method = "POST"
   type                    = "AWS_PROXY"
-  uri = "arn:aws:apigateway:${var.region}:lambda:path/2015-03-31/functions/${var.lambda_take_photo}/invocations"
+  uri                     = "arn:aws:apigateway:${var.region}:lambda:path/2015-03-31/functions/${var.lambda_take_photo}/invocations"
 }
 
 # Lambda permission for API Gateway
