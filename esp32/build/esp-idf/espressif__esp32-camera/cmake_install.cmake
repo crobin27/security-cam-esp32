@@ -1,8 +1,8 @@
-# Install script for directory: E:/trail-cam-esp32/esp32/components/espressif__esp32-camera
+# Install script for directory: E:/security-cam-esp32/esp32/components/espressif__esp32-camera
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
-  set(CMAKE_INSTALL_PREFIX "C:/Program Files (x86)/trail_cam")
+  set(CMAKE_INSTALL_PREFIX "C:/Program Files (x86)/security_cam")
 endif()
 string(REGEX REPLACE "/$" "" CMAKE_INSTALL_PREFIX "${CMAKE_INSTALL_PREFIX}")
 

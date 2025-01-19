@@ -41,20 +41,20 @@ resource "aws_s3_bucket_policy" "public_access" {
 resource "aws_s3_object" "index_html" {
   bucket       = aws_s3_bucket.s3-frontend.bucket
   key          = "index.html"
-  source       = "${path.root}/web-frontend/index.html"
+  source       = "${path.root}/../web-frontend/index.html"
   content_type = "text/html"
 }
 
 resource "aws_s3_object" "script_js" {
   bucket       = aws_s3_bucket.s3-frontend.bucket
   key          = "script.js"
-  source       = "${path.root}/web-frontend/script.js"
+  source       = "${path.root}/../web-frontend/script.js"
   content_type = "application/javascript"
 }
 
 resource "aws_s3_object" "styles_css" {
   bucket       = aws_s3_bucket.s3-frontend.bucket
   key          = "styles.css"
-  source       = "${path.root}/web-frontend/styles.css"
+  source       = "${path.root}/../web-frontend/styles.css"
   content_type = "text/css"
 }

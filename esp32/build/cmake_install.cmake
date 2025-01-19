@@ -1,8 +1,8 @@
-# Install script for directory: E:/trail-cam-esp32/esp32
+# Install script for directory: E:/security-cam-esp32/esp32
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
-  set(CMAKE_INSTALL_PREFIX "C:/Program Files (x86)/trail_cam")
+  set(CMAKE_INSTALL_PREFIX "C:/Program Files (x86)/security_cam")
 endif()
 string(REGEX REPLACE "/$" "" CMAKE_INSTALL_PREFIX "${CMAKE_INSTALL_PREFIX}")
 
@@ -39,7 +39,7 @@ endif()
 
 if(NOT CMAKE_INSTALL_LOCAL_ONLY)
   # Include the install script for the subdirectory.
-  include("E:/trail-cam-esp32/esp32/build/esp-idf/cmake_install.cmake")
+  include("E:/security-cam-esp32/esp32/build/esp-idf/cmake_install.cmake")
 endif()
 
 if(CMAKE_INSTALL_COMPONENT)
@@ -50,5 +50,5 @@ endif()
 
 string(REPLACE ";" "\n" CMAKE_INSTALL_MANIFEST_CONTENT
        "${CMAKE_INSTALL_MANIFEST_FILES}")
-file(WRITE "E:/trail-cam-esp32/esp32/build/${CMAKE_INSTALL_MANIFEST}"
+file(WRITE "E:/security-cam-esp32/esp32/build/${CMAKE_INSTALL_MANIFEST}"
      "${CMAKE_INSTALL_MANIFEST_CONTENT}")

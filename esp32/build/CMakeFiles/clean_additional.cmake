@@ -20,8 +20,8 @@ if("${CONFIG}" STREQUAL "" OR "${CONFIG}" STREQUAL "")
   "private_key.pem.S"
   "project_elf_src_esp32.c"
   "root_ca.pem.S"
-  "trail_cam.bin"
-  "trail_cam.map"
+  "security_cam.bin"
+  "security_cam.map"
   "x509_crt_bundle.S"
   )
 endif()

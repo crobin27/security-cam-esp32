@@ -5,18 +5,18 @@ cmake_minimum_required(VERSION 3.5)
 
 file(MAKE_DIRECTORY
   "C:/Users/coler/esp/v5.3.1/esp-idf/components/bootloader/subproject"
-  "E:/trail-cam-esp32/esp32/build/bootloader"
-  "E:/trail-cam-esp32/esp32/build/bootloader-prefix"
-  "E:/trail-cam-esp32/esp32/build/bootloader-prefix/tmp"
-  "E:/trail-cam-esp32/esp32/build/bootloader-prefix/src/bootloader-stamp"
-  "E:/trail-cam-esp32/esp32/build/bootloader-prefix/src"
-  "E:/trail-cam-esp32/esp32/build/bootloader-prefix/src/bootloader-stamp"
+  "E:/security-cam-esp32/esp32/build/bootloader"
+  "E:/security-cam-esp32/esp32/build/bootloader-prefix"
+  "E:/security-cam-esp32/esp32/build/bootloader-prefix/tmp"
+  "E:/security-cam-esp32/esp32/build/bootloader-prefix/src/bootloader-stamp"
+  "E:/security-cam-esp32/esp32/build/bootloader-prefix/src"
+  "E:/security-cam-esp32/esp32/build/bootloader-prefix/src/bootloader-stamp"
 )
 
 set(configSubDirs )
 foreach(subDir IN LISTS configSubDirs)
-    file(MAKE_DIRECTORY "E:/trail-cam-esp32/esp32/build/bootloader-prefix/src/bootloader-stamp/${subDir}")
+    file(MAKE_DIRECTORY "E:/security-cam-esp32/esp32/build/bootloader-prefix/src/bootloader-stamp/${subDir}")
 endforeach()
 if(cfgdir)
-  file(MAKE_DIRECTORY "E:/trail-cam-esp32/esp32/build/bootloader-prefix/src/bootloader-stamp${cfgdir}") # cfgdir has leading slash
+  file(MAKE_DIRECTORY "E:/security-cam-esp32/esp32/build/bootloader-prefix/src/bootloader-stamp${cfgdir}") # cfgdir has leading slash
 endif()

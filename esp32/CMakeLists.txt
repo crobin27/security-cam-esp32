@@ -4,4 +4,4 @@ cmake_minimum_required(VERSION 3.16)
 include($ENV{IDF_PATH}/tools/cmake/project.cmake)
 
 # Set your project name
-project(trail_cam)
+project(security_cam)
