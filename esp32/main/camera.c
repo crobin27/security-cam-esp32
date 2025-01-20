@@ -11,15 +11,15 @@
 #include "freertos/FreeRTOS.h"
 #include "freertos/semphr.h"
 #include "freertos/task.h"
-#include "wifi_connect.h"  // For the Wi-Fi semaphore
+#include "wifi_connect.h" // For the Wi-Fi semaphore
 
 #define BOARD_ESP32CAM_AITHINKER 1
 
-// ESP32Cam (AiThinker) PIN Map
+// ESP32Cam (AiThinker) PIN Map (settings from espressif example)
 #ifdef BOARD_ESP32CAM_AITHINKER
 
 #define CAM_PIN_PWDN 32
-#define CAM_PIN_RESET -1  // software reset will be performed
+#define CAM_PIN_RESET -1 // software reset will be performed
 #define CAM_PIN_XCLK 0
 #define CAM_PIN_SIOD 26
 #define CAM_PIN_SIOC 27
@@ -64,12 +64,12 @@ static camera_config_t camera_config = {
     .xclk_freq_hz = 20000000,
     .ledc_timer = LEDC_TIMER_0,
     .ledc_channel = LEDC_CHANNEL_0,
-    .pixel_format = PIXFORMAT_JPEG,  // JPEG for smaller file sizes
-    .frame_size = FRAMESIZE_HD,  // Moderate frame size to reduce memory usage
-    .jpeg_quality = 10,          // Higher value means lower quality
-    .fb_count = 1,               // Only one frame buffer to reduce memory usage
+    .pixel_format = PIXFORMAT_JPEG, // JPEG for smaller file sizes
+    .frame_size = FRAMESIZE_HD, // Moderate frame size to reduce memory usage
+    .jpeg_quality = 10,         // Higher value means lower quality
+    .fb_count = 2,              // Only one frame buffer to reduce memory usage
     .fb_location = CAMERA_FB_IN_PSRAM,
-    .grab_mode = CAMERA_GRAB_WHEN_EMPTY,
+    .grab_mode = CAMERA_GRAB_LATEST, // Always get the latest frame
 };
 
 // Function to initialize the camera
@@ -85,6 +85,11 @@ esp_err_t init_camera(void) {
 
 // Function to capture an image and return the frame buffer
 camera_fb_t *capture_image(void) {
+  // Release the previous frame buffer if it's still being held
+  esp_camera_fb_return(NULL);
+  // small delay to ensure a fresh frame is captured
+  vTaskDelay(pdMS_TO_TICKS(200));
+
   camera_fb_t *pic = esp_camera_fb_get();
   if (!pic) {
     ESP_LOGE(TAG, "Failed to capture image.");
@@ -102,15 +107,6 @@ void release_image(camera_fb_t *pic) {
   } else {
     ESP_LOGW(TAG, "Attempted to return a NULL image buffer.");
   }
-}
-
-// Function to generate a unique filename based on the current time
-void generate_image_filename(char *buffer, size_t buffer_size) {
-  time_t now;
-  struct tm timeinfo;
-  time(&now);
-  localtime_r(&now, &timeinfo);
-  strftime(buffer, buffer_size, "image_%Y%m%d_%H%M%S.jpg", &timeinfo);
 }
 
 #else

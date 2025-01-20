@@ -18,7 +18,6 @@ const passwordInput = document.getElementById('password-input')
 const loginBtn = document.getElementById('login-btn')
 const errorMessage = document.getElementById('error-message')
 const statusIndicator = document.getElementById('status-indicator')
-const connectBtn = document.getElementById('connect-btn')
 const photoBtn = document.getElementById('photo-btn')
 const displayBtn = document.getElementById('display-btn')
 const photosSection = document.getElementById('photos-section')
@@ -34,11 +33,7 @@ loginBtn.addEventListener('click', () => {
   }
 })
 
-// Update connection status
-function updateStatus(connected) {
-  statusIndicator.textContent = connected ? 'Connected' : 'Disconnected'
-  statusIndicator.style.color = connected ? 'green' : 'red'
-}
+// Display photos helper function
 function displayPhotos(photos) {
   console.log('Photos Array:', photos) // Debug the photos array
 
@@ -47,21 +42,34 @@ function displayPhotos(photos) {
     console.log('Photo URL:', photoUrl) // Debug each URL
 
     const img = document.createElement('img')
-    img.src = photoUrl // Use the photo URL directly
+    img.src = photoUrl
     img.alt = 'Photo'
-    img.style.width = '150px'
-    img.style.margin = '10px'
 
     photosContainer.appendChild(img)
   })
   photosSection.classList.remove('hidden')
 }
 
-// Connect ESP32
-connectBtn.addEventListener('click', () => {
-  updateStatus(true)
-  alert('Connected to ESP32!')
-})
+// A reusable fetch for photos
+function fetchAndShowPhotos() {
+  fetch(
+    'https://vw91j17z98.execute-api.us-west-1.amazonaws.com/dev/display-photos'
+  )
+    .then((response) => response.json())
+    .then((data) => {
+      console.log('API Response:', data) // Debug response data
+      if (data.photos && Array.isArray(data.photos)) {
+        displayPhotos(data.photos)
+      } else {
+        console.error('Invalid response structure:', data)
+        alert('Failed to load photos. Please try again later.')
+      }
+    })
+    .catch((error) => {
+      console.error('Error fetching photos:', error)
+      alert('Failed to load photos. Please try again later.')
+    })
+}
 
 // Take Photo
 photoBtn.addEventListener('click', () => {
@@ -81,6 +89,11 @@ photoBtn.addEventListener('click', () => {
     .then((data) => {
       console.log('API Response:', data)
       alert('Command sent to ESP32 to take a photo!')
+
+      // After success, wait 5 seconds, then auto display the updated photos
+      setTimeout(() => {
+        fetchAndShowPhotos()
+      }, 1000)
     })
     .catch((error) => {
       console.error('Error invoking take-photo endpoint:', error)
@@ -88,22 +101,4 @@ photoBtn.addEventListener('click', () => {
     })
 })
 
-displayBtn.addEventListener('click', () => {
-  fetch(
-    'https://vw91j17z98.execute-api.us-west-1.amazonaws.com/dev/display-photos'
-  )
-    .then((response) => response.json())
-    .then((data) => {
-      console.log('API Response:', data) // Debug response data
-      if (data.photos && Array.isArray(data.photos)) {
-        displayPhotos(data.photos) // Pass the photos array to displayPhotos
-      } else {
-        console.error('Invalid response structure:', data)
-        alert('Failed to load photos. Please try again later.')
-      }
-    })
-    .catch((error) => {
-      console.error('Error fetching photos:', error)
-      alert('Failed to load photos. Please try again later.')
-    })
-})
+displayBtn.addEventListener('click', fetchAndShowPhotos)

@@ -1,67 +1,84 @@
 body {
-    font-family: Arial, sans-serif;
-    margin: 0;
-    padding: 0;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-    background-color: #f4f4f4;
-  }
-  
-  h1 {
-    text-align: center;
-  }
-  
-  .hidden {
-    display: none;
-  }
-  
-  #auth-section,
-  #main-section {
-    width: 300px;
-    background: white;
-    padding: 20px;
-    border-radius: 8px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-  }
-  
-  #controls {
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-  }
-  
-  button {
-    padding: 10px;
-    border: none;
-    background: #007bff;
-    color: white;
-    border-radius: 4px;
-    cursor: pointer;
-    transition: background 0.3s ease;
-  }
-  
-  button:hover {
-    background: #0056b3;
-  }
-  
-  #error-message {
-    color: red;
-    margin-top: 10px;
-  }
-  
-  #photos-container {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 10px;
-    margin-top: 20px;
-  }
-  
-  #photos-container img {
-    width: 100px;
-    height: 100px;
-    object-fit: cover;
-    border-radius: 4px;
-  }
-  
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 40px; /* general page padding */
+  background-color: #f4f4f4;
+}
+
+/* This h1 rule is fine if you want all H1 text centered */
+h1 {
+  text-align: center;
+}
+
+/* Utility for hiding elements */
+.hidden {
+  display: none;
+}
+
+/* ----- Auth Section (login) ----- */
+#auth-section {
+  max-width: 350px; /* narrower container for login */
+  width: 100%;
+  margin: 40px auto; /* center horizontally */
+  background: white;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* ----- Main Section (after login) ----- */
+#main-section {
+  max-width: 800px; /* allow main content to be wider */
+  width: 100%;
+  margin: 40px auto; /* center horizontally */
+  background: white;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Controls layout (buttons) */
+#controls {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+/* Button styling */
+button {
+  padding: 10px;
+  border: none;
+  background: #007bff;
+  color: white;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+button:hover {
+  background: #0056b3;
+}
+
+#error-message {
+  color: red;
+  margin-top: 10px;
+}
+
+/* Photos Section */
+#photos-section {
+  margin-top: 20px;
+}
+
+#photos-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  justify-content: flex-start; /* or center, if you prefer */
+  margin-top: 20px;
+}
+
+#photos-container img {
+  width: 200px;
+  height: 200px;
+  object-fit: cover;
+  border-radius: 4px;
+}

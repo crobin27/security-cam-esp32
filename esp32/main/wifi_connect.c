@@ -12,7 +12,7 @@
 #include "lwip/sys.h"
 #include "nvs_flash.h"
 
-// Wi-Fi credentials (Replace with your actual Wi-Fi credentials)
+// Wi-Fi credentials stored in sdkconfig
 #define WIFI_SSID CONFIG_WIFI_SSID
 #define WIFI_PASS CONFIG_WIFI_PASSWORD
 
@@ -53,15 +53,10 @@ static void event_handler(void *arg, esp_event_base_t event_base,
   } else if (event_base == IP_EVENT && event_id == IP_EVENT_STA_GOT_IP) {
     ip_event_got_ip_t *event = (ip_event_got_ip_t *)event_data;
     ESP_LOGI(TAG, "Got IP address: " IPSTR, IP2STR(&event->ip_info.ip));
-    s_retry_num = 0;  // Reset retry count upon successful connection
+    s_retry_num = 0; // Reset retry count upon successful connection
     xEventGroupSetBits(s_wifi_event_group, WIFI_CONNECTED_BIT);
   }
 }
-
-// void app_main() {
-//   ESP_LOGI(TAG, "Trying to initialize WiFi");
-//   initialize_wifi();
-// }
 
 // Function to initialize NVS and Wi-Fi in Station mode
 void initialize_wifi(void) {
@@ -119,8 +114,7 @@ void initialize_wifi(void) {
   if (bits & WIFI_CONNECTED_BIT) {
     ESP_LOGI(TAG, "Successfully connected to the Wi-Fi network: SSID:%s",
              WIFI_SSID);
-    xSemaphoreGive(
-        wifi_connection_semaphore);  // Signal that Wi-Fi is connected
+    xSemaphoreGive(wifi_connection_semaphore); // Signal that Wi-Fi is connected
   } else if (bits & WIFI_FAIL_BIT) {
     ESP_LOGE(TAG, "Failed to connect to the Wi-Fi network: SSID:%s", WIFI_SSID);
   } else {
