@@ -17,8 +17,12 @@ static const char *TAG = "AWS_UPLOAD";
 extern const uint8_t root_ca_pem_start[] asm("_binary_root_ca_pem_start");
 extern const uint8_t root_ca_pem_end[] asm("_binary_root_ca_pem_end");
 
+const char *motion_folder = "motion-detection-images/";
+const char *manual_folder = "manual-capture-images/";
+
 // Function to upload an image to the S3 bucket
-void upload_image_to_s3(const uint8_t *image_data, size_t image_size) {
+void upload_image_to_s3(const uint8_t *image_data, size_t image_size,
+                        const char *folder_name) {
 
   // Check if Wi-Fi connection is established using the semaphore
   if (wifi_connection_semaphore != NULL &&
@@ -27,7 +31,9 @@ void upload_image_to_s3(const uint8_t *image_data, size_t image_size) {
 
     // Define the endpoint URL using the config value
     char url[256];
-    snprintf(url, sizeof(url), "%s", CONFIG_AWS_API_URL);
+    snprintf(url, sizeof(url), "%s/%s", CONFIG_AWS_API_URL, folder_name);
+
+    ESP_LOGI(TAG, "Constructed upload URL: %s", url);
 
     // Configure the HTTP client for the image upload
     esp_http_client_config_t config = {.url = url,

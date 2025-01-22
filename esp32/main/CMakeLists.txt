@@ -1,5 +1,5 @@
 idf_component_register(
-    SRCS "aws_iot.c" "camera.c" "main.c" "wifi_connect.c" "aws_upload.c"
+    SRCS "motion_detection.c" "aws_iot.c" "camera.c" "main.c" "wifi_connect.c" "aws_upload.c"
     INCLUDE_DIRS "."
     EMBED_FILES "certs/client_cert.pem" "certs/private_key.pem" "certs/root_ca.pem"
 )

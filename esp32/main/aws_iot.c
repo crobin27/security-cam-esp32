@@ -38,8 +38,10 @@ static void mqtt_event_handler(void *handler_args, esp_event_base_t base,
   case MQTT_EVENT_CONNECTED:
     ESP_LOGI(TAG, "Connected to AWS IoT Core");
 
-    // Subscribe to the topic
+    // Subscribe to the topics
     esp_mqtt_client_subscribe(mqtt_client, "esp32/take_picture", 1);
+    esp_mqtt_client_subscribe(mqtt_client, "esp32/motion_detection", 1);
+
     break;
 
   case MQTT_EVENT_DISCONNECTED:
@@ -54,6 +56,17 @@ static void mqtt_event_handler(void *handler_args, esp_event_base_t base,
     if (strncmp(event->topic, "esp32/take_picture", event->topic_len) == 0) {
       char command[32];
       snprintf(command, sizeof(command), "take_picture");
+      ESP_LOGI(TAG, "Received take picture command: %s", command);
+
+      // Send command to the queue
+      if (xQueueSend(commandQueue, command, portMAX_DELAY) != pdPASS) {
+        ESP_LOGE(TAG, "Failed to send command to queue.");
+      }
+    } else if (strncmp(event->topic, "esp32/motion_detection",
+                       event->topic_len) == 0) {
+      char command[32];
+      snprintf(command, sizeof(command), "motion_detection");
+      ESP_LOGI(TAG, "Received motion detection command: %s", command);
 
       // Send command to the queue
       if (xQueueSend(commandQueue, command, portMAX_DELAY) != pdPASS) {

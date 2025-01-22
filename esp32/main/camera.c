@@ -64,10 +64,10 @@ static camera_config_t camera_config = {
     .xclk_freq_hz = 20000000,
     .ledc_timer = LEDC_TIMER_0,
     .ledc_channel = LEDC_CHANNEL_0,
-    .pixel_format = PIXFORMAT_JPEG, // JPEG for smaller file sizes
-    .frame_size = FRAMESIZE_HD, // Moderate frame size to reduce memory usage
-    .jpeg_quality = 10,         // Higher value means lower quality
-    .fb_count = 2,              // Only one frame buffer to reduce memory usage
+    .pixel_format = PIXFORMAT_GRAYSCALE, // Grayscale for lossless compression
+    .frame_size = FRAMESIZE_QQVGA, // Moderate frame size to reduce memory usage
+    .jpeg_quality = 15,            // Higher value means lower quality
+    .fb_count = 2, // Only one frame buffer to reduce memory usage
     .fb_location = CAMERA_FB_IN_PSRAM,
     .grab_mode = CAMERA_GRAB_LATEST, // Always get the latest frame
 };
@@ -95,7 +95,9 @@ camera_fb_t *capture_image(void) {
     ESP_LOGE(TAG, "Failed to capture image.");
     return NULL;
   }
-  ESP_LOGI(TAG, "Image captured. Size: %zu bytes", pic->len);
+  ESP_LOGI(TAG, "Captured frame. Width: %d, Height: %d, Size: %zu bytes",
+           pic->width, pic->height, pic->len);
+
   return pic;
 }
 
