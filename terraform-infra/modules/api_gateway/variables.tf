@@ -24,7 +24,7 @@ variable "lambda_upload_photo" {
   type        = string
 }
 
-variable "lambda_take_photo" {
+variable "lambda_iot_command" {
   description = "The ARN of the Lambda function to integrate with API Gateway"
   type        = string
 }

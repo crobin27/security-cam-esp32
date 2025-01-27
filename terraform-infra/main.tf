@@ -34,8 +34,8 @@ module "upload_photo_lambda" {
   lambda_iam_role_arn    = module.lambda_iam.lambda_iam_role_arn
 }
 
-module "take_photo_lambda" {
-  source              = "./modules/lambda/take_photo"
+module "iot_command_lambda" {
+  source              = "./modules/lambda/iot_command"
   lambda_iam_role_arn = module.lambda_iam.lambda_iam_role_arn
 }
 
@@ -47,7 +47,7 @@ module "api_gateway" {
   stage_name            = "dev"
   lambda_display_photos = module.display_photos_lambda.lambda_function_arn
   lambda_upload_photo   = module.upload_photo_lambda.lambda_function_arn
-  lambda_take_photo     = module.take_photo_lambda.lambda_function_arn
+  lambda_iot_command     = module.iot_command_lambda.lambda_function_arn
 }
 
 /* IoT Thing */
