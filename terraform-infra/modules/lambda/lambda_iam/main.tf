@@ -34,7 +34,8 @@ resource "aws_iam_policy" "lambda_exec_policy" {
       {
         "Effect" : "Allow",
         "Action" : "iot:Publish",
-        "Resource" : "arn:aws:iot:${var.region}:${data.aws_caller_identity.current.account_id}:topic/esp32/take_picture"
+        "Resource" : ["arn:aws:iot:${var.region}:${data.aws_caller_identity.current.account_id}:topic/esp32/take_picture", 
+                      "arn:aws:iot:${var.region}:${data.aws_caller_identity.current.account_id}:topic/esp32/motion_detection"]
       }
     ]
   })

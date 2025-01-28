@@ -105,7 +105,7 @@ resource "aws_lambda_permission" "lambda_upload_photo_invoke" {
 resource "aws_api_gateway_resource" "publish_iot_message" {
   rest_api_id = aws_api_gateway_rest_api.esp32_api.id
   parent_id   = aws_api_gateway_rest_api.esp32_api.root_resource_id
-  path_part   = "iot_message"
+  path_part   = "iot-message"
 }
 
 # child resource: /iot_message/{command}
@@ -143,3 +143,4 @@ resource "aws_lambda_permission" "lambda_iot_command_invoke" {
   # Specify the source ARN for the API Gateway stage
   source_arn = "arn:aws:execute-api:${var.region}:${data.aws_caller_identity.current.account_id}:${aws_api_gateway_rest_api.esp32_api.id}/*/${aws_api_gateway_method.iot_command_method.http_method}/${aws_api_gateway_resource.publish_iot_message.path_part}/${aws_api_gateway_resource.iot_command.path_part}"
 }
+

@@ -25,7 +25,8 @@ TaskHandle_t mqttTaskHandle = NULL;
 TaskHandle_t motionDetectionTaskHandle = NULL;
 
 SemaphoreHandle_t capture_mutex; // used to ensure mutual exclusion between
-                                 // motion detection and image capture tasks
+SemaphoreHandle_t
+    motion_detection_active; // motion detection and image capture tasks
 void camera_task(void *param) {
   ESP_LOGI(TAG, "Camera Task Started on Core %d", xPortGetCoreID());
 
@@ -38,20 +39,30 @@ void camera_task(void *param) {
       if (strcmp(command, "take_picture") == 0) {
         // Capture image
         xSemaphoreTake(capture_mutex, portMAX_DELAY);
+
+        if (reinitialize_camera(PIXFORMAT_JPEG, FRAMESIZE_QVGA) == ESP_OK) {
+          ESP_LOGI(TAG, "Camera set to color for standard capture.");
+        } else {
+          ESP_LOGE(TAG, "Failed to set camera to color mode.");
+        }
+
         camera_fb_t *fb = capture_image();
         if (fb) {
           ESP_LOGI(TAG, "Image captured. Uploading...");
-          upload_image_to_s3(fb->buf, fb->len, "manual-capture-images");
+          upload_image_to_s3(fb->buf, fb->len, "manual-capture-images",
+                             "image/jpeg");
           ESP_LOGI(TAG, "Image uploaded successfully.");
           release_image(fb);
         } else {
           ESP_LOGE(TAG, "Failed to capture image.");
         }
         xSemaphoreGive(capture_mutex);
+
       } else if (strcmp(command, "motion_detection") == 0) {
-        // Start motion detection task
-        if (motionDetectionTaskHandle == NULL) {
+        // Start motion detection task if semaphore is available to start
+        if (xSemaphoreTake(motion_detection_active, portMAX_DELAY) == pdTRUE) {
           ESP_LOGI(TAG, "Starting motion detection task.");
+
           start_motion_detection_task(&motionDetectionTaskHandle,
                                       capture_mutex);
         } else {
@@ -92,6 +103,14 @@ void app_main() {
     return;
   }
 
+  // Create a semaphore to control motion detection task
+  motion_detection_active = xSemaphoreCreateBinary();
+  if (!motion_detection_active) {
+    ESP_LOGE(TAG, "Failed to create motion detection semaphore.");
+    return;
+  }
+  xSemaphoreGive(motion_detection_active);
+
   // Create a queue for inter-task communication
   commandQueue = xQueueCreate(5, sizeof(char) * 32);
   if (!commandQueue) {
@@ -102,14 +121,14 @@ void app_main() {
   // Create tasks and pin them to specific cores
   xTaskCreatePinnedToCore(camera_task, "Camera Task", 4096, NULL, 1,
                           &cameraTaskHandle, 1); // Core 1
-  /*xTaskCreatePinnedToCore(mqtt_task, "MQTT Task", 4096, NULL, 1,
-                          &mqttTaskHandle, 0); // Core 0*/
+  xTaskCreatePinnedToCore(mqtt_task, "MQTT Task", 4096, NULL, 1,
+                          &mqttTaskHandle, 0); // Core 0
 
   ESP_LOGI(TAG,
            "Tasks created successfully. Main loop "
            "running on Core %d",
            xPortGetCoreID());
 
-  ESP_LOGI(TAG, "Artificially starting motion detection task.");
-  start_motion_detection_task(&motionDetectionTaskHandle, capture_mutex);
+  // ESP_LOGI(TAG, "Artificially starting motion detection task.");
+  // start_motion_detection_task(&motionDetectionTaskHandle, capture_mutex);
 }

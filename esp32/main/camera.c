@@ -66,7 +66,7 @@ static camera_config_t camera_config = {
     .ledc_channel = LEDC_CHANNEL_0,
     .pixel_format = PIXFORMAT_GRAYSCALE, // Grayscale for lossless compression
     .frame_size = FRAMESIZE_QQVGA, // Moderate frame size to reduce memory usage
-    .jpeg_quality = 15,            // Higher value means lower quality
+    .jpeg_quality = 7,             // Higher value means lower quality
     .fb_count = 2, // Only one frame buffer to reduce memory usage
     .fb_location = CAMERA_FB_IN_PSRAM,
     .grab_mode = CAMERA_GRAB_LATEST, // Always get the latest frame
@@ -105,10 +105,19 @@ camera_fb_t *capture_image(void) {
 void release_image(camera_fb_t *pic) {
   if (pic) {
     esp_camera_fb_return(pic);
-    ESP_LOGI(TAG, "Returned image buffer to driver.");
+    // ESP_LOGI(TAG, "Returned image buffer to driver.");
   } else {
     ESP_LOGW(TAG, "Attempted to return a NULL image buffer.");
   }
+}
+
+// Function to reinitialize the camera with new settings
+esp_err_t reinitialize_camera(pixformat_t pixel_format,
+                              framesize_t frame_size) {
+  esp_camera_deinit(); // Deinitialize the current camera
+  camera_config.pixel_format = pixel_format;
+  camera_config.frame_size = frame_size;
+  return esp_camera_init(&camera_config); // Reinitialize with the new settings
 }
 
 #else

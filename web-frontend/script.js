@@ -1,7 +1,7 @@
 // Predefined password
 let PASSWORD
 
-// Fetch config and password (optional if you want to load it dynamically)
+// Fetch config and password
 fetch('config.json')
   .then((response) => response.json())
   .then((config) => {
@@ -17,11 +17,16 @@ const mainSection = document.getElementById('main-section')
 const passwordInput = document.getElementById('password-input')
 const loginBtn = document.getElementById('login-btn')
 const errorMessage = document.getElementById('error-message')
-const statusIndicator = document.getElementById('status-indicator')
 const photoBtn = document.getElementById('photo-btn')
 const displayBtn = document.getElementById('display-btn')
+const motionBtn = document.getElementById('motion-btn')
+const motionStatusSection = document.getElementById('motion-status-section')
+const motionStatusText = document.getElementById('motion-status-text')
 const photosSection = document.getElementById('photos-section')
 const photosContainer = document.getElementById('photos-container')
+
+// Cache to track the last three motion-detection photos
+let motionPhotoCache = []
 
 // Handle login
 loginBtn.addEventListener('click', () => {
@@ -35,31 +40,30 @@ loginBtn.addEventListener('click', () => {
 
 // Display photos helper function
 function displayPhotos(photos) {
-  console.log('Photos Array:', photos) // Debug the photos array
-
   photosContainer.innerHTML = '' // Clear previous photos
   photos.forEach((photoUrl) => {
-    console.log('Photo URL:', photoUrl) // Debug each URL
-
+    console.log('Photo URL:', photoUrl)
     const img = document.createElement('img')
     img.src = photoUrl
     img.alt = 'Photo'
-
     photosContainer.appendChild(img)
   })
   photosSection.classList.remove('hidden')
 }
 
-// A reusable fetch for photos
-function fetchAndShowPhotos() {
+// Fetch and display photos
+function fetchAndShowPhotos(folder = 'manual-capture-images') {
   fetch(
-    'https://vw91j17z98.execute-api.us-west-1.amazonaws.com/dev/display-photos'
+    `https://vw91j17z98.execute-api.us-west-1.amazonaws.com/dev/display-photos/${folder}`
   )
     .then((response) => response.json())
     .then((data) => {
-      console.log('API Response:', data) // Debug response data
       if (data.photos && Array.isArray(data.photos)) {
-        displayPhotos(data.photos)
+        if (folder === 'motion-detection-images') {
+          checkForMotionUpdates(data.photos)
+        } else {
+          displayPhotos(data.photos)
+        }
       } else {
         console.error('Invalid response structure:', data)
         alert('Failed to load photos. Please try again later.')
@@ -70,30 +74,44 @@ function fetchAndShowPhotos() {
       alert('Failed to load photos. Please try again later.')
     })
 }
+// Extracts the filename from the S3 presigned URL
+function extractFilename(url) {
+  const parts = url.split('/')
+  return parts[parts.length - 1].split('?')[0] // Remove query parameters
+}
 
-// Take Photo
+// Check for new motion-detection photos
+function checkForMotionUpdates(photos) {
+  const newPhotoFilenames = photos.map(extractFilename)
+  const cachedPhotoFilenames = motionPhotoCache.map(extractFilename)
+
+  if (
+    JSON.stringify(newPhotoFilenames) !== JSON.stringify(cachedPhotoFilenames)
+  ) {
+    motionPhotoCache = photos.slice(0, 3) // Store the latest 3 presigned URLs
+    displayPhotos(motionPhotoCache) // Display new photos
+    motionStatusText.textContent = 'Motion detected!'
+  }
+}
+
+// Take photo
 photoBtn.addEventListener('click', () => {
   fetch(
-    'https://vw91j17z98.execute-api.us-west-1.amazonaws.com/dev/take-photo',
+    'https://vw91j17z98.execute-api.us-west-1.amazonaws.com/dev/iot-message/take_picture',
     {
       method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
     }
   )
     .then((response) => {
-      if (response.ok) {
-        return response.json()
-      } else {
-        throw new Error('Failed to invoke take-photo endpoint')
-      }
+      if (response.ok) return response.json()
+      else throw new Error('Failed to invoke take-photo endpoint')
     })
     .then((data) => {
-      console.log('API Response:', data)
       alert('Command sent to ESP32 to take a photo!')
-
-      // After success, wait 5 seconds, then auto display the updated photos
-      setTimeout(() => {
-        fetchAndShowPhotos()
-      }, 1000)
+      setTimeout(() => fetchAndShowPhotos(), 1000) // Fetch updated photos
     })
     .catch((error) => {
       console.error('Error invoking take-photo endpoint:', error)
@@ -101,4 +119,35 @@ photoBtn.addEventListener('click', () => {
     })
 })
 
-displayBtn.addEventListener('click', fetchAndShowPhotos)
+// Start motion detection
+motionBtn.addEventListener('click', () => {
+  fetch(
+    'https://vw91j17z98.execute-api.us-west-1.amazonaws.com/dev/iot-message/motion_detection',
+    {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    }
+  )
+    .then((response) => {
+      if (response.ok) return response.json()
+      else throw new Error('Failed to invoke motion-detection endpoint')
+    })
+    .then(() => {
+      motionStatusText.textContent = 'Motion detection initializing...'
+      motionStatusSection.classList.remove('hidden')
+      setTimeout(() => {
+        motionStatusText.textContent = 'Motion detection active.'
+        // Start checking for new motion-detection photos
+        setInterval(() => fetchAndShowPhotos('motion-detection-images'), 2000)
+      }, 8000) // Delay for 8 seconds
+    })
+    .catch((error) => {
+      console.error('Error invoking motion-detection endpoint:', error)
+      alert('Failed to start motion detection. Please try again.')
+    })
+})
+
+// Display manual photos
+displayBtn.addEventListener('click', () => fetchAndShowPhotos())

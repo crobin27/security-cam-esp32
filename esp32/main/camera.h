@@ -14,4 +14,7 @@ camera_fb_t *capture_image(void);
 // Function to return a captured image back to the driver
 void release_image(camera_fb_t *pic);
 
+esp_err_t reinitialize_camera(pixformat_t pixel_format,
+                              framesize_t frame_size);
+
 #endif  // CAMERA_H

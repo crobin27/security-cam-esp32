@@ -1,4 +1,5 @@
 #include "motion_detection.h"
+#include "aws_upload.h"
 #include "camera.h"
 #include "esp_log.h"
 #include "freertos/FreeRTOS.h"
@@ -10,7 +11,7 @@
 #define MAX_FRAMES 10 // Maximum number of frames in the FIFO queue
 #define MOTION_TIMEOUT                                                         \
   120000 // Timeout for motion detection task in milliseconds
-#define FRAME_DIFF_THRESHOLD 100000 // Threshold for motion detection
+#define FRAME_DIFF_THRESHOLD 200000 // Threshold for motion detection
 
 static const char *TAG = "MotionDetection";
 
@@ -20,12 +21,19 @@ static size_t frame_sizes[MAX_FRAMES];
 static int current_frame_index = 0;
 
 extern SemaphoreHandle_t capture_mutex;
+extern SemaphoreHandle_t motion_detection_active;
 
 static void store_frame(uint8_t *data, size_t size);
 static int compare_frames(uint8_t *frame1, size_t size1, uint8_t *frame2,
                           size_t size2);
 void motion_detection_task(void *param) {
   ESP_LOGI(TAG, "Motion detection task started.");
+
+  if (reinitialize_camera(PIXFORMAT_GRAYSCALE, FRAMESIZE_QQVGA) == ESP_OK) {
+    ESP_LOGI(TAG, "Camera set to grayscale for motion detection.");
+  } else {
+    ESP_LOGE(TAG, "Failed to set camera to grayscale mode.");
+  }
 
   // Capture reference frames for initialization
   ESP_LOGI(TAG, "Initializing reference frames...");
@@ -41,7 +49,7 @@ void motion_detection_task(void *param) {
     store_frame(fb->buf, fb->len);
     release_image(fb);
     xSemaphoreGive(capture_mutex);
-    vTaskDelay(pdMS_TO_TICKS(500));
+    vTaskDelay(pdMS_TO_TICKS(750));
   }
   ESP_LOGI(TAG, "Reference frames initialized. Starting motion detection.");
 
@@ -75,13 +83,36 @@ void motion_detection_task(void *param) {
       // Capture three relevant frames: before, during, and after motion
       int before_index = (current_frame_index + MAX_FRAMES - 2) % MAX_FRAMES;
       int during_index = (current_frame_index + MAX_FRAMES - 1) % MAX_FRAMES;
+
+      ESP_LOGI(TAG, "Captured motion frames: before and during.");
+
+      // Delay to capture the "after" frame
+      vTaskDelay(pdMS_TO_TICKS(1000));
+      xSemaphoreTake(capture_mutex, portMAX_DELAY);
+      camera_fb_t *fb_after = capture_image();
+      if (!fb_after) {
+        ESP_LOGE(TAG, "Failed to capture 'after' frame.");
+        xSemaphoreGive(capture_mutex);
+      } else {
+        // Store the "after" frame in the FIFO queue
+        store_frame(fb_after->buf, fb_after->len);
+        release_image(fb_after);
+        ESP_LOGI(TAG, "Captured 'after' motion frame.");
+        xSemaphoreGive(capture_mutex);
+      }
+
       int after_index = current_frame_index;
 
       ESP_LOGI(TAG, "Captured motion frames: before, during, and after.");
 
       // Placeholder for uploading frames to AWS
       ESP_LOGI(TAG, "Placeholder for uploading frames: before, during, after.");
-
+      upload_image_to_s3(frame_buffer[before_index], frame_sizes[before_index],
+                         "motion-detection-images", "image/bmp");
+      upload_image_to_s3(frame_buffer[during_index], frame_sizes[during_index],
+                         "motion-detection-images", "image/bmp");
+      upload_image_to_s3(frame_buffer[after_index], frame_sizes[after_index],
+                         "motion-detection-images", "image/bmp");
       // Reinitialize reference frames after motion detection
       ESP_LOGI(TAG, "Reinitializing reference frames after motion detection.");
       for (int i = 0; i < MAX_FRAMES + 5; i++) {
@@ -90,7 +121,7 @@ void motion_detection_task(void *param) {
         if (!fb_ref) {
           ESP_LOGE(TAG, "Failed to capture reference frame %d.", i);
           xSemaphoreGive(capture_mutex);
-          vTaskDelay(pdMS_TO_TICKS(500));
+          vTaskDelay(pdMS_TO_TICKS(700));
           continue;
         }
         store_frame(fb_ref->buf, fb_ref->len);
@@ -106,11 +137,12 @@ void motion_detection_task(void *param) {
       ESP_LOGI(TAG, "No motion detected. Difference: %d", diff);
     }
 
-    vTaskDelay(pdMS_TO_TICKS(2000)); // Delay between captures
+    vTaskDelay(pdMS_TO_TICKS(1000)); // Delay between captures
   }
 
   ESP_LOGI(TAG, "Motion detection task completed.");
   vTaskDelete(NULL); // Delete the task once completed
+  xSemaphoreGive(motion_detection_active);
 }
 
 static void store_frame(uint8_t *data, size_t size) {

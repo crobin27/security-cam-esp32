@@ -22,7 +22,7 @@ const char *manual_folder = "manual-capture-images/";
 
 // Function to upload an image to the S3 bucket
 void upload_image_to_s3(const uint8_t *image_data, size_t image_size,
-                        const char *folder_name) {
+                        const char *folder_name, const char *file_type) {
 
   // Check if Wi-Fi connection is established using the semaphore
   if (wifi_connection_semaphore != NULL &&
@@ -53,7 +53,8 @@ void upload_image_to_s3(const uint8_t *image_data, size_t image_size,
     }
 
     // Set the request headers for binary data (JPEG image)
-    esp_http_client_set_header(client, "Content-Type", "image/jpeg");
+    esp_http_client_set_header(client, "Content-Type", file_type);
+    ESP_LOGI(TAG, "Uploading with Content-Type: %s", file_type);
 
     // Send the POST request with the image data
     esp_err_t err = esp_http_client_open(client, image_size);

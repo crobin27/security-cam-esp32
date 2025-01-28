@@ -82,3 +82,12 @@ button:hover {
   object-fit: cover;
   border-radius: 4px;
 }
+
+/* Styles for motion status section */
+#motion-status-section {
+  margin-top: 20px;
+  background: #f0f0f0;
+  padding: 10px;
+  border-radius: 4px;
+  text-align: center;
+}
