@@ -4,7 +4,6 @@ import json
 
 s3 = boto3.client('s3')
 
-# Get the S3 bucket name from environment variables
 BUCKET_NAME = os.environ['IMAGE_STORE_BUCKET']
 
 def lambda_handler(event, context):

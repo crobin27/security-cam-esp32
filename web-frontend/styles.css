@@ -17,9 +17,9 @@ h1 {
 
 /* ----- Auth Section (login) ----- */
 #auth-section {
-  max-width: 350px; /* narrower container for login */
+  max-width: 350px;
   width: 100%;
-  margin: 40px auto; /* center horizontally */
+  margin: 40px auto;
   background: white;
   padding: 20px;
   border-radius: 8px;
@@ -28,9 +28,9 @@ h1 {
 
 /* ----- Main Section (after login) ----- */
 #main-section {
-  max-width: 800px; /* allow main content to be wider */
+  max-width: 800px;
   width: 100%;
-  margin: 40px auto; /* center horizontally */
+  margin: 40px auto;
   background: white;
   padding: 20px;
   border-radius: 8px;
@@ -72,7 +72,7 @@ button:hover {
   display: flex;
   flex-wrap: wrap;
   gap: 10px;
-  justify-content: flex-start; /* or center, if you prefer */
+  justify-content: flex-start;
   margin-top: 20px;
 }
 
@@ -83,7 +83,6 @@ button:hover {
   border-radius: 4px;
 }
 
-/* Styles for motion status section */
 #motion-status-section {
   margin-top: 20px;
   background: #f0f0f0;

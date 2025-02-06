@@ -119,8 +119,21 @@ photoBtn.addEventListener('click', () => {
     })
 })
 
-// Start motion detection
+// Define variables to track the polling interval and timeout
+let motionPollingInterval = null
+let motionPollingTimeout = null
+
 motionBtn.addEventListener('click', () => {
+  // Clear any existing polling interval and timeout to ensure only one is running
+  if (motionPollingInterval) {
+    clearInterval(motionPollingInterval)
+    motionPollingInterval = null
+  }
+  if (motionPollingTimeout) {
+    clearTimeout(motionPollingTimeout)
+    motionPollingTimeout = null
+  }
+
   fetch(
     'https://vw91j17z98.execute-api.us-west-1.amazonaws.com/dev/iot-message/motion_detection',
     {
@@ -137,11 +150,23 @@ motionBtn.addEventListener('click', () => {
     .then(() => {
       motionStatusText.textContent = 'Motion detection initializing...'
       motionStatusSection.classList.remove('hidden')
+
+      // Wait 8 seconds for initialization
       setTimeout(() => {
         motionStatusText.textContent = 'Motion detection active.'
-        // Start checking for new motion-detection photos
-        setInterval(() => fetchAndShowPhotos('motion-detection-images'), 2000)
-      }, 8000) // Delay for 8 seconds
+
+        // Start polling for new motion-detection photos every 3 seconds
+        motionPollingInterval = setInterval(() => {
+          fetchAndShowPhotos('motion-detection-images')
+        }, 3000)
+
+        // Set a timeout to stop polling after 2 minutes (120,000 ms)
+        motionPollingTimeout = setTimeout(() => {
+          clearInterval(motionPollingInterval)
+          motionPollingInterval = null
+          motionStatusText.textContent = 'Motion detection stopped.'
+        }, 120000)
+      }, 8000)
     })
     .catch((error) => {
       console.error('Error invoking motion-detection endpoint:', error)

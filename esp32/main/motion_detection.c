@@ -9,9 +9,8 @@
 #include <string.h>
 
 #define MAX_FRAMES 10 // Maximum number of frames in the FIFO queue
-#define MOTION_TIMEOUT                                                         \
-  120000 // Timeout for motion detection task in milliseconds
-#define FRAME_DIFF_THRESHOLD 200000 // Threshold for motion detection
+#define MOTION_TIMEOUT 120000
+#define FRAME_DIFF_THRESHOLD 450000 // Threshold for motion detection, arbitrary
 
 static const char *TAG = "MotionDetection";
 
@@ -29,8 +28,8 @@ static int compare_frames(uint8_t *frame1, size_t size1, uint8_t *frame2,
 void motion_detection_task(void *param) {
   ESP_LOGI(TAG, "Motion detection task started.");
 
-  if (reinitialize_camera(PIXFORMAT_GRAYSCALE, FRAMESIZE_QQVGA) == ESP_OK) {
-    ESP_LOGI(TAG, "Camera set to grayscale for motion detection.");
+  if (reinitialize_camera(PIXFORMAT_GRAYSCALE, FRAMESIZE_QVGA) == ESP_OK) {
+    ESP_LOGI(TAG, "Camera set to grayscale colored mode for motion detection.");
   } else {
     ESP_LOGE(TAG, "Failed to set camera to grayscale mode.");
   }
@@ -113,6 +112,7 @@ void motion_detection_task(void *param) {
                          "motion-detection-images", "image/bmp");
       upload_image_to_s3(frame_buffer[after_index], frame_sizes[after_index],
                          "motion-detection-images", "image/bmp");
+
       // Reinitialize reference frames after motion detection
       ESP_LOGI(TAG, "Reinitializing reference frames after motion detection.");
       for (int i = 0; i < MAX_FRAMES + 5; i++) {
@@ -141,7 +141,7 @@ void motion_detection_task(void *param) {
   }
 
   ESP_LOGI(TAG, "Motion detection task completed.");
-  vTaskDelete(NULL); // Delete the task once completed
+  vTaskDelete(NULL);
   xSemaphoreGive(motion_detection_active);
 }
 
@@ -165,12 +165,12 @@ static int compare_frames(uint8_t *frame1, size_t size1, uint8_t *frame2,
                           size_t size2) {
   if (!frame1 || !frame2) {
     ESP_LOGW(TAG, "One or both frames are null.");
-    return INT_MAX; // Maximum difference
+    return INT_MAX;
   }
 
   if (size1 != size2) {
     ESP_LOGW(TAG, "Frame size mismatch: size1=%zu, size2=%zu", size1, size2);
-    return INT_MAX; // Treat as motion detected in case of mismatch
+    return INT_MAX;
   }
 
   int diff = 0;
@@ -188,15 +188,9 @@ void start_motion_detection_task(TaskHandle_t *taskHandle,
     return;
   }
 
-  BaseType_t result = xTaskCreatePinnedToCore(
-      motion_detection_task, // Task function
-      "MotionDetectionTask", // Task name
-      4096,                  // Stack size
-      (void *)capture_mutex, // Task parameter (pass the mutex)
-      1,                     // Task priority
-      taskHandle,            // Task handle to manage this task
-      1                      // Core 1
-  );
+  BaseType_t result =
+      xTaskCreatePinnedToCore(motion_detection_task, "MotionDetectionTask",
+                              4096, (void *)capture_mutex, 1, taskHandle, 1);
 
   if (result == pdPASS) {
     ESP_LOGI(TAG, "Motion detection task started successfully.");

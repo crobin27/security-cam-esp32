@@ -11,7 +11,6 @@
 // External declaration of the semaphore defined in wifi_connect.c
 extern SemaphoreHandle_t wifi_connection_semaphore;
 
-// Tag for logging
 static const char *TAG = "AWS_UPLOAD";
 
 extern const uint8_t root_ca_pem_start[] asm("_binary_root_ca_pem_start");

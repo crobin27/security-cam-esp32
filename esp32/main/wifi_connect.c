@@ -53,7 +53,7 @@ static void event_handler(void *arg, esp_event_base_t event_base,
   } else if (event_base == IP_EVENT && event_id == IP_EVENT_STA_GOT_IP) {
     ip_event_got_ip_t *event = (ip_event_got_ip_t *)event_data;
     ESP_LOGI(TAG, "Got IP address: " IPSTR, IP2STR(&event->ip_info.ip));
-    s_retry_num = 0; // Reset retry count upon successful connection
+    s_retry_num = 0;
     xEventGroupSetBits(s_wifi_event_group, WIFI_CONNECTED_BIT);
   }
 }
@@ -63,7 +63,7 @@ void initialize_wifi(void) {
   ESP_LOGI(TAG, "Initializing NVS for Wi-Fi connection...");
   wifi_connection_semaphore = xSemaphoreCreateBinary();
 
-  // Initialize NVS flash storage (required for Wi-Fi functionality)
+  // Initialize NVS flash storage
   esp_err_t ret = nvs_flash_init();
   if (ret == ESP_ERR_NVS_NO_FREE_PAGES ||
       ret == ESP_ERR_NVS_NEW_VERSION_FOUND) {
@@ -114,7 +114,7 @@ void initialize_wifi(void) {
   if (bits & WIFI_CONNECTED_BIT) {
     ESP_LOGI(TAG, "Successfully connected to the Wi-Fi network: SSID:%s",
              WIFI_SSID);
-    xSemaphoreGive(wifi_connection_semaphore); // Signal that Wi-Fi is connected
+    xSemaphoreGive(wifi_connection_semaphore); // set the semaphore
   } else if (bits & WIFI_FAIL_BIT) {
     ESP_LOGE(TAG, "Failed to connect to the Wi-Fi network: SSID:%s", WIFI_SSID);
   } else {

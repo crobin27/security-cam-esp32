@@ -13,7 +13,7 @@
 #include "aws_iot.h"
 
 static const char *TAG = "App_Main";
-// MQTT Broker URI
+
 #define MQTT_BROKER_URI CONFIG_AWS_IOT_ENDPOINT // Define this in sdkconfig
 
 // Queue for inter-task communication
@@ -24,15 +24,13 @@ TaskHandle_t cameraTaskHandle = NULL;
 TaskHandle_t mqttTaskHandle = NULL;
 TaskHandle_t motionDetectionTaskHandle = NULL;
 
-SemaphoreHandle_t capture_mutex; // used to ensure mutual exclusion between
-SemaphoreHandle_t
-    motion_detection_active; // motion detection and image capture tasks
+SemaphoreHandle_t capture_mutex; // used to ensure mutual exclusion
+SemaphoreHandle_t motion_detection_active;
 void camera_task(void *param) {
   ESP_LOGI(TAG, "Camera Task Started on Core %d", xPortGetCoreID());
 
   char command[32];
   while (true) {
-    // Wait for a command from the queue
     if (xQueueReceive(commandQueue, command, portMAX_DELAY)) {
       ESP_LOGI(TAG, "Received command: %s", command);
 
