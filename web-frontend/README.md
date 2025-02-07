@@ -8,7 +8,7 @@ The frontend is a static web application built with HTML, CSS, and JavaScript. I
 
 ### Features
 
-- **Image Display**: Fetches and displays up to the last 30 images stored in the AWS S3 bucket.
+- **Image Display**: Fetches and displays up to the last 5 images stored in the AWS S3 bucket.
 - **Responsive Design**: Optimized for viewing across various screen sizes.
 - **Error Handling**: Notifies users if there are issues retrieving images.
 
