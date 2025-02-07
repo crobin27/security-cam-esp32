@@ -8,9 +8,9 @@
 #include <stdlib.h>
 #include <string.h>
 
-#define MAX_FRAMES 10 // Maximum number of frames in the FIFO queue
+#define MAX_FRAMES 5 // Maximum number of frames in the FIFO queue
 #define MOTION_TIMEOUT 120000
-#define FRAME_DIFF_THRESHOLD 450000 // Threshold for motion detection, arbitrary
+#define FRAME_DIFF_THRESHOLD 150000 // Threshold for motion detection, arbitrary
 
 static const char *TAG = "MotionDetection";
 
@@ -28,7 +28,7 @@ static int compare_frames(uint8_t *frame1, size_t size1, uint8_t *frame2,
 void motion_detection_task(void *param) {
   ESP_LOGI(TAG, "Motion detection task started.");
 
-  if (reinitialize_camera(PIXFORMAT_GRAYSCALE, FRAMESIZE_QVGA) == ESP_OK) {
+  if (reinitialize_camera(PIXFORMAT_GRAYSCALE, FRAMESIZE_QQVGA) == ESP_OK) {
     ESP_LOGI(TAG, "Camera set to grayscale colored mode for motion detection.");
   } else {
     ESP_LOGE(TAG, "Failed to set camera to grayscale mode.");
@@ -190,7 +190,7 @@ void start_motion_detection_task(TaskHandle_t *taskHandle,
 
   BaseType_t result =
       xTaskCreatePinnedToCore(motion_detection_task, "MotionDetectionTask",
-                              4096, (void *)capture_mutex, 1, taskHandle, 1);
+                              4096, (void *)capture_mutex, 1, taskHandle, 0);
 
   if (result == pdPASS) {
     ESP_LOGI(TAG, "Motion detection task started successfully.");

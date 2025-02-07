@@ -4,7 +4,7 @@ This directory contains the simple web interface for the Security Cam ESP32 proj
 
 ## Overview
 
-The frontend is a static web application built with HTML, CSS, and JavaScript. It connects to the S3 bucket where images are stored and dynamically displays the latest captured images.
+The frontend is a static web application built with HTML, CSS, and JavaScript. It connects to the S3 bucket where images are stored and dynamically displays the latest captured images. Please note that I did use AI tools to build most of this section as my fronted (HTML/JS) skills are limited.
 
 ### Features
 

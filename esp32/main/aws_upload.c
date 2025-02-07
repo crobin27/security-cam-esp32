@@ -35,14 +35,18 @@ void upload_image_to_s3(const uint8_t *image_data, size_t image_size,
     ESP_LOGI(TAG, "Constructed upload URL: %s", url);
 
     // Configure the HTTP client for the image upload
-    esp_http_client_config_t config = {.url = url,
-                                       .method = HTTP_METHOD_POST,
-                                       .cert_pem =
-                                           (const char *)root_ca_pem_start,
-                                       .timeout_ms = 5000,
-                                       .transport_type = HTTP_TRANSPORT_OVER_SSL
+    esp_http_client_config_t config = {
+        .url = url,
+        .method = HTTP_METHOD_POST,
+        .cert_pem = (const char *)root_ca_pem_start,
+        .timeout_ms = 10000,
+        .transport_type = HTTP_TRANSPORT_OVER_SSL,
+        .skip_cert_common_name_check = false,
 
     };
+
+    size_t free_heap = esp_get_free_heap_size();
+    ESP_LOGI(TAG, "Free heap before upload: %d", free_heap);
 
     esp_http_client_handle_t client = esp_http_client_init(&config);
     if (client == NULL) {
@@ -57,6 +61,7 @@ void upload_image_to_s3(const uint8_t *image_data, size_t image_size,
 
     // Send the POST request with the image data
     esp_err_t err = esp_http_client_open(client, image_size);
+    ESP_LOGI(TAG, "esp_http_client_open returned %d", err);
     if (err == ESP_OK) {
       int write_len =
           esp_http_client_write(client, (const char *)image_data, image_size);

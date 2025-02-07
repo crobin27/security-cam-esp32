@@ -8,49 +8,31 @@ from datetime import datetime
 BUCKET_NAME = os.environ['IMAGE_STORE_BUCKET']
 s3 = boto3.client('s3')
 def create_bmp_header(width, height, image_data, bits_per_pixel=24):
-    if bits_per_pixel not in (16, 24):
-        raise ValueError("Only 16-bit (RGB565) and 24-bit (RGB888) BMP formats are supported.")
-
-    # Calculate row padding for BMP format (must be a multiple of 4 bytes)
     row_stride = (width * (bits_per_pixel // 8) + 3) & ~3
-    image_size = row_stride * height  # Total pixel data size
-
-    file_size = 54 + image_size  # 54 bytes header + pixel data
+    image_size = row_stride * height
+    file_size = 54 + image_size
     header = bytearray(54)
 
-    # BMP file header (14 bytes)
-    header[0:2] = b'BM'                            # Signature
-    header[2:6] = file_size.to_bytes(4, 'little')  # File size
-    header[6:8] = (0).to_bytes(2, 'little')        # Reserved
-    header[8:10] = (0).to_bytes(2, 'little')       # Reserved
-    header[10:14] = (54).to_bytes(4, 'little')     # Offset to pixel array
+    # BMP Header
+    header[0:2] = b'BM'
+    header[2:6] = file_size.to_bytes(4, 'little')
+    header[10:14] = (54).to_bytes(4, 'little')
+    header[14:18] = (40).to_bytes(4, 'little')
+    header[18:22] = width.to_bytes(4, 'little')
+    header[22:26] = (-height).to_bytes(4, 'little', signed=True)
+    header[26:28] = (1).to_bytes(2, 'little')
+    header[28:30] = bits_per_pixel.to_bytes(2, 'little')
+    header[34:38] = image_size.to_bytes(4, 'little')
 
-    # DIB header (40 bytes)
-    header[14:18] = (40).to_bytes(4, 'little')     # DIB header size
-    header[18:22] = width.to_bytes(4, 'little')    # Image width
-    header[22:26] = (-height).to_bytes(4, 'little', signed=True)  # Flip the image vertically
-    header[26:28] = (1).to_bytes(2, 'little')      # Number of color planes
-    header[28:30] = bits_per_pixel.to_bytes(2, 'little')  # Bits per pixel
-    header[30:34] = (0).to_bytes(4, 'little')      # No compression
-    header[34:38] = image_size.to_bytes(4, 'little')  # Image data size
-    header[38:42] = (2835).to_bytes(4, 'little')   # Horizontal resolution (72 DPI)
-    header[42:46] = (2835).to_bytes(4, 'little')   # Vertical resolution (72 DPI)
-    header[46:50] = (0).to_bytes(4, 'little')      # Number of colors in the palette
-    header[50:54] = (0).to_bytes(4, 'little')      # Important colors
+    # Convert grayscale to RGB and add padding
+    new_image_data = bytearray()
+    padding = (4 - (width * 3) % 4) % 4  # Padding for 4-byte alignment
 
-    # Convert 8-bit grayscale to 24-bit RGB
-    if bits_per_pixel == 24:
-        new_image_data = bytearray()
-        for pixel in image_data:
-            new_image_data.extend((pixel, pixel, pixel))  # Convert grayscale to RGB
-    elif bits_per_pixel == 16:
-        new_image_data = bytearray()
-        for pixel in image_data:
-            r = (pixel >> 3) & 0x1F
-            g = (pixel >> 2) & 0x3F
-            b = (pixel >> 3) & 0x1F
-            rgb565 = (r << 11) | (g << 5) | b
-            new_image_data.extend(rgb565.to_bytes(2, 'little'))  # Convert to RGB565
+    for row in range(height):
+        for col in range(width):
+            pixel = image_data[row * width + col]
+            new_image_data.extend((pixel, pixel, pixel))  # Grayscale to RGB
+        new_image_data.extend(b'\x00' * padding)  # Add padding at end of row
 
     return header + new_image_data
 
@@ -75,17 +57,20 @@ def lambda_handler(event, context):
         timestamp_str = datetime.utcnow().strftime('%Y%m%d_%H%M%S')
 
         # depending on the "Content-Type" in the header, the filename may be different
-        content_type = ""
-        if "Content-Type" in event["headers"] and event["headers"]["Content-Type"] == "image/jpeg":
+        # Handle both 'Content-Type' and 'content-type' keys
+        content_type = event["headers"].get("Content-Type") or event["headers"].get("content-type")
+
+        if content_type == "image/jpeg":
             filename = f"photo_{timestamp_str}.jpeg"
             content_type = "image/jpeg"
-        elif "Content-Type" in event["headers"] and event["headers"]["Content-Type"] == "image/bmp":
+        elif content_type == "image/bmp":
             print("Processing BMP image...")
-            width, height = 320, 240  # Update with actual width/height
+            width, height = 160, 120  # Update with actual width/height
             image_data = create_bmp_header(width, height, image_data, bits_per_pixel=24)
             filename = f"photo_{timestamp_str}.bmp"
             content_type = "image/bmp"
         else: 
+             print("Received headers:", json.dumps(event.get("headers", {})))
              raise ValueError(f"Unsupported Content-Type: {event['headers'].get('Content-Type', 'unknown')}")
         
         # If a query parameter specifies a filename, use it instead

@@ -64,10 +64,10 @@ static camera_config_t camera_config = {
     .xclk_freq_hz = 20000000,
     .ledc_timer = LEDC_TIMER_0,
     .ledc_channel = LEDC_CHANNEL_0,
-    .pixel_format = PIXFORMAT_RGB565, 
-    .frame_size = FRAMESIZE_QVGA, // Moderate frame size to reduce memory usage
-    .jpeg_quality = 7,             // Higher value means lower quality
-    .fb_count = 2, 
+    .pixel_format = PIXFORMAT_GRAYSCALE,
+    .frame_size = FRAMESIZE_QQVGA, // Moderate frame size to reduce memory usage. SVGA for Jpeg
+    .jpeg_quality = 12,            // Higher value means lower quality
+    .fb_count = 2,
     .fb_location = CAMERA_FB_IN_PSRAM,
     .grab_mode = CAMERA_GRAB_LATEST, // Always get the latest frame
 };
@@ -114,10 +114,11 @@ void release_image(camera_fb_t *pic) {
 // Function to reinitialize the camera with new settings
 esp_err_t reinitialize_camera(pixformat_t pixel_format,
                               framesize_t frame_size) {
-  esp_camera_deinit(); 
+  esp_camera_deinit();
+  vTaskDelay(pdMS_TO_TICKS(200)); // Add a delay before reinitializing
   camera_config.pixel_format = pixel_format;
   camera_config.frame_size = frame_size;
-  return esp_camera_init(&camera_config); 
+  return esp_camera_init(&camera_config);
 }
 
 #else

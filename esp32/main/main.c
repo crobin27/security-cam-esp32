@@ -38,7 +38,7 @@ void camera_task(void *param) {
         // Capture image
         xSemaphoreTake(capture_mutex, portMAX_DELAY);
 
-        if (reinitialize_camera(PIXFORMAT_JPEG, FRAMESIZE_QVGA) == ESP_OK) {
+        if (reinitialize_camera(PIXFORMAT_JPEG, FRAMESIZE_VGA) == ESP_OK) {
           ESP_LOGI(TAG, "Camera set to color for standard capture.");
         } else {
           ESP_LOGE(TAG, "Failed to set camera to color mode.");

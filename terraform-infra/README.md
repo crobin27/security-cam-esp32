@@ -27,6 +27,10 @@ modules/
 ├── api_gateway
 ├── iot
 ├── lambda
+│   ├── display_photos
+│   ├── iot_command
+│   ├── lambda_iam
+│   └── upload_photo
 ├── s3_frontend
 └── s3_image_store
 ```
@@ -36,6 +40,10 @@ modules/
 - **`api_gateway`**: Defines and deploys the API Gateway configuration for the project. This serves as the entry point for all communication between the ESP32 devices and the backend services.
 - **`iot`**: Configures AWS IoT Core, including Thing Policies and Certificates, enabling secure communication for the ESP32 device.
 - **`lambda`**: Sets up AWS Lambda functions written in Python. These functions automate backend tasks such as S3 image upload handling and database entry creation.
+  - **`display_photos`**: Lambda function responsible for retrieving and displaying photos stored in S3.
+  - **`iot_command`**: Handles IoT commands sent to the ESP32 device.
+  - **`lambda_iam`**: Manages IAM roles and permissions for Lambda functions.
+  - **`upload_photo`**: Processes and uploads photos from the ESP32 to S3.
 - **`s3_frontend`**: Provisions an S3 bucket for hosting the web frontend, complete with website hosting settings and appropriate bucket policies.
 - **`s3_image_store`**: Configures an S3 bucket for storing captured images, with fine-grained access controls.
 
