@@ -100,7 +100,7 @@ void motion_detection_task(void *param) {
         xSemaphoreGive(capture_mutex);
       }
 
-      int after_index = current_frame_index;
+      int after_index = (current_frame_index + MAX_FRAMES - 1) % MAX_FRAMES;
 
       ESP_LOGI(TAG, "Captured motion frames: before, during, and after.");
 

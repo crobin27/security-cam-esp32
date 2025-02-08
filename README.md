@@ -71,6 +71,10 @@ root/
 2. **Backend Processing**: Lambda functions handle metadata storage and manage the backend workflows.
 3. **Image Viewing**: The web frontend retrieves and displays the images from S3 for the user.
 
-4. **Motion Detection**: There is also a motion detection feature that actively captures photos and compares them for differences. Uploads the corresponding photos to AWS. 
+4. **Motion Detection**: There is also a motion detection feature that actively captures photos and compares them for differences. Uploads the corresponding photos to AWS.
 
-This repository serves as a portfolio project to illustrate my expertise in IoT, cloud computing, and application development. 
+## Demo Video
+
+Check out the [project demo on YouTube](https://youtu.be/t0pvggpXvDw).
+
+This repository serves as a portfolio project to illustrate my expertise in IoT, cloud computing, and application development.
